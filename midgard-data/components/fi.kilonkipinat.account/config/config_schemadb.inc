@@ -1,4 +1,4 @@
-'config' => array 
+'config' => array
 (
     'description' => 'Default Configuration Schema',
     'fields'      => array
