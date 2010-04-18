@@ -1,0 +1,1 @@
+'schemadb' => '/sitegroup-config/org.routamc.photostream/schemadb_default',

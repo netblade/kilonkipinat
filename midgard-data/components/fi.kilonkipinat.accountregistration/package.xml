@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+                <package packagerversion="1.4.5" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+                http://pear.php.net/dtd/tasks-1.0.xsd
+                http://pear.php.net/dtd/package-2.0
+                http://pear.php.net/dtd/package-2.0.xsd">
+                    <name>fi_kilonkipinat_accountregistration</name>
+                    <channel>ragnaroek.pear.midgard-project.org</channel>
+                    <summary>
+                        Small component for registry and password recovery
+                    </summary>
+                    <description>
+                        Small component for registry and password recovery
+                    </description>
+                    
+                                                <lead>
+                                                    <name>Oskari Kokko</name>    
+                                                    <user>netblade</user>
+                                                    <email>oskari.kokko@iki.fi</email>
+                                                    <active>yes</active>
+                                                </lead>
+                                                
+                    <date>2010-04-04</date>
+                    <time>17:30:23</time>
+                    <version>
+                        <release>8.09.8.0</release>
+                        <api>8.09.8.0</api>
+                    </version>
+                    <stability>
+                        <release>stable</release>
+                        <api>stable</api>
+                    </stability>
+                    <license>LGPL</license>
+                    <notes>8.09.8.0 stable</notes>        
+                    <contents>
+        <dir name="fi.kilonkipinat.accountregistration">
+            <file baseinstalldir="midcom/lib/fi/kilonkipinat/accountregistration" name="viewer.php" role="php" />
+            <dir name="cron">
+                <file baseinstalldir="midcom/lib/fi/kilonkipinat/accountregistration" name="clearold.php" role="php" />
+            </dir>
+            <file baseinstalldir="midcom/lib/fi/kilonkipinat/accountregistration" name="accountrequest.php" role="php" />
+            <dir name="midcom">
+                <file baseinstalldir="midcom/lib/fi/kilonkipinat/accountregistration" name="interfaces.php" role="php" />
+            </dir>
+            <dir name="exec">
+                <file baseinstalldir="midcom/lib/fi/kilonkipinat/accountregistration" name="search_user.php" role="php" />
+            </dir>
+            <dir name="config">
+                <file baseinstalldir="midcom/lib/fi/kilonkipinat/accountregistration" name="config_schemadb.inc" role="php" />
+                <file baseinstalldir="midcom/lib/fi/kilonkipinat/accountregistration" name="manifest.inc" role="php" />
+                <file baseinstalldir="midcom/lib/fi/kilonkipinat/accountregistration" name="config.inc" role="php" />
+                <file baseinstalldir="midcom/lib/fi/kilonkipinat/accountregistration" name="schemadb_account_search.inc" role="php" />
+                <file baseinstalldir="midcom/lib/fi/kilonkipinat/accountregistration" name="midcom_dba_classes.inc" role="php" />
+                <file baseinstalldir="midcom/lib/fi/kilonkipinat/accountregistration" name="mgdschema.xml" role="mgdschema" />
+            </dir>
+            <dir name="static">
+                <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                <dir name="static">
+                    <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                    <dir name="static">
+                        <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                        <dir name="static">
+                            <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                            <dir name="static">
+                                <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                <dir name="static">
+                                    <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                    <dir name="static">
+                                        <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                        <dir name="static">
+                                            <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                            <dir name="static">
+                                                <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                <dir name="static">
+                                                    <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                    <dir name="static">
+                                                        <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                        <dir name="static">
+                                                            <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                            <dir name="static">
+                                                                <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                <dir name="static">
+                                                                    <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                    <dir name="static">
+                                                                        <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                        <dir name="static">
+                                                                            <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                            <dir name="static">
+                                                                                <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                                <dir name="static">
+                                                                                    <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                                    <dir name="static">
+                                                                                        <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                                        <dir name="static">
+                                                                                            <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                                            <dir name="static">
+                                                                                                <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                                                <dir name="static">
+                                                                                                    <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                                                    <dir name="static">
+                                                                                                        <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                                                        <dir name="static">
+                                                                                                            <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                                                            <dir name="static">
+                                                                                                                <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                                                                <dir name="static">
+                                                                                                                    <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                                                                    <dir name="static">
+                                                                                                                        <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                                                                        <dir name="static">
+                                                                                                                            <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                                                                            <dir name="static">
+                                                                                                                                <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                                                                                <dir name="static">
+                                                                                                                                    <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                                                                                    <dir name="static">
+                                                                                                                                        <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                                                                                        <dir name="static">
+                                                                                                                                            <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                                                                                            <dir name="static">
+                                                                                                                                                <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                                                                                                <dir name="static">
+                                                                                                                                                    <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                                                                                                    <dir name="static">
+                                                                                                                                                        <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                                                                                                        <dir name="static">
+                                                                                                                                                            <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                                                                                                            <dir name="static">
+                                                                                                                                                                <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                                                                                                                <dir name="static">
+                                                                                                                                                                    <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                                                                                                                    <dir name="static">
+                                                                                                                                                                        <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                                                                                                                        <dir name="static">
+                                                                                                                                                                            <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                                                                                                                            <dir name="static">
+                                                                                                                                                                                <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="fi_kilonkipinat_accountregistration.css" name="fi_kilonkipinat_accountregistration.css" role="www" />
+                                                                                                                                                                                <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="static" name="static" role="www" />
+                                                                                                                                                                                <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                                                                                                                            </dir>
+                                                                                                                                                                            <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                                                                                                                        </dir>
+                                                                                                                                                                        <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                                                                                                                    </dir>
+                                                                                                                                                                    <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                                                                                                                </dir>
+                                                                                                                                                                <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                                                                                                            </dir>
+                                                                                                                                                            <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                                                                                                        </dir>
+                                                                                                                                                        <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                                                                                                    </dir>
+                                                                                                                                                    <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                                                                                                </dir>
+                                                                                                                                                <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                                                                                            </dir>
+                                                                                                                                            <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                                                                                        </dir>
+                                                                                                                                        <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                                                                                    </dir>
+                                                                                                                                    <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                                                                                </dir>
+                                                                                                                                <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                                                                            </dir>
+                                                                                                                            <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                                                                        </dir>
+                                                                                                                        <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                                                                    </dir>
+                                                                                                                    <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                                                                </dir>
+                                                                                                                <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                                                            </dir>
+                                                                                                            <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                                                        </dir>
+                                                                                                        <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                                                    </dir>
+                                                                                                    <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                                                </dir>
+                                                                                                <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                                            </dir>
+                                                                                            <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                                        </dir>
+                                                                                        <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                                    </dir>
+                                                                                    <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                                </dir>
+                                                                                <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                            </dir>
+                                                                            <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                        </dir>
+                                                                        <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                    </dir>
+                                                                    <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                                </dir>
+                                                                <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                            </dir>
+                                                            <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                        </dir>
+                                                        <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                    </dir>
+                                                    <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                                </dir>
+                                                <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                            </dir>
+                                            <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                        </dir>
+                                        <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                    </dir>
+                                    <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                                </dir>
+                                <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                            </dir>
+                            <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                        </dir>
+                        <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                    </dir>
+                    <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+                </dir>
+                <file baseinstalldir="/fi.kilonkipinat.accountregistration" install-as="user_add.png" name="user_add.png" role="www" />
+            </dir>
+            <dir name="locale">
+                <file baseinstalldir="midcom/lib/fi/kilonkipinat/accountregistration" name="default.en.txt" role="php" />
+                <file baseinstalldir="midcom/lib/fi/kilonkipinat/accountregistration" name="default.fi.txt" role="php" />
+            </dir>
+            <file baseinstalldir="midcom/lib/fi/kilonkipinat/accountregistration" name="navigation.php" role="php" />
+            <dir name="style">
+                <file baseinstalldir="midcom/lib/fi/kilonkipinat/accountregistration" name="index.php" role="php" />
+                <file baseinstalldir="midcom/lib/fi/kilonkipinat/accountregistration" name="manage-request.php" role="php" />
+                <file baseinstalldir="midcom/lib/fi/kilonkipinat/accountregistration" name="validate-email.php" role="php" />
+                <file baseinstalldir="midcom/lib/fi/kilonkipinat/accountregistration" name="list-pending.php" role="php" />
+                <file baseinstalldir="midcom/lib/fi/kilonkipinat/accountregistration" name="approve-reset.php" role="php" />
+            </dir>
+            <dir name="documentation">
+                <file baseinstalldir="midcom/lib/fi/kilonkipinat/accountregistration" name="CHANGES" role="php" />
+            </dir>
+            <file baseinstalldir="midcom/lib/fi/kilonkipinat/accountregistration" name="resetrequest.php" role="php" />
+            <dir name="handler">
+                <file baseinstalldir="midcom/lib/fi/kilonkipinat/accountregistration" name="manage.php" role="php" />
+                <file baseinstalldir="midcom/lib/fi/kilonkipinat/accountregistration" name="index.php" role="php" />
+                <file baseinstalldir="midcom/lib/fi/kilonkipinat/accountregistration" name="actions.php" role="php" />
+            </dir>
+        </dir>
+    </contents>        
+                    <dependencies>
+                        <required>
+                            <php>
+                                <min>5.1.0</min>
+                            </php>
+                            <pearinstaller>
+                                <min>1.4.0</min>
+                            </pearinstaller>        
+                            
+                                                    <package>
+                                                        <name>midcom_helper_datamanager2</name>
+                                                        <channel>ragnaroek.pear.midgard-project.org</channel>
+                                                        
+                                                    </package>            
+                                                
+                                                    <package>
+                                                        <name>org_openpsa_mail</name>
+                                                        <channel>ragnaroek.pear.midgard-project.org</channel>
+                                                        
+                                                    </package>            
+                                                  
+                            <extension>
+                                <name>midgard</name>
+                                <min>8.09.3RC</min>
+                            </extension>
+                        </required>
+                    </dependencies>
+                    <phprelease /> 
+                </package>
+                    

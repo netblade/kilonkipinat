@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schema xmlns="http://www.midgard-project.org/repligard/1.4">
+    <type name="fi_kilonkipinat_accountregistration_resetrequest" table="fi_kilonkipinat_accountregistration_resetrequest">
+        <property name="id" type="unsigned integer" primaryfield="id" index="yes">
+            <description>Local non-replication-safe database identifier</description>
+        </property>
+        <property name="username" type="string" index="yes">
+            <description>Username of the person asked for password reseting</description>
+        </property>
+        <property name="person" link="midgard_person:id" type="unsigned integer" parentfield="person">
+            <description>Person which the resetrequest relates to</description>
+        </property>
+        <property name="status" type="unsigned integer" index="yes">
+            <description>Status of the resetrequest</description>
+        </property>
+    </type>
+    <type name="fi_kilonkipinat_accountregistration_accountrequest" table="fi_kilonkipinat_accountregistration_accountrequest">
+        <property name="id" type="unsigned integer" primaryfield="id" index="yes">
+            <description>Local non-replication-safe database identifier</description>
+        </property>
+        <property name="firstname" type="string" index="yes">
+            <description>Firstname of the person who requested account</description>
+        </property>
+        <property name="lastname" type="string" index="yes">
+            <description>Lastname of the person who requested account</description>
+        </property>
+        <property name="email" type="string" index="yes">
+            <description>Email of the person who requested account</description>
+        </property>
+        <property name="personGuid" type="string">
+            <description>guid of the person that the request relates to</description>
+        </property>
+        <property name="status" type="unsigned integer" index="yes">
+            <description>Status of the resetrequest</description>
+        </property>
+    </type>
+</Schema>

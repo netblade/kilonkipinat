@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schema xmlns="http://www.midgard-project.org/repligard/1.4">
+    <type name="fi_kilonkipinat_account_person" table="person">
+        <!-- Clean extending not supported yet
+             midgard_person properties -->
+        <property name="id" type="unsigned integer" primaryfield="id">
+            <description>Local non-replication-safe database identifier</description>
+        </property>
+        <property name="username" type="string" index="yes" />
+        <property name="password" type="string" dbtype="varchar(13) binary" />
+        <property name="firstname" type="string" index="yes" />
+        <property name="lastname" type="string" index="yes" />
+        <property name="birthdate" type="datetime" />
+        <property name="street" type="string" />
+        <property name="postcode" type="string" />
+        <property name="city" type="string" />
+        <property name="homephone" type="string" />
+        <property name="handphone" type="string" />
+        <property name="workphone" type="string" />
+        <property name="homepage" type="string" />
+        <property name="email" type="string" index="yes" />
+        <property name="extra" type="text" />
+        <property name="info" type="string" dbtype="set('auth')" />
+        <property name="topic" link="midgard_topic:id" type="unsigned integer" />
+        <property name="subtopic" link="midgard_topic:id" type="unsigned integer" />
+        <property name="office" link="midgard_topic:id" type="unsigned integer" />
+        <property name="pgpkey" type="text" />
+        <!-- /midgard_person properties -->
+
+        <!-- Additionals fields for fi_kilonkipinat_account -->
+            <!-- Generic -->
+        <property name="status" type="unsigned integer" index="yes">
+            <description>Status of the resetrequest</description>
+        </property>
+        <property name="nickname" type="string" index="yes">
+            <description>Nickname</description>
+        </property>
+        <!-- IM -->
+        <property name="imJabber" type="string" index="yes">
+            <description>Jabber / GTalk</description>
+        </property>
+        <property name="imMsn" type="string" index="yes">
+            <description>MSN</description>
+        </property>
+        <property name="imIrcGalleria" type="string" index="yes">
+            <description>Irc galleria</description>
+        </property>
+        <property name="imIcq" type="string" index="yes">
+            <description>ICQ</description>
+        </property>
+        <property name="imFacebook" type="string" index="yes">
+            <description>Facebook</description>
+        </property>
+        <property name="imSkype" type="string" index="yes">
+            <description>Skype</description>
+        </property>
+        <!-- / Generic-->
+        <!-- Scouting related -->
+        <property name="scoutingStarted" type="datetime">
+            <description>Scouting started</description>
+        </property>
+        <property name="scoutingEnded" type="datetime">
+            <description>Scouting ended</description>
+        </property>
+        <property name="toPatrol" type="datetime">
+            <description>When moved to patrol</description>
+        </property>
+        <property name="promiseGiven" type="datetime">
+            <description>When gave the promise</description>
+        </property>
+        <property name="classIIICompleted" type="datetime">
+            <description>When III class was finished</description>
+        </property>
+        <property name="classIICompleted" type="datetime">
+            <description>When II class was finished</description>
+        </property>
+        <property name="classICompleted" type="datetime">
+            <description>When I class was finished</description>
+        </property>
+        <!-- /Scouting related -->
+    </type>
+
+    <type name="fi_kilonkipinat_account_jobhistory_jobgroup" table="fi_kilonkipinat_account_jobhistory_jobgroup">
+        <property name="id" type="unsigned integer" primaryfield="id" index="yes">
+            <description>Local non-replication-safe database identifier</description>
+        </property>
+        <property name="name" type="string" index="yes">
+            <description>urlname of the jobtitle</description>
+        </property>
+        <property name="title" type="string" index="yes">
+            <description>Title of the jobtitle</description>
+        </property>
+    </type>
+
+    <type name="fi_kilonkipinat_account_jobhistory_job" table="fi_kilonkipinat_account_jobhistory_job">
+        <property name="id" type="unsigned integer" primaryfield="id" index="yes">
+            <description>Local non-replication-safe database identifier</description>
+        </property>
+        <property name="name" type="string" index="yes">
+            <description>urlname of the jobtitle</description>
+        </property>
+        <property name="title" type="string" index="yes">
+            <description>Title of the jobtitle</description>
+        </property>
+        <property name="status" type="unsigned integer" index="yes">
+            <description>Status of the jobtitle</description>
+        </property>
+    </type>
+</Schema>

@@ -1,0 +1,45 @@
+#fi_kilonkipinat_accountregistration_wrapper {
+	
+}
+
+#fi_kilonkipinat_accountregistration_wrapper th {
+	text-align: left;
+}
+
+#fi_kilonkipinat_accountregistration_groups {
+	padding: 10px 0;
+}
+
+#fi_kilonkipinat_accountregistration_groups ul li {
+	background: none;
+	padding-left: 0px;
+	margin-bottom: 3px;
+}
+
+#fi_kilonkipinat_accountregistration_groups ul ul {
+	margin-left: 10px;
+}
+
+#fi_kilonkipinat_accountregistration_search_user_results {
+	float: right;
+	width: 300px;
+}
+
+#fi_kilonkipinat_accountregistration_search_user_results th,
+#fi_kilonkipinat_accountregistration_search_user_results td {
+	margin-right: 10px;
+}
+
+#fi_kilonkipinat_accountregistration_search_user_results td.selected {
+	font-weight: bold;
+}
+
+#fi_kilonkipinat_accountregistration_wrapper .input_container {
+	display: block;
+	margin-bottom: 4px;
+}
+
+#fi_kilonkipinat_accountregistration_wrapper .input_container label {
+	display: block;
+	font-weight: bold;
+}

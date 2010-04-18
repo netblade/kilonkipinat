@@ -1,0 +1,1 @@
+<h2><?php echo $data['page_title']; ?></h2>

@@ -1,0 +1,140 @@
+/*
+vihreä: #30736f
+harmaa: #cccccc
+oranssi: #fc460e
+vaaleanharmaa: #f0f4f4
+
+
+*/
+
+html {
+    min-width: 1024px;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    font-size: 62.5%;
+    font-family: Verdana, Arial, "Times New Roman";
+    background-color: #FFFFFF;
+    background: url('/style/img/bg_imagery.gif') top right repeat-y;
+}
+
+body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    background: url('/style/img/bg_left_navi.gif') top left repeat-y;
+}
+
+body.frontpage {
+    background: url('/style/img/bg_left_frontpage.gif') top left repeat-y;
+}
+
+p {
+    margin: 10px 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    border: 0;
+    margin: 0px;
+    padding: 0px;
+    color: #30736f;
+    font-weight: bold;
+}
+
+h1 {
+    margin: 0px;
+}
+
+img {
+    border: 0;
+    margin: 0px;
+    padding: 0px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #30736f;
+}
+
+h1 {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin: 5px 0px 15px;
+}
+
+h2 {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin: 5px 0px 10px;
+}
+
+h3 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 5px 0px 5px;
+}
+
+h4 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 5px 0px 5px;
+}
+
+h5 {
+    font-size: 1.2em;
+    font-weight: normal;
+    margin: 3px 0px 3px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+ul li {
+    min-height: 13px;
+    margin: 0px;
+    padding: 0px;
+    padding-left: 15px;
+    background: url('/style/img/bullet_star.gif') left top no-repeat;
+}
+
+ol {
+    margin: 0px;
+    padding: 0px 0px 0px 10px;
+    margin-left: 10px;
+}
+
+ol li {
+    min-height: 13px;
+    margin: 0px;
+    padding: 0px;
+}
+
+abbr {
+    text-decoration: none;
+    border: none;
+}
+
+.clearer,
+.clearer_left,
+.clearer_right {
+    font-size: 1px;
+    line-height: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.clearer {
+    clear: both;
+}
+
+.clearer_left {
+    clear: left;
+}
+
+.clearer_right {
+    clear: left;
+}

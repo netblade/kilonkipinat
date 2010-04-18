@@ -1,0 +1,1 @@
+'schemadb' => '/sitegroup-config/fi.kilonkipinat.events/schemadb_events',

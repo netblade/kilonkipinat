@@ -1,0 +1,30 @@
+.fi_kilonkipinat_account_form_field {
+	display: block;
+	margin-bottom: 5px;
+}
+
+.fi_kilonkipinat_account_form_field label {
+	display: block;
+	font-weight: bold;
+}
+#fi_kilonkipinat_account_index_persons td,
+#fi_kilonkipinat_account_index_persons th {
+	padding-right: 4px;
+}
+
+#fi_kilonkipinat_account_index_persons td.fat_line {
+	height: 2px;
+	background: #000000;
+	overflow: hidden;
+	font-size: 1px;
+	font-size: 1px;
+	line-height: 1px;
+}
+
+#fi_kilonkipinat_account_index_persons td.line {
+	height: 1px;
+	background: #000000;
+	overflow: hidden;
+	font-size: 1px;
+	line-height: 1px;
+}
