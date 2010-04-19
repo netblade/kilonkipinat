@@ -1,6 +1,7 @@
 #!/bin/bash
 FILE1="aliases"
 FILE2="aliases.db"
+FILE3="aliases_old"
  
 which stat > /dev/null
  
@@ -22,7 +23,13 @@ fi
 if [ ! -e $FILE2 ]
 then
 	echo "$FILE2 not a file"
-	exit 2
+	exit 3
+fi
+
+# make sure file exists
+if [ ! -e $FILE3 ]
+then
+    $(touch $FILE3)
 fi
 
 LAST_MOD_FILE1="$(stat -c %Y $FILE1)"
@@ -30,5 +37,10 @@ LAST_MOD_FILE2="$(stat -c %Y $FILE2)"
 
 if [ $LAST_MOD_FILE1 -gt $LAST_MOD_FILE2 ]
 then
-    newaliases
+
+    if [ '' != "$(diff -q $FILE1 $FILE3)" ]
+    then
+        newaliases
+        cp $FILE1 $FILE3
+    fi
 fi
