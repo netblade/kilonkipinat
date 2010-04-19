@@ -202,7 +202,7 @@
     margin-top: 0px
 }
 
-#content_container #content {
+#content_container #content_wrapper {
     max-width: 700px;
     min-width: 300px;
     margin-left: 200px;
@@ -212,13 +212,17 @@
     z-index: 10;
 }
 
-.frontpage #content_container #content {
+.frontpage #content_container #content_wrapper {
     max-width: 900px;
     min-width: 500px;
     margin-left: 4px;
     margin-right: 270px;
     padding: 10px 0px 0px 20px;
     background: url('/style/img/curve_content_top_left.gif') left top no-repeat;
+}
+
+#content_container #content {
+    display: inline-block;
 }
 
 #content li {
@@ -306,8 +310,12 @@
     width: 250px;
 }
 
+.content_fp_lift_container_left {
+    margin: 10px 10px 10px 0;
+}
+
 .content_fp_lift_container_wide {
-    margin: 10px;
+    margin: 10px 10px 10px 0;
     display: block;
     background: #d7d7d7;
     width: 510px;
@@ -315,7 +323,7 @@
 
 .net_nemein_feedcollector_topic {
     float: left;
-    margin: 10px;
+    margin: 10px 10px 10px 0;
     display: block;
     width: 250px;
 }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schema xmlns="http://www.midgard-project.org/repligard/1.4">
+    <type name="fi_kilonkipinat_events_event" table="fi_kilonkipinat_events_event">
+        <property name="id" type="unsigned integer" primaryfield="id" index="yes">
+            <description>Local non-replication-safe database identifier</description>
+        </property>
+        <property name="topic" link="midgard_topic:id" type="unsigned integer" parentfield="topic">
+            <description>Topic which the event relates to</description>
+        </property>
+        <property name="type" type="unsigned integer" index="yes">
+            <description>Type of the event</description>
+        </property>
+        <property name="start" type="datetime" index="yes">
+            <description>Event start time</description>
+        </property>
+        <property name="end" type="datetime" index="yes">
+            <description>Event end time</description>
+        </property>
+        <property name="name" type="string" index="yes">
+            <description>URL name of the event</description>
+        </property>
+        <property name="title" type="string" index="yes">
+            <description>Title of the event</description>
+        </property>
+        <property name="content" type="text">
+            <description>Description of the event</description>
+        </property>
+        <property name="status" type="unsigned integer" index="yes">
+            <description>Status of the event</description>
+        </property>
+        <property name="public" type="unsigned integer" index="yes">
+            <description>Status of the event</description>
+        </property>
+        <property name="category" type="string" index="yes">
+            <description>Categories of the event, split by pipe (`|`)</description>
+        </property>
+        <property name="openregistration" type="datetime" index="yes">
+            <description>Event registration start time</description>
+        </property>
+        <property name="closeregistration" type="datetime" index="yes">
+            <description>Event registration end time</description>
+        </property>
+    </type>
+</Schema>

@@ -1,0 +1,7 @@
+---# MidCOM String Database
+---VERSION 2.1.0
+---LANGUAGE en
+
+---STRING fi.kilonkipinat.events
+Events-component for kilonkipinat.fi
+---STRINGEND

@@ -26,9 +26,11 @@ if ($_MIDCOM->get_context_data(MIDCOM_CONTEXT_ANCHORPREFIX) != '/')
 <?php
 }
 ?>
-        <div id="content">
-            <(content)>
-            <div class="clearer">&nbsp;</div>
+        <div id="content_wrapper">
+            <div id="content">
+                <(content)>
+                <div class="clearer">&nbsp;</div>
+            </div>
         </div>
         <div class="clearer">&nbsp;</div>
     </div>
