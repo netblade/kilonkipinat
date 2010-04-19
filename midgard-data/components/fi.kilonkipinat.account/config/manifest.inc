@@ -27,7 +27,17 @@
     (
         'midcom.helper.datamanager2' => array(),
         'fi.kilonkipinat.website' => array(),
+        'org.openpsa.mail' => array(),
     ),
 ),
-
-
+'customdata' => array
+(
+    'midcom.services.cron' => array
+    (
+        array
+        (
+            'handler' => 'fi_kilonkipinat_account_cron_emailmapper',
+            'recurrence' => MIDCOM_CRON_HOUR,
+        ),
+    ),
+),

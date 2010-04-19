@@ -30,7 +30,7 @@
         <!-- Additionals fields for fi_kilonkipinat_account -->
             <!-- Generic -->
         <property name="status" type="unsigned integer" index="yes">
-            <description>Status of the resetrequest</description>
+            <description>Status of the account</description>
         </property>
         <property name="nickname" type="string" index="yes">
             <description>Nickname</description>
