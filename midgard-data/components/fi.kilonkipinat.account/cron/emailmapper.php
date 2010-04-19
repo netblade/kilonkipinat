@@ -80,6 +80,9 @@ class fi_kilonkipinat_account_cron_emailmapper extends midcom_baseclasses_compon
                 $mc_persons->add_value_property('email');
                 $mc_persons->execute();
                 $person_keys = $mc_persons->list_keys();
+                
+                $emails = array();
+                $usernames = array();
                 foreach ($person_keys as $guid => $data) {
                     $person_username = $mc_persons->get_subkey($guid, 'username');
                     $person_email = $mc_persons->get_subkey($guid, 'email');
@@ -88,6 +91,14 @@ class fi_kilonkipinat_account_cron_emailmapper extends midcom_baseclasses_compon
                         debug_add('illegal content in email-address for person guid '.$guid.', continuing to next person', MIDCOM_LOG_ERROR);
                         continue;
                     }
+
+                    if(   isset($emails[$person_email])
+                       || $usernames[$person_username])) {
+                        continue;
+                    }
+
+                    $emails[$person_email] = 1;
+                    $usernames[$person_username] = 1;
                     $file_content .= "\n" . $person_username . ': ' . $person_email;
                 }
                 
