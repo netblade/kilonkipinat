@@ -92,8 +92,8 @@ class fi_kilonkipinat_account_cron_emailmapper extends midcom_baseclasses_compon
                         continue;
                     }
 
-                    if(   isset($emails[$person_email])
-                       || $usernames[$person_username])) {
+                    if (   isset($emails[$person_email])
+                        || isset($usernames[$person_username])) {
                         continue;
                     }
 
