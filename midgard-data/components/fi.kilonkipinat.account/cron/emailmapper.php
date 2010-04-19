@@ -118,9 +118,6 @@ class fi_kilonkipinat_account_cron_emailmapper extends midcom_baseclasses_compon
                     debug_pop();
                     return;
                 }
-                $command = 'newaliases';
-                exec($command, $output, $return_var);
-
             } else {
                 $msg = "Couldn't write to aliases file, aborting operation, see error log for details";
                 $this->print_error($msg);
