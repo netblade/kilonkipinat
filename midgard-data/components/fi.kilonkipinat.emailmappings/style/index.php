@@ -84,7 +84,7 @@ $prefix = $data['prefix'];
     </table>
 <?php
 $qb = fi_kilonkipinat_emailmappings_emailmapping_dba::new_query_builder();
-//$qb->add_constraint('name', 'NOT IN', $mapping_names);
+$qb->add_constraint('name', 'NOT IN', $mapping_names);
 $results = $qb->execute();
 
 if (count($results) != 0) {
