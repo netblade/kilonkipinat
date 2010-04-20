@@ -72,9 +72,13 @@ $prefix = $data['prefix'];
             echo "</td>\n";
             echo "\t\t<td>";
             echo "&nbsp;&nbsp;&nbsp;";
-            echo "<a title=\"Muokkaa\" href=\"" . $prefix . 'emailmapping/edit/' . trim($mapping['name']) . "/\"><img src=\"/midcom-static/fi.kilonkipinat.emailmappings/email_edit.png\" /></a>";
+            if ($emailmapping->can_do('midgard:update')) {
+                echo "<a title=\"Muokkaa\" href=\"" . $prefix . 'emailmapping/edit/' . trim($mapping['name']) . "/\"><img src=\"/midcom-static/fi.kilonkipinat.emailmappings/email_edit.png\" /></a>";
+            }
             echo "&nbsp;&nbsp;&nbsp;";
-            echo "<a title=\"Poista\" href=\"" . $prefix . 'emailmapping/delete/' . trim($mapping['name']) . "/\"><img src=\"/midcom-static/fi.kilonkipinat.emailmappings/email_delete.png\" /></a>";
+            if ($emailmapping->can_do('midgard:delete')) {
+                echo "<a title=\"Poista\" href=\"" . $prefix . 'emailmapping/delete/' . trim($mapping['name']) . "/\"><img src=\"/midcom-static/fi.kilonkipinat.emailmappings/email_delete.png\" /></a>";
+            }
             echo "&nbsp;&nbsp;&nbsp;";
             echo "</td>\n";
         }
@@ -119,9 +123,13 @@ if (count($results) != 0) {
         echo "</td>\n";
         echo "\t\t<td>";
         echo "&nbsp;&nbsp;&nbsp;";
-        echo "<a title=\"Muokkaa\" href=\"" . $prefix . 'emailmapping/edit/' . $result->name . "/\"><img src=\"/midcom-static/fi.kilonkipinat.emailmappings/email_edit.png\" /></a>";
+        if ($result->can_do('midgard:update')) {
+            echo "<a title=\"Muokkaa\" href=\"" . $prefix . 'emailmapping/edit/' . $result->name . "/\"><img src=\"/midcom-static/fi.kilonkipinat.emailmappings/email_edit.png\" /></a>";
+        }
         echo "&nbsp;&nbsp;&nbsp;";
-        echo "<a title=\"Poista\" href=\"" . $prefix . 'emailmapping/delete/' . $result->name . "/\"><img src=\"/midcom-static/fi.kilonkipinat.emailmappings/email_delete.png\" /></a>";
+        if ($result->can_do('midgard:delete')) {
+            echo "<a title=\"Poista\" href=\"" . $prefix . 'emailmapping/delete/' . $result->name . "/\"><img src=\"/midcom-static/fi.kilonkipinat.emailmappings/email_delete.png\" /></a>";
+        }
         echo "&nbsp;&nbsp;&nbsp;";
         echo "</td>\n";
         echo "\t</tr>\n";
