@@ -115,7 +115,7 @@ if (count($results) != 0) {
         echo "\t\t<td>" . $result->name . "</td>\n";
         echo "\t\t<td>" . $persons_str . "</td>\n";
         echo "\t\t<td>";
-        echo fi_kilonkipinat_website::returnDate($emailmapping->metadata->revised, 'medium');
+        echo fi_kilonkipinat_website::returnDate($result->metadata->revised, 'medium');
         echo "</td>\n";
         echo "\t\t<td>";
         echo "&nbsp;&nbsp;&nbsp;";

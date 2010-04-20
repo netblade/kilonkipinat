@@ -59,19 +59,21 @@ class fi_kilonkipinat_emailmappings_handler_index extends midcom_baseclasses_com
         $filename = '/root/mailaliases/aliases_automatic';
         $file = fopen($filename, 'r');
         $automatic_mappings = array();
-        while (($file_data = fgetcsv($file, 250, ":")) !== FALSE) {
-            if (   !is_array($file_data)
-                || !isset($file_data[0])
-                || !isset($file_data[1])) {
-                continue;
+        if ($file) {
+            while (($file_data = fgetcsv($file, 250, ":")) !== FALSE) {
+                if (   !is_array($file_data)
+                    || !isset($file_data[0])
+                    || !isset($file_data[1])) {
+                    continue;
+                }
+                $automatic_mappings[] = array
+                (
+                    'name' => trim($file_data[0]),
+                    'email' => trim($file_data[1]),
+                );
             }
-            $automatic_mappings[] = array
-            (
-                'name' => trim($file_data[0]),
-                'email' => trim($file_data[1]),
-            );
+            fclose($file);
         }
-        fclose($file);
         $this->_request_data['automatic_mappings'] = $automatic_mappings;
         
         
@@ -79,19 +81,21 @@ class fi_kilonkipinat_emailmappings_handler_index extends midcom_baseclasses_com
         $filename = '/root/mailaliases/aliases_mappings';
         $file = fopen($filename, 'r');
         $additional_mappings = array();
-        while (($file_data = fgetcsv($file, 250, ":")) !== FALSE) {
-            if (   !is_array($file_data)
-                || !isset($file_data[0])
-                || !isset($file_data[1])) {
-                continue;
+        if ($file) {
+            while (($file_data = fgetcsv($file, 250, ":")) !== FALSE) {
+                if (   !is_array($file_data)
+                    || !isset($file_data[0])
+                    || !isset($file_data[1])) {
+                    continue;
+                }
+                $additional_mappings[] = array
+                (
+                    'name' => trim($file_data[0]),
+                    'emails' => trim($file_data[1]),
+                );
             }
-            $additional_mappings[] = array
-            (
-                'name' => trim($file_data[0]),
-                'emails' => trim($file_data[1]),
-            );
+            fclose($file);
         }
-        fclose($file);
         $this->_request_data['additional_mappings'] = $additional_mappings;
 
         return true;
