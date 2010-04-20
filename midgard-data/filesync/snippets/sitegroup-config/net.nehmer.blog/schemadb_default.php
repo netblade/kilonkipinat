@@ -51,7 +51,6 @@
             'storage' => 'extra1',
             'type' => 'select',
             'widget' => 'select',
-            'hidden' => true,
             'type_config' => Array 
             ( 
                 'options'        => Array(),
@@ -61,7 +60,7 @@
             ),    
             'widget_config' => Array 
             ( 
-                'height' => 3,
+                'height' => 5,
             ),
         ),  
         'related' => array

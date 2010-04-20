@@ -8,23 +8,10 @@ $view = $data['view_article'];
 &(view['content']:h);
 
 <br />
-        <div class="content_fp_lift_container_wide">
-            <div class="tm"><div class="bm"><div class="lm"><div class="rm">
-            <div class="tl"><div class="tr"><div class="bl"><div class="br">
-                <div class="content_fp_lift_content">
-                <h2>Lippukuntapostit</h2>
-                <?php
-                $dl_path = '/midcom-substyle-dl_frontpage/extranet/tiedotteet/lippukuntapostit/feedcollector/latest/4';
-                $_MIDCOM->dynamic_load($dl_path);
-                ?>
-                </div>
-            </div></div></div></div>
-            </div></div></div></div>
-        </div>
 <?php
 
 $topic = new midcom_db_topic();
-$topic->get_by_path('/kkp_root/extranet/tiedotteet');
+$topic->get_by_path('/kkp_root/extranet/tiedotteet/lippukuntapostit');
 $mc = midcom_db_topic::new_collector('up', $topic->id);
 $mc->add_constraint('component', '=', 'net.nehmer.blog');
 $mc->add_value_property('name');
@@ -36,7 +23,7 @@ $counter = 0;
 foreach ($keys as $guid => $blog_topic) {
     $counter++;
     $topic_name = $mc->get_subkey($guid, 'name');
-    $dl_path = '/midcom-substyle-dl_frontpage/extranet/tiedotteet/' . $topic_name . '/latest/4';
+    $dl_path = '/midcom-substyle-dl_frontpage/extranet/tiedotteet/lippukuntapostit/' . $topic_name . '/latest/4';
     if (($counter % 2) != 0 ) {
         ?>
             <div class="content_fp_lift_container_left">
