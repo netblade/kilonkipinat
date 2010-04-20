@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schema xmlns="http://www.midgard-project.org/repligard/1.4">
+    <type name="fi_kilonkipinat_emailmappings_emailmapping" table="fi_kilonkipinat_emailmappings_emailmapping">
+        <property name="id" type="unsigned integer" primaryfield="id" index="yes">
+            <description>Local non-replication-safe database identifier</description>
+        </property>
+        <property name="name" type="string" index="yes">
+            <description>urlname of the emailmapping</description>
+        </property>
+        <property name="persons" type="text">
+            <description>Person guids to send the email</description>
+        </property>
+    </type>
+</Schema>

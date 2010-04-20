@@ -4,6 +4,3 @@
 
 
 'password_min_length' => 8,
-
-'root_group_to_show' => null,
-'group_for_emails' => null,

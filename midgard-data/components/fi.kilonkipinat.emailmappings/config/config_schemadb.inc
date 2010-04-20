@@ -2,40 +2,15 @@
 (
     'description' => 'Default Configuration Schema',
     'fields'      => array
-    ( 
-        'password_min_length' => array
+    (
+        'group_for_emails' => array
         (
-            'title' => 'Salasanan minimipituus',
+            'title' => 'Ryhmä sähköpostikäyttäjiä varten',
             'storage' => array
             (
                 'location' => 'configuration',
-                'domain' => 'fi.kilonkipinat.account',
-                'name' => 'password_min_length',
-            ),
-            'type' => 'select',
-            'type_config' => array
-            (
-                'options' => array
-                (
-                    '' => 'default setting',
-                    '5' => '5',
-                    '6' => '6',
-                    '7' => '7',
-                    '8' => '8',
-                    '9' => '9',
-                    '10' => '10',
-                ),
-            ),
-            'widget' => 'select',
-        ),
-        'root_group_to_show' => array
-        (
-            'title' => 'Sivuston käyttäjien perusryhmä',
-            'storage' => array
-            (
-                'location' => 'configuration',
-                'domain' => 'fi.kilonkipinat.account',
-                'name' => 'root_group_to_show',
+                'domain' => 'fi.kilonkipinat.emailmappings',
+                'name' => 'group_for_emails',
             ),
             'type' => 'select',
             'type_config' => array
@@ -49,7 +24,7 @@
             'widget_config' => array
             (
                 'class'       => 'midcom_db_group',
-                'component'   => 'fi.kilonkipinat.account',
+                'component'   => 'fi.kilonkipinat.emailmappings',
                 'titlefield'  => 'official',
                 'id_field'     => 'guid',
                 'searchfields' => array

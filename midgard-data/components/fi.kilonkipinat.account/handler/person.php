@@ -77,13 +77,15 @@ class fi_kilonkipinat_account_handler_person extends midcom_baseclasses_componen
     
     function &dm2_create_callback(&$controller)
     {
+        $this->_person = new fi_kilonkipinat_account_person_dba();
+
         $this->_person->_use_activitystream = false;
         $this->_use_activitystream = false;
 
         if (! $this->_person->create())
         {
             debug_push_class(__CLASS__, __FUNCTION__);
-            debug_print_r('We operated on this object:', $this->_idea);
+            debug_print_r('We operated on this object:', $this->_person);
             debug_pop();
             $_MIDCOM->generate_error(MIDCOM_ERRNOTFOUND,
                 'Failed to create a new idea, cannot continue. Last Midgard error was: '. midcom_application::get_error_string());
@@ -106,7 +108,7 @@ class fi_kilonkipinat_account_handler_person extends midcom_baseclasses_componen
                 array
                 (
                     MIDCOM_TOOLBAR_URL => "person/edit/{$this->_object->guid}/",
-                    MIDCOM_TOOLBAR_LABEL => 'Muokkaa henkilä',
+                    MIDCOM_TOOLBAR_LABEL => 'Muokkaa henkilöä',
                     MIDCOM_TOOLBAR_ICON => 'fi.kilonkipinat.website/fam/user_edit.png',
                 )
             );
