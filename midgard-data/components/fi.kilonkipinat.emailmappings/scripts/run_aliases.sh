@@ -1,9 +1,9 @@
 #!/bin/bash
-ALIASES_LIST="aliases"
-ALIASES_DB="aliases.db"
-ALIASES_OLD="aliases_old"
-ALIASES_AUTOMATIC="aliases_automatic"
-ALIASES_MAPPINGS="aliases_mappings"
+ALIASES_LIST="/root/mailaliases/aliases"
+ALIASES_DB="/root/mailaliases/aliases.db"
+ALIASES_OLD="/root/mailaliases/aliases_old"
+ALIASES_AUTOMATIC="/root/mailaliases/aliases_automatic"
+ALIASES_MAPPINGS="/root/mailaliases/aliases_mappings"
  
 which stat > /dev/null
  
@@ -63,10 +63,12 @@ then
     cat $ALIASES_AUTOMATIC $ALIASES_MAPPINGS > $ALIASES_LIST
 fi
 
+LAST_MOD_ALIASES_LIST="$(stat -c %Y $ALIASES_LIST)"
+
 if [ $LAST_MOD_ALIASES_LIST -gt $LAST_MOD_ALIASES_DB ]
 then
 
-    if [ '' != "$(diff -q $ALIASES_LIST $ALIASES_OLD)" ]
+    if [ "$(diff -q $ALIASES_LIST $ALIASES_OLD)" != '' ]
     then
         newaliases
         cp $ALIASES_LIST $ALIASES_OLD
