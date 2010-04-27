@@ -622,6 +622,10 @@ ul.tags li {
     margin-bottom: 20px;
 }
 
+#org_routamc_photostream_photo_container .photo {
+    width: 500px;
+}
+
 #org_routamc_photostream_photo_comments {
     width: 400px;
     overflow: hidden;
