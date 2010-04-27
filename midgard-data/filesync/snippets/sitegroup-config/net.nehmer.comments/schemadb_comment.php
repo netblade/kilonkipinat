@@ -3,7 +3,7 @@
     'description' => 'default schema',
     'operations' => array
     (
-        'save' => 'post'
+        'save' => 'Kommentoi'
     ),
     'fields' => array
     (
@@ -35,7 +35,6 @@
             'title' => 'content',
             'description' => '',
             'helptext' => '',
-
             'required' => 'true',
             'storage' => 'content',
             'type' => 'text',

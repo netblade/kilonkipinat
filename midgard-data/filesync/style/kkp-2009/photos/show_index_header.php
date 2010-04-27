@@ -78,9 +78,12 @@ foreach ($keys as $guid => $key) {
     echo "<li>\n";
     echo "<h3><a href=\"" . $prefix . $gallery_topic_name . "/\">" . $gallery_topic_title . "</a></h3>";
     $photo = scan_subgalleries($gallery_topic_id);
-    echo "<a href=\"" . $prefix . $gallery_topic_name . "/\">";
-    echo $photo->thumbnail_html;
-    echo "</a>";
+    if ($photo) {
+        echo "<a href=\"" . $prefix . $gallery_topic_name . "/\">";
+        echo $photo->thumbnail_html;
+        echo "</a>";
+    }
+    echo "</li>\n";
     
 }
 echo "</ul>\n";
