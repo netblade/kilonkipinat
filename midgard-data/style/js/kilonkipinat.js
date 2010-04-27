@@ -20,7 +20,7 @@ var ApplicationBase = function()
             _buildCorners();
 			
             _self = this;
-        },
+        }
 
     };
 };
