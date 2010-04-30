@@ -17,9 +17,16 @@ $item_topic = new midcom_db_topic($data['item']->topic);
 $topic_title = $item_topic->extra;
 $topic_link = '<a href="/midcom-permalink-' . $item_topic->guid . '/">' . $topic_title . '</a>';
 
+$target = '';
+if (   strstr($url, 'http')
+    && !strstr($url, 'kilonkipinat.fi'))
+{
+    $target = ' target="_blank"';
+}
+
 ?>
 <div class="hentry">
-    <h4 class="entry-title"><a href="&(url);" rel="bookmark">&(title:h);</a></h4>
+    <h4 class="entry-title"><a&(target:h); href="&(url);" rel="bookmark">&(title:h);</a></h4>
     <p class="published">
         &(published:h); [&(topic_link:h);]
     </p>

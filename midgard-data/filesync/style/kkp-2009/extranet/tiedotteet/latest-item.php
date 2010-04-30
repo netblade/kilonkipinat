@@ -12,9 +12,18 @@ else
 {
     $url = $data['permalinks']->create_permalink($view->guid);
 }
+
+
+$target = '';
+if (   strstr($url, 'http')
+    && !strstr($url, 'kilonkipinat.fi'))
+{
+    $target = ' target="_blank"';
+}
+
 ?>
 <div class="hentry">
-    <h2 class="entry-title"><a href="&(url);" rel="bookmark">&(title:h);</a></h2>
+    aaa<h2 class="entry-title"><a href="&(url);" rel="bookmark">&(title:h);</a></h2>
     <p class="published">
         &(published:h);
     </p>

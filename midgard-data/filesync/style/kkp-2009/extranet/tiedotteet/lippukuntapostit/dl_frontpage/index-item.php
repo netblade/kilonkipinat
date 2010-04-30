@@ -15,9 +15,16 @@ elseif($view_counter == ($article_count-1))
 
 $published = "<abbr title=\"" . strftime('%Y-%m-%dT%H:%M:%S%z', $data['article']->metadata->published) . "\">" . date('d.m.Y H:i', $data['article']->metadata->published) . "</abbr>";
 
+$target = '';
+if (   strstr($data['view_url'], 'http')
+    && !strstr($data['view_url'], 'kilonkipinat.fi'))
+{
+    $target = ' target="_blank"';
+}
+
 ?>
 
 <div class="hentry counter_&(view_counter); &(class_str);">
-    <h4 class="entry-title"><a href="&(data['view_url']);" rel="bookmark">&(view['title']:h);</a></h4>
+    <h4 class="entry-title"><a&(target:h); href="&(data['view_url']);" rel="bookmark">&(view['title']:h);</a></h4>
     <p class="published">&(published:h);</p>
 </div>
