@@ -1,18 +1,18 @@
 'retki' => array
 (
-    'description' => 'retki',
+    'description' => 'Retki',
     'fields'      => array
     (
         'name' => Array
         (
-            'title' => 'url name',
+            'title' => 'Tiedostonimi',
             'storage' => 'name',
             'type' => 'urlname',
             'widget' => 'text',
         ),
         'title' => Array
         (
-            'title' => 'title',
+            'title' => 'Otsikko',
             'storage' => 'title',
             'required' => true,
             'type' => 'text',
@@ -20,7 +20,7 @@
         ),
         'type' => Array
         (
-            'title' => 'type',
+            'title' => 'Tyyppi',
             'storage' => 'type',
             'required' => true,
             'type' => 'select',
@@ -43,8 +43,7 @@
         ),
         'start' => array
         (
-            // COMPONENT-REQUIRED
-            'title' => 'start',
+            'title' => 'Alkaa',
             'storage' => 'start',
             'type' => 'date',
             'type_config' => array
@@ -59,8 +58,7 @@
         ),
         'end' => array
         (
-            // COMPONENT-REQUIRED
-            'title' => 'end',
+            'title' => 'Loppuu',
             'storage' => 'end',
             'type' => 'date',
             'type_config' => array
@@ -76,7 +74,7 @@
         ),
         'content' => Array
         (
-            'title' => 'content',
+            'title' => 'Kuvaus (julkinen)',
             'storage' => 'content',
             'required' => true,
             'type' => 'text',
@@ -92,19 +90,19 @@
 
 'kokous' => array
 (
-    'description' => 'kokous',
+    'description' => 'Kokous',
     'fields'      => array
     (
         'name' => Array
         (
-            'title' => 'url name',
+            'title' => 'Tiedostonimi',
             'storage' => 'name',
             'type' => 'urlname',
             'widget' => 'text',
         ),
         'title' => Array
         (
-            'title' => 'title',
+            'title' => 'Otsikko',
             'storage' => 'title',
             'required' => true,
             'type' => 'text',
@@ -112,7 +110,7 @@
         ),
         'type' => Array
         (
-            'title' => 'type',
+            'title' => 'Tyyppi',
             'storage' => 'type',
             'required' => true,
             'type' => 'select',
@@ -133,8 +131,7 @@
         ),
         'start' => array
         (
-            // COMPONENT-REQUIRED
-            'title' => 'start',
+            'title' => 'Alkaa',
             'storage' => 'start',
             'type' => 'date',
             'type_config' => array
@@ -149,8 +146,7 @@
         ),
         'end' => array
         (
-            // COMPONENT-REQUIRED
-            'title' => 'end',
+            'title' => 'Loppuu',
             'storage' => 'end',
             'type' => 'date',
             'type_config' => array
@@ -166,7 +162,7 @@
         ),
         'content' => Array
         (
-            'title' => 'content',
+            'title' => 'Sisältö (julkinen)',
             'storage' => 'content',
             'required' => true,
             'type' => 'text',

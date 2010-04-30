@@ -153,6 +153,21 @@ class fi_kilonkipinat_events_handler_event extends midcom_baseclasses_components
         }
     }
 
+    /**
+     * Generates an object creation view.
+     *
+     * @param mixed $handler_id The ID of the handler.
+     * @param array $args The argument list.
+     * @param array &$data The local request data.
+     * @return boolean Indicating success.
+     */
+    function _handler_create($handler_id, $args, &$data)
+    {
+        $status =  parent::_handler_create($handler_id, $args, $data);
+        $this->_request_data['event_desc'] = $this->_schemadb[$args[0]]->description;
+        return $status;
+    }
+
     public function _show_create($handler_id, &$data)
     {
         midcom_show_style('events-header');
@@ -166,6 +181,21 @@ class fi_kilonkipinat_events_handler_event extends midcom_baseclasses_components
         midcom_show_style('events-header');
         midcom_show_style('show-event');
         midcom_show_style('events-footer');
+    }
+
+    /**
+     * Generates an object update view.
+     *
+     * @param mixed $handler_id The ID of the handler.
+     * @param array $args The argument list.
+     * @param array &$data The local request data.
+     * @return boolean Indicating success.
+     */
+    function _handler_update($handler_id, $args, &$data)
+    {
+        $status = parent::_handler_update($handler_id, $args, $data);
+        $this->_request_data['event_title'] = $this->_object->title;
+        return $status;
     }
 
     public function _show_update($handler_id, &$data)

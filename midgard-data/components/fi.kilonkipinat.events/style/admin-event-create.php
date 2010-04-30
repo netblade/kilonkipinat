@@ -2,6 +2,5 @@
 // Available request keys: controller, indexmode, schema, schemadb
 ?>
 
-<h1><?php echo $data['l10n']->get('create event'); ?></h1>
-
+<h1>Luo <?php echo $data['event_desc']; ?></h1>
 <?php $data['controller']->display_form (); ?>
