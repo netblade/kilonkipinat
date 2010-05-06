@@ -1,0 +1,1 @@
+'default_sender' => '"Kipinäverkko" <no-reply@' . $_SERVER['SERVER_NAME'] . '>',
