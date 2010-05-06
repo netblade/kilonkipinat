@@ -15,9 +15,8 @@ function list_groups($parent)
             $str .= "<li>";
             $str .= '<input name="add_to_groups['.$group->guid.']" id="group_' . $group->guid . '" type="checkbox" value="' . $group->guid . '">&nbsp;<label for="group_' . $group->guid . '">'.$group->official.'</label>';
             $str .= "</li>\n";
-            
+            $str .= list_groups($group->id);
         }
-        $str .= list_groups($group->id);
         $str .= "</ul>";
     }
     return $str;
@@ -60,6 +59,13 @@ function list_groups($parent)
             <td>&(email_confirmed:h);</td>
         </tr>
     </table>
+    <?php
+    
+    if (   $request->status == FI_KILONKIPINAT_ACCOUNTREGISTRATION_ACCOUNT_STATUS_EMAILVALIDATED
+        || $request->status == FI_KILONKIPINAT_ACCOUNTREGISTRATION_ACCOUNT_STATUS_NEW)
+    {
+    
+    ?>
     <form method="POST">
         <br /><br />
         <h2>Tunnuksen luominen</h2>
@@ -108,6 +114,13 @@ function list_groups($parent)
             <input type="submit" value="Luo tunnus ja lähetä tiedot sähköpostilla" />
         </div>
     </form>
+    <?php
+    } else {
+    ?>
+    Tunnus luotu
+    <?php
+    }
+    ?>
 </div>
 <script>
 function searchUser()

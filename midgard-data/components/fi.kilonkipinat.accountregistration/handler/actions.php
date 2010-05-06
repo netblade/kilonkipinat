@@ -53,14 +53,14 @@ class fi_kilonkipinat_accountregistration_handler_actions extends midcom_basecla
 
             $account_request->status = FI_KILONKIPINAT_ACCOUNTREGISTRATION_ACCOUNT_STATUS_EMAILVALIDATED;
             $account_request->update();
-            $message['title'] = $this->_l10n_midcom->get("success");
-            $message['content'] = $this->_l10n_midcom->get("email validated.<br /><br />your request for account has been registered and you will be informed after admin's approve / disapprove your account.");
+            $message['title'] = $this->_l10n_midcom->get("Sähköpostiosoite varmistettu");
+            $message['content'] = $this->_l10n_midcom->get("Tunnuspyyntönne on nyt lähetetty eteenpäin sivuston ylläpitäjille, jotka palaavat asiaan sähköpostitse.");
             
             $_MIDCOM->auth->drop_sudo('fi.kilonkipinat.accountregistration');
 
         } else {
-            $message['title'] = $this->_l10n_midcom->get("error");
-            $message['content'] = $this->_l10n_midcom->get("wrong guid for account request");
+            $message['title'] = $this->_l10n_midcom->get("Virhe");
+            $message['content'] = $this->_l10n_midcom->get("Tunnuspyyntöä ei löydetty. Sähköposti voi olla jo varmistettu.");
         }
 
         $this->_request_data['message'] = $message;
@@ -116,13 +116,13 @@ class fi_kilonkipinat_accountregistration_handler_actions extends midcom_basecla
                     $reset_request->status = FI_KILONKIPINAT_ACCOUNTREGISTRATION_PASSWORDRESETREQUEST_STATUS_RESOLVED;
                     $reset_request->update();
 
-                    $message['title'] = $this->_l10n_midcom->get("success");
-                    $message['content'] = $this->_l10n_midcom->get("check your email");
+                    $message['title'] = "Onnistui";
+                    $message['content'] = "Tarkista sähköpostisi";
 
-                    $subject = sprintf($this->_l10n_midcom->get('Your new password'), $_SERVER['SERVER_NAME']);
-                    $body = sprintf($this->_l10n_midcom->get('Hi %s'), $person->firstname);
+                    $subject = sprintf('Uusi salasananne', $_SERVER['SERVER_NAME']);
+                    $body = sprintf('Hei %s', $person->firstname);
                     $body .= "\n\n";
-                    $body .= sprintf($this->_l10n_midcom->get('your new password is %s'), $password);
+                    $body .= sprintf('Uusi salasanne on %s', $password);
                 
                     $mail = new org_openpsa_mail();
                     $mail->from = $this->_config->get('mail_sender_title') . ' <' . $this->_config->get('mail_sender_address') . '>';
@@ -131,11 +131,11 @@ class fi_kilonkipinat_accountregistration_handler_actions extends midcom_basecla
                     $mail->subject = $subject;
 
                     if ($mail->send('mail')) {
-                        $message['title'] = $this->_l10n_midcom->get("success");
-                        $message['content'] = $this->_l10n_midcom->get("check your email.");
+                        $message['title'] = "Onnistui";
+                        $message['content'] = "Tarkista sähköpostisi.";
                     } else {
-                        $message['title'] = $this->_l10n_midcom->get("error");
-                        $message['content'] = $this->_l10n_midcom->get("Oops, something went wrong.");
+                        $message['title'] = "Virhe";
+                        $message['content'] = "Oho, jotain meni pieleen";
                     }
                 }
             }
@@ -143,8 +143,8 @@ class fi_kilonkipinat_accountregistration_handler_actions extends midcom_basecla
             $_MIDCOM->auth->drop_sudo('fi.kilonkipinat.accountregistration');
 
         } else {
-            $message['title'] = $this->_l10n_midcom->get("error");
-            $message['content'] = $this->_l10n_midcom->get("wrong guid for reset request");
+            $message['title'] = "Virhe";
+            $message['content'] = "Ei löytynyt pyyn";
         }
 
         $this->_request_data['message'] = $message;

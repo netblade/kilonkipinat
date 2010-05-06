@@ -107,8 +107,7 @@ class fi_kilonkipinat_accountregistration_viewer extends midcom_baseclasses_comp
                 array
                 (
                     MIDCOM_TOOLBAR_URL => 'list_pending/',
-                    MIDCOM_TOOLBAR_LABEL => $this->_l10n_midcom->get('list pending'),
-                    MIDCOM_TOOLBAR_HELPTEXT => $this->_l10n_midcom->get('list pending helptext'),
+                    MIDCOM_TOOLBAR_LABEL => 'Listaa tunnuspyynnöt',
                     MIDCOM_TOOLBAR_ICON => 'fi.kilonkipinat.accountregistration/user_add.png',
                 )
             );
