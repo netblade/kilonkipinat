@@ -139,3 +139,15 @@ abbr {
 .clearer_right {
     clear: left;
 }
+
+.corners5 {
+    padding: 10px;
+}
+
+.corners10 {
+    padding: 10px;
+}
+
+.corners15 {
+    padding: 10px;
+}
