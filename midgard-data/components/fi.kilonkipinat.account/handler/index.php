@@ -91,7 +91,7 @@ class fi_kilonkipinat_account_handler_index extends midcom_baseclasses_component
             $requests_count = $mc->count();
             if (   $requests_count > 0
                 && $regs_prefix != '') {
-                $requests_str = '<a href="'.$regs_prefix.'list_pending/">'.$requests_count.' tunnushakemusta</a>';
+                $this->_request_data['requests'] = '<a href="'.$regs_prefix.'list_pending/">'.$requests_count.' tunnushakemusta</a>';
             }
         }
         
