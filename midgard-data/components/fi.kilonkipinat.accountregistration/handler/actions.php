@@ -55,6 +55,25 @@ class fi_kilonkipinat_accountregistration_handler_actions extends midcom_basecla
             $account_request->update();
             $message['title'] = $this->_l10n_midcom->get("Sähköpostiosoite varmistettu");
             $message['content'] = $this->_l10n_midcom->get("Tunnuspyyntönne on nyt lähetetty eteenpäin sivuston ylläpitäjille, jotka palaavat asiaan sähköpostitse.");
+
+            if (   $this->_config->get('moderator') != null
+                && $this->_config->get('moderator') != '') {
+
+                $moderator = new midcom_db_person($this->_config->get('moderator'));
+                if (   $moderator->guid != ''
+                    && $moderator->guid == $this->_config->get('moderator')) {
+
+                    $mail = new org_openpsa_mail();
+                    $mail->from = $this->_config->get('mail_sender_title') . ' <' . $this->_config->get('mail_sender_address') . '>';
+                    $mail->to = $moderator->firstname . ' ' . $moderator->lastname . ' <' . $moderator->email . '>';
+                    $mail->body = "Henkilö " . $account_request->firstname . ' ' . $account_request->lastname . " on vahvistanut sähköpostiosoitteensa. \n\n";
+                    $mail->body .= "Käy hyväksymässä tai estämässä tunnus osoitteessa http:://kilonkipinat.fi/recovery/manage_request/" . $account_request->guid . "/\n\n";
+                    $mail->body .= "Muita tunnuspyyntöjä voit tarkastella osoitteessa http:://kilonkipinat.fi/recovery/list_pending/";
+                    $mail->subject = "Uusi tunnuspyyntö kipinöiden sivuilla.";
+
+                    $mail->send('mail')
+                }
+            }
             
             $_MIDCOM->auth->drop_sudo('fi.kilonkipinat.accountregistration');
 

@@ -11,3 +11,5 @@
 
 'enable_password_reset' => true,
 'enable_account_creation' => true,
+
+'moderator' => null,
