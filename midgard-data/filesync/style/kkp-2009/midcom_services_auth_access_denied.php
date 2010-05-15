@@ -24,7 +24,7 @@ $page_class = $_MIDCOM->metadata->get_page_class();
 $login_warning = str_replace('&Atilde;&curren;', 'ä', $GLOBALS['midcom_services_auth_access_denied_login_warning']);
 $message = str_replace('&Atilde;&curren;', 'ä', $GLOBALS['midcom_services_auth_access_denied_message']);
 ?>
-<body class="login" <?php echo $_MIDCOM->print_jsonload(); ?>>
+<body class="login" onload="self.focus();document.midcom_services_auth_frontend_form.username.focus();">
 <div id="login_form">
     <form name="midcom_services_auth_frontend_form" method='post' id="midcom_services_auth_frontend_form">
         <div id="error">
@@ -32,7 +32,6 @@ $message = str_replace('&Atilde;&curren;', 'ä', $GLOBALS['midcom_services_auth_
             <h1>&(message:h);</h1>
         </div>
         <h2>Kirjaudu sisään</h2>
-        <input type="hidden" name="midcom_services_auth_login_success_url" value="/extranet/" />
         <div id="login_form_username">
             <label for="username">Käyttäjänimi</label>
             <input name="username" id="username" type="text" class="input" />
@@ -67,8 +66,5 @@ $message = str_replace('&Atilde;&curren;', 'ä', $GLOBALS['midcom_services_auth_
         Mikäli unohdit salasanasi, tai haluat tunnukset, klikkaa <a href="/recovery/">tästä</a>
     </div>
 </div>
-<?php
-    $_MIDCOM->uimessages->show();
-?>
 </body>
 </html>
