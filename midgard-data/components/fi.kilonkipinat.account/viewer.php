@@ -89,6 +89,90 @@ class fi_kilonkipinat_account_viewer extends midcom_baseclasses_components_reque
             'fixed_args' => array('person', 'delete'),
             'variable_args' => 1,
         );
+        
+        // Handle /person/view_activity/<person_guid>/
+        $this->_request_switch['person_view_activity'] = array
+        (
+            'handler' => array('fi_kilonkipinat_account_handler_person', 'viewActivity'),
+            'fixed_args' => array('person', 'view_activity'),
+            'variable_args' => 1,
+        );
+        
+        // Handle /jobhistory/manage_titles/
+        $this->_request_switch['jobhistory_manage_titles'] = array
+        (
+            'handler' => array('fi_kilonkipinat_account_handler_management', 'index'),
+            'fixed_args' => array('jobhistory', 'manage_titles'),
+            'variable_args' => 0,
+        );
+        
+        // CRUD for jobhistory jobgroups
+
+        // Handle /jobhistory/jobgroup/create/<jobgroup_schemaname>/
+        $this->_request_switch['jobhistory_jobgroup_create'] = array
+        (
+            'handler' => array('fi_kilonkipinat_account_handler_jobgroup', 'create'),
+            'fixed_args' => array('jobhistory', 'jobgroup', 'create'),
+            'variable_args' => 1,
+        );
+
+        // Handle /jobhistory/jobgroup/view/<jobgroup_guid>/
+        $this->_request_switch['jobhistory_jobgroup_read'] = array
+        (
+            'handler' => array('fi_kilonkipinat_account_handler_jobgroup', 'read'),
+            'fixed_args' => array('jobhistory', 'jobgroup', 'view'),
+            'variable_args' => 1,
+        );
+
+        // Handle /jobhistory/jobgroup/update/<jobgroup_guid>/
+        $this->_request_switch['jobhistory_jobgroup_update'] = array
+        (
+            'handler' => array('fi_kilonkipinat_account_handler_jobgroup', 'update'),
+            'fixed_args' => array('jobhistory', 'jobgroup', 'edit'),
+            'variable_args' => 1,
+        );
+
+        // Handle /jobhistory/jobgroup/delete/<jobgroup_guid>/
+        $this->_request_switch['jobhistory_jobgroup_delete'] = array
+        (
+            'handler' => array('fi_kilonkipinat_account_handler_jobgroup', 'delete'),
+            'fixed_args' => array('jobhistory', 'jobgroup', 'delete'),
+            'variable_args' => 1,
+        );
+        
+        // CRUD for jobhistory jobtitle
+
+        // Handle /jobhistory/jobtitle/create/<jobtitle_schemaname>/
+        $this->_request_switch['jobhistory_jobtitle_create'] = array
+        (
+            'handler' => array('fi_kilonkipinat_account_handler_jobtitle', 'create'),
+            'fixed_args' => array('jobhistory', 'jobtitle', 'create'),
+            'variable_args' => 1,
+        );
+
+        // Handle /jobhistory/jobtitle/view/<jobtitle_guid>/
+        $this->_request_switch['jobhistory_jobtitle_read'] = array
+        (
+            'handler' => array('fi_kilonkipinat_account_handler_jobtitle', 'read'),
+            'fixed_args' => array('jobhistory', 'jobtitle', 'view'),
+            'variable_args' => 1,
+        );
+
+        // Handle /jobhistory/jobtitle/update/<jobtitle_guid>/
+        $this->_request_switch['jobhistory_jobtitle_update'] = array
+        (
+            'handler' => array('fi_kilonkipinat_account_handler_jobtitle', 'update'),
+            'fixed_args' => array('jobhistory', 'jobtitle', 'edit'),
+            'variable_args' => 1,
+        );
+
+        // Handle /jobhistory/jobtitle/delete/<jobtitle_guid>/
+        $this->_request_switch['jobhistory_jobtitle_delete'] = array
+        (
+            'handler' => array('fi_kilonkipinat_account_handler_jobtitle', 'delete'),
+            'fixed_args' => array('jobhistory', 'jobtitle', 'delete'),
+            'variable_args' => 1,
+        );
     }
 
     /**
@@ -157,7 +241,18 @@ class fi_kilonkipinat_account_viewer extends midcom_baseclasses_components_reque
                 );
             }
         }
-
+        if ($this->_topic->can_do('fi.kilonkipinat.account:jobhistory_moderation'))
+        {
+            $this->_node_toolbar->add_item
+            (
+                array
+                (
+                    MIDCOM_TOOLBAR_URL => 'jobhistory/manage_titles/',
+                    MIDCOM_TOOLBAR_LABEL => 'Hallinnoi pestinimikkeitä',
+                    MIDCOM_TOOLBAR_ICON => 'fi.kilonkipinat.website/fam/vcard.png',
+                )
+            );
+        }
         if (   $this->_topic->can_do('midgard:update')
             && $this->_topic->can_do('midcom:component_config'))
         {

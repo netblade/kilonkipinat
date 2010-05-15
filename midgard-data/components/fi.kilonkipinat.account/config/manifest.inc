@@ -3,7 +3,10 @@
 'purecode' => false,
 'version' => '8.09.8.0',
 'state' => 'stable',
-'privileges' => array(),
+'privileges' => array
+(
+    'jobhistory_manage' => 'MIDCOM_PRIVILEGE_DENY',
+),
 'class_definitions' => array
 (
     'midcom_dba_classes.inc',

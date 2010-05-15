@@ -55,6 +55,15 @@
             <description>Skype</description>
         </property>
         <!-- / Generic-->
+        <property name="bankAccountNumber" type="string" index="yes">
+            <description>Bank account number</description>
+        </property>
+        <property name="bankAccountBank" type="string" index="yes">
+            <description>Bank account bank name</description>
+        </property>
+        <property name="bankRefNum" type="string" index="yes">
+            <description>Bank reference number</description>
+        </property>
         <!-- Scouting related -->
         <property name="scoutingStarted" type="datetime">
             <description>Scouting started</description>
@@ -84,23 +93,38 @@
         <property name="id" type="unsigned integer" primaryfield="id" index="yes">
             <description>Local non-replication-safe database identifier</description>
         </property>
+        <property name="parent" link="fi_kilonkipinat_account_jobhistory_jobgroup:id" type="unsigned integer" parentfield="parent">
+            <description>Jobgroup which the jobgroup belongs to</description>
+        </property>
         <property name="name" type="string" index="yes">
             <description>urlname of the jobtitle</description>
         </property>
         <property name="title" type="string" index="yes">
-            <description>Title of the jobtitle</description>
+            <description>Title of the jobgroup</description>
         </property>
     </type>
 
-    <type name="fi_kilonkipinat_account_jobhistory_job" table="fi_kilonkipinat_account_jobhistory_job">
+    <type name="fi_kilonkipinat_account_jobhistory_jobtitle" table="fi_kilonkipinat_account_jobhistory_jobtitle">
         <property name="id" type="unsigned integer" primaryfield="id" index="yes">
             <description>Local non-replication-safe database identifier</description>
+        </property>
+        <property name="jobgroup" link="fi_kilonkipinat_account_jobhistory_jobgroup:id" type="unsigned integer" parentfield="jobgroup">
+            <description>Jobgroup which the job belongs to</description>
         </property>
         <property name="name" type="string" index="yes">
             <description>urlname of the jobtitle</description>
         </property>
+        <property name="shorttitle" type="string" index="yes">
+            <description>Short title of the jobtitle</description>
+        </property>
         <property name="title" type="string" index="yes">
             <description>Title of the jobtitle</description>
+        </property>
+        <property name="link" type="string" index="yes">
+            <description>Link to page describing the jobtitle</description>
+        </property>
+        <property name="content" type="string" index="yes">
+            <description>Description of the jobtitle</description>
         </property>
         <property name="status" type="unsigned integer" index="yes">
             <description>Status of the jobtitle</description>

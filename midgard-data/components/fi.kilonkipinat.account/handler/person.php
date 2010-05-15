@@ -153,11 +153,11 @@ class fi_kilonkipinat_account_handler_person extends midcom_baseclasses_componen
     
     public function _handler_read($handler_id, $args, &$data)
     {
-        parent::_handler_read($handler_id, $args, $data);
+        $status = parent::_handler_read($handler_id, $args, $data);
         if ($_MIDGARD['user'] == $this->_person->id) {
             $this->_component_data['active_leaf'] = "own_details";
         }
-        return true;
+        return $status;
     }
 
     public function _show_read($handler_id, &$data)
@@ -168,11 +168,11 @@ class fi_kilonkipinat_account_handler_person extends midcom_baseclasses_componen
 
     public function _handler_update($handler_id, $args, &$data)
     {
-        parent::_handler_update($handler_id, $args, $data);
+        $status = parent::_handler_update($handler_id, $args, $data);
         if ($_MIDGARD['user'] == $this->_person->id) {
             $this->_component_data['active_leaf'] = "own_details";
         }
-        return true;
+        return $status;
     }
 
     public function _show_update($handler_id, &$data)
@@ -184,6 +184,33 @@ class fi_kilonkipinat_account_handler_person extends midcom_baseclasses_componen
     {
         $this->_request_data['view_person'] = $data['datamanager']->get_content_html();
         midcom_show_style('admin-person-delete');
+    }
+    
+    public function _handler_viewActivity($handler_id, $args, &$data)
+    {
+        $status = parent::_handler_read($handler_id, $args, $data);
+        if ($_MIDGARD['user'] == $this->_person->id) {
+            $this->_component_data['active_leaf'] = "own_details";
+        }
+        
+        $qb_latest = new org_openpsa_qbpager('midcom_helper_activitystream_activity_dba', 'activity');
+        $qb_latest->add_order('metadata.revised', 'DESC');
+        $qb_latest->add_constraint('actor', '=', $this->_object->id);
+        $qb_latest->set_limit($this->_config->get('activity_results_per_page'));
+        $qb_latest->results_per_page = $this->_config->get('activity_results_per_page');
+
+        $latest = $qb_latest->execute();
+        
+        $this->_request_data['qb'] = $qb_latest;
+        $this->_request_data['items'] = $latest;
+        
+        return $status;
+    }
+
+    public function _show_viewActivity($handler_id, &$data)
+    {
+        $this->_request_data['view_person'] = $data['datamanager']->get_content_html();
+        midcom_show_style('show-person-activity');
     }
 }
 

@@ -4,3 +4,5 @@
 
 
 'password_min_length' => 8,
+
+'activity_results_per_page' => 30,
