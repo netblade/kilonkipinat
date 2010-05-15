@@ -22,7 +22,6 @@ class fi_kilonkipinat_website
             'timeMedium' => 'H:i:s',
             'timeLong' => 'H:i:s e',
         );
-
         $value = date($datetimes[$format], $date);
 
         return $value;
@@ -35,7 +34,7 @@ class fi_kilonkipinat_website
         if ($label == 'start')
         {
             // We want to output the label for start time
-            $daylabel .= fi_kilonkipinat_website::returnDate('extraShort', $start);
+            $daylabel .= fi_kilonkipinat_website::returnDate($start, 'extraShort');
 
             if (date('Y', $start) != date('Y', $end))
             {
@@ -44,7 +43,7 @@ class fi_kilonkipinat_website
 
             if ($add_time)
             {
-                $daylabel .= ' ' . fi_kilonkipinat_website::returnDate('timeShort', $end);
+                $daylabel .= ' ' . fi_kilonkipinat_website::returnDate($end, 'timeShort');
             }
         }
         else
@@ -52,20 +51,20 @@ class fi_kilonkipinat_website
             if (   $add_year
                 || date('Y', $start) != date('Y', $end))
             {
-                $daylabel .= fi_kilonkipinat_website::returnDate('short', $end);
+                $daylabel .= fi_kilonkipinat_website::returnDate($end, 'short');
             }
             elseif (date('m', $start) != date('m', $end))
             {
-                $daylabel .= fi_kilonkipinat_website::returnDate('extraShort', $end);
+                $daylabel .= fi_kilonkipinat_website::returnDate($end, 'extraShort');
             }
             elseif (date('d', $start) != date('d', $end))
             {
-                $daylabel .= fi_kilonkipinat_website::returnDate('extraShort', $end);
+                $daylabel .= fi_kilonkipinat_website::returnDate($end, 'extraShort');
             }
 
             if ($add_time)
             {
-                $daylabel .= ' ' . fi_kilonkipinat_website::returnDate('timeShort', $end);
+                $daylabel .= ' ' . fi_kilonkipinat_website::returnDate($end, 'timeShort');
             }
         }
         return $daylabel;

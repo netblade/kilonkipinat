@@ -20,6 +20,14 @@ class fi_kilonkipinat_website_interface extends midcom_baseclasses_components_in
     {
         parent::__construct();
         $this->_component = 'fi.kilonkipinat.website';
+        // Load all mandatory class files of the component here
+        $this->_autoload_files = array
+        (
+        );
+        // Load all libraries used by component here
+        $this->_autoload_libraries = array
+        (
+        );
     }
 }
 ?>
