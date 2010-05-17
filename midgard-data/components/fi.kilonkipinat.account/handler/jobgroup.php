@@ -49,15 +49,15 @@ class fi_kilonkipinat_account_handler_jobgroup extends midcom_baseclasses_compon
     
     public function _load_schemadb()
     {
-        $this->_request_data['schemadb'] = midcom_helper_datamanager2_schema::load_database($this->_config->get('schemadb'));
+        $this->_request_data['schemadb_jobhistory_jobgroup'] = midcom_helper_datamanager2_schema::load_database($this->_config->get('schemadb_jobhistory_jobgroup'));
 
-        $this->_schemadb =& $this->_request_data['schemadb'];
+        $this->_schemadb =& $this->_request_data['schemadb_jobhistory_jobgroup'];
     }
     
     public function _get_object_url()
     {
         $prefix = $_MIDCOM->get_context_data(MIDCOM_CONTEXT_ANCHORPREFIX);
-        $url = $prefix . 'jobgroup/view/' . $this->_jobgroup->guid . '/';
+        $url = $prefix . 'jobhistory/jobgroup/view/' . $this->_jobgroup->guid . '/';
         return $url;
     }
     
@@ -70,14 +70,14 @@ class fi_kilonkipinat_account_handler_jobgroup extends midcom_baseclasses_compon
     {
         if (isset($this->_object))
         {
-            $_MIDCOM->set_pagetitle("{$this->_topic->extra}: {$this->_object->firstname} {$this->_object->lastname}");
+            $_MIDCOM->set_pagetitle("{$this->_topic->extra}: {$this->_object->title}");
         }
         return;
     }
     
     function &dm2_create_callback(&$controller)
     {
-        $this->_jobgroup = new fi_kilonkipinat_account_jobgroup_dba();
+        $this->_jobgroup = new fi_kilonkipinat_account_jobhistory_jobgroup_dba();
 
         $this->_jobgroup->_use_activitystream = false;
         $this->_use_activitystream = false;
@@ -88,7 +88,7 @@ class fi_kilonkipinat_account_handler_jobgroup extends midcom_baseclasses_compon
             debug_print_r('We operated on this object:', $this->_jobgroup);
             debug_pop();
             $_MIDCOM->generate_error(MIDCOM_ERRNOTFOUND,
-                'Failed to create a new idea, cannot continue. Last Midgard error was: '. midcom_application::get_error_string());
+                'Failed to create a new jobgroup, cannot continue. Last Midgard error was: '. midcom_application::get_error_string());
             // This will exit.
         }
 
@@ -107,27 +107,27 @@ class fi_kilonkipinat_account_handler_jobgroup extends midcom_baseclasses_compon
             (
                 array
                 (
-                    MIDCOM_TOOLBAR_URL => "jobgroup/edit/{$this->_object->guid}/",
-                    MIDCOM_TOOLBAR_LABEL => 'Muokkaa henkilöä',
-                    MIDCOM_TOOLBAR_ICON => 'fi.kilonkipinat.website/fam/user_edit.png',
+                    MIDCOM_TOOLBAR_URL => "jobhistory/jobgroup/edit/{$this->_object->guid}/",
+                    MIDCOM_TOOLBAR_LABEL => 'Muokkaa pestiryhmää',
+                    MIDCOM_TOOLBAR_ICON => 'fi.kilonkipinat.website/fam/page_edit.png',
                 )
             );
         }
         if ($this->_topic->can_do('midgard:create'))
         {
-            foreach (array_keys($this->_request_data['schemadb']) as $name)
+            foreach (array_keys($this->_request_data['schemadb_jobhistory_jobgroup']) as $name)
             {
                 $this->_view_toolbar->add_item
                 (
                     array
                     (
-                        MIDCOM_TOOLBAR_URL => "jobgroup/create/{$name}/",
+                        MIDCOM_TOOLBAR_URL => "jobhistory/jobgroup/create/{$name}/",
                         MIDCOM_TOOLBAR_LABEL => sprintf
                         (
                             $this->_l10n_midcom->get('create %s'),
-                            $this->_request_data['schemadb'][$name]->description
+                            $this->_request_data['schemadb_jobhistory_jobgroup'][$name]->description
                         ),
-                        MIDCOM_TOOLBAR_ICON => 'fi.kilonkipinat.website/fam/user_add.png',
+                        MIDCOM_TOOLBAR_ICON => 'fi.kilonkipinat.website/fam/page_add.png',
                     )
                 );
             }
@@ -138,12 +138,31 @@ class fi_kilonkipinat_account_handler_jobgroup extends midcom_baseclasses_compon
             (
                 array
                 (
-                    MIDCOM_TOOLBAR_URL => "jobgroup/delete/{$this->_object->guid}/",
-                    MIDCOM_TOOLBAR_LABEL => 'Poista käyttäjä',
-                    MIDCOM_TOOLBAR_ICON => 'fi.kilonkipinat.website/fam/user_delete.png',
+                    MIDCOM_TOOLBAR_URL => "jobhistory/jobgroup/delete/{$this->_object->guid}/",
+                    MIDCOM_TOOLBAR_LABEL => 'Poista pestiryhmä',
+                    MIDCOM_TOOLBAR_ICON => 'fi.kilonkipinat.website/fam/page_delete.png',
                 )
             );
         }
+        if ($this->_topic->can_do('midgard:create'))
+        {
+			foreach (array_keys($this->_request_data['schemadb_jobhistory_jobtitle']) as $name)
+		       {
+		           $this->_view_toolbar->add_item
+		           (
+		               array
+		               (
+		                   MIDCOM_TOOLBAR_URL => "jobhistory/jobtitle/create/{$name}/{$this->_object->guid}",
+		                   MIDCOM_TOOLBAR_LABEL => sprintf
+		                   (
+		                       $this->_l10n_midcom->get('Luo %s tämän alle'),
+		                       $this->_request_data['schemadb_jobhistory_jobtitle'][$name]->description
+		                   ),
+		                   MIDCOM_TOOLBAR_ICON => 'fi.kilonkipinat.website/fam/page_add.png',
+		               )
+		           );
+		       }
+		}
     }
 
     public function _show_create($handler_id, &$data)

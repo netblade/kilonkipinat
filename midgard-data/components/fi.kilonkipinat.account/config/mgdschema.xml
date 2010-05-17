@@ -93,14 +93,14 @@
         <property name="id" type="unsigned integer" primaryfield="id" index="yes">
             <description>Local non-replication-safe database identifier</description>
         </property>
-        <property name="parent" link="fi_kilonkipinat_account_jobhistory_jobgroup:id" type="unsigned integer" parentfield="parent">
-            <description>Jobgroup which the jobgroup belongs to</description>
-        </property>
         <property name="name" type="string" index="yes">
             <description>urlname of the jobtitle</description>
         </property>
         <property name="title" type="string" index="yes">
             <description>Title of the jobgroup</description>
+        </property>
+        <property name="parent" link="fi_kilonkipinat_account_jobhistory_jobgroup:id" type="unsigned integer" upfield="parent">
+            <description>Parent jobgroup</description>
         </property>
     </type>
 
@@ -108,8 +108,8 @@
         <property name="id" type="unsigned integer" primaryfield="id" index="yes">
             <description>Local non-replication-safe database identifier</description>
         </property>
-        <property name="jobgroup" link="fi_kilonkipinat_account_jobhistory_jobgroup:id" type="unsigned integer" parentfield="jobgroup">
-            <description>Jobgroup which the job belongs to</description>
+        <property name="jobgroup" link="fi_kilonkipinat_account_jobhistory_jobgroup:id" type="unsigned integer" upfield="jobgroup">
+            <description>Jobgroup which the jobtitle belongs to</description>
         </property>
         <property name="name" type="string" index="yes">
             <description>urlname of the jobtitle</description>

@@ -46,6 +46,7 @@ class fi_kilonkipinat_account_handler_management extends midcom_baseclasses_comp
     {
         $this->_request_data['name']  = "fi.kilonkipinat.account";
         $this->_update_breadcrumb_line($handler_id);
+        $this->_populate_toolbar($handler_id);
         $title = $this->_l10n_midcom->get('index');
         $_MIDCOM->set_pagetitle(":: {$title}");
         
@@ -61,6 +62,45 @@ class fi_kilonkipinat_account_handler_management extends midcom_baseclasses_comp
     function _show_index($handler_id, &$data)
     {
         midcom_show_style('management-index');
+    }
+
+    public function _populate_toolbar($handler_id)
+    {
+        if ($this->_topic->can_do('fi.kilonkipinat.account:jobhistory_manage'))
+        {
+            foreach (array_keys($this->_request_data['schemadb_jobhistory_jobgroup']) as $name)
+            {
+                $this->_node_toolbar->add_item
+                (
+                    array
+                    (
+                        MIDCOM_TOOLBAR_URL => "jobhistory/jobgroup/create/{$name}/",
+                        MIDCOM_TOOLBAR_LABEL => sprintf
+                        (
+                            $this->_l10n_midcom->get('create %s'),
+                            $this->_request_data['schemadb_jobhistory_jobgroup'][$name]->description
+                        ),
+                        MIDCOM_TOOLBAR_ICON => 'fi.kilonkipinat.website/fam/page_add.png',
+                    )
+                );
+            }
+            foreach (array_keys($this->_request_data['schemadb_jobhistory_jobtitle']) as $name)
+            {
+                $this->_node_toolbar->add_item
+                (
+                    array
+                    (
+                        MIDCOM_TOOLBAR_URL => "jobhistory/jobtitle/create/{$name}/",
+                        MIDCOM_TOOLBAR_LABEL => sprintf
+                        (
+                            $this->_l10n_midcom->get('create %s'),
+                            $this->_request_data['schemadb_jobhistory_jobtitle'][$name]->description
+                        ),
+                        MIDCOM_TOOLBAR_ICON => 'fi.kilonkipinat.website/fam/page_add.png',
+                    )
+                );
+            }
+        }
     }
 
     /**

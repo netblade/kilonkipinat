@@ -1,5 +1,7 @@
 'schemadb_config' => 'file:/fi/kilonkipinat/account/config/config_schemadb.inc',
-'schemadb' => 'file:/fi/kilonkipinat/account/config/schemadb_default.inc',
+'schemadb_person' => 'file:/fi/kilonkipinat/account/config/schemadb_person_default.inc',
+'schemadb_jobhistory_jobgroup' => 'file:/fi/kilonkipinat/account/config/schemadb_jobhistory_jobgroup_default.inc',
+'schemadb_jobhistory_jobtitle' => 'file:/fi/kilonkipinat/account/config/schemadb_jobhistory_jobtitle_default.inc',
 'schema' => 'default',
 
 

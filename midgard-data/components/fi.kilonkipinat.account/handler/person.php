@@ -49,9 +49,9 @@ class fi_kilonkipinat_account_handler_person extends midcom_baseclasses_componen
     
     public function _load_schemadb()
     {
-        $this->_request_data['schemadb'] = midcom_helper_datamanager2_schema::load_database($this->_config->get('schemadb'));
+        $this->_request_data['schemadb_person'] = midcom_helper_datamanager2_schema::load_database($this->_config->get('schemadb_person'));
 
-        $this->_schemadb =& $this->_request_data['schemadb'];
+        $this->_schemadb =& $this->_request_data['schemadb_person'];
     }
     
     public function _get_object_url()
@@ -115,7 +115,7 @@ class fi_kilonkipinat_account_handler_person extends midcom_baseclasses_componen
         }
         if ($this->_topic->can_do('midgard:create'))
         {
-            foreach (array_keys($this->_request_data['schemadb']) as $name)
+            foreach (array_keys($this->_request_data['schemadb_person']) as $name)
             {
                 $this->_view_toolbar->add_item
                 (
@@ -125,7 +125,7 @@ class fi_kilonkipinat_account_handler_person extends midcom_baseclasses_componen
                         MIDCOM_TOOLBAR_LABEL => sprintf
                         (
                             $this->_l10n_midcom->get('create %s'),
-                            $this->_request_data['schemadb'][$name]->description
+                            $this->_request_data['schemadb_person'][$name]->description
                         ),
                         MIDCOM_TOOLBAR_ICON => 'fi.kilonkipinat.website/fam/user_add.png',
                     )

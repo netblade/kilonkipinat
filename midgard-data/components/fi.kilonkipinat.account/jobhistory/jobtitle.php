@@ -9,7 +9,7 @@
 /**
  * @package fi.kilonkipinat.account
  */
-class fi_kilonkipinat_account_jobhistory_jobtitle_dba extends __fi_kilonkipinat_account_jobhistory_job_dba
+class fi_kilonkipinat_account_jobhistory_jobtitle_dba extends __fi_kilonkipinat_account_jobhistory_jobtitle_dba
 {    
     
     static function &get_cached($src)

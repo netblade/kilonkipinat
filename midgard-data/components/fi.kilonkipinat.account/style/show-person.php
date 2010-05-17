@@ -8,7 +8,7 @@ $view = $data['view_person'];
 <table>
 <?php
 
-foreach ($data['schemadb']['default']->fields as $key => $data) {
+foreach ($data['schemadb_person']['default']->fields as $key => $data) {
     $content = '';
     if (   is_array($data['storage'])) {
         if (   isset($data['storage']['location'])

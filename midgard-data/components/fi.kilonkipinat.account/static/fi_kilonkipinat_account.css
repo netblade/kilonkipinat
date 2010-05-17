@@ -28,3 +28,26 @@
 	font-size: 1px;
 	line-height: 1px;
 }
+
+#fi_kilonkipinat_account_jobhistory_management {
+    width: 300px;
+}
+
+#fi_kilonkipinat_account_jobhistory_management ul {
+    display: block;
+}
+
+#fi_kilonkipinat_account_jobhistory_management ul li {
+    display: block;
+    clear: both;
+}
+
+
+.fi_kilonkipinat_account_jobhistory_management_tools {
+    float: right;
+    margin-left: 10px;
+}
+
+#fi_kilonkipinat_account_jobhistory_management a.group {
+    font-style: italic;
+}
