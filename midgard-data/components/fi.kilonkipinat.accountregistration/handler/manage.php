@@ -150,17 +150,19 @@ class fi_kilonkipinat_accountregistration_handler_manage extends midcom_baseclas
                 $person->password = $crypt_password;
             
                 $person->update();
-
-                foreach ($_POST['add_to_groups'] as $group_guid) {
-                    $group = new midcom_db_group($group_guid);
-                    if (   isset($group)
-                        && isset($group->guid)
-                        && $group->guid == $group_guid) {
+                if (   isset($_POST['add_to_groups'])
+                    && count($_POST['add_to_groups']) > 0) {
+                    foreach ($_POST['add_to_groups'] as $group_guid) {
+                        $group = new midcom_db_group($group_guid);
+                        if (   isset($group)
+                            && isset($group->guid)
+                            && $group->guid == $group_guid) {
                     
-                        $membership = new midcom_db_member();
-                        $membership->uid = $person->id;
-                        $membership->gid = $group->id;
-                        $membership->create();
+                            $membership = new midcom_db_member();
+                            $membership->uid = $person->id;
+                            $membership->gid = $group->id;
+                            $membership->create();
+                        }
                     }
                 }
             
