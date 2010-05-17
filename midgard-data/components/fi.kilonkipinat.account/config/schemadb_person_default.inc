@@ -26,6 +26,13 @@
             'type' => 'text',
             'widget' => 'text',
         ),
+        'email' => Array
+        (
+            'title' => 'Sähköposti',
+            'storage' => 'email',
+            'type' => 'text',
+            'widget' => 'text',
+        ),
         'handphone' => Array
         (
             'title' => 'Puhelinnumero',
