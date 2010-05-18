@@ -180,6 +180,54 @@ class fi_kilonkipinat_account_viewer extends midcom_baseclasses_components_reque
             'fixed_args' => array('jobhistory', 'jobtitle', 'delete'),
             'variable_args' => 1,
         );
+        
+        // CRUD for jobhistory job
+
+        // Handle /jobhistory/job/create/<job_schemaname>/
+        $this->_request_switch['jobhistory_job_create'] = array
+        (
+            'handler' => array('fi_kilonkipinat_account_handler_job', 'create'),
+            'fixed_args' => array('jobhistory', 'job', 'create'),
+            'variable_args' => 1,
+        );
+        // Handle /jobhistory/job/create/<job_schemaname>/<jobtitle_guid>/
+        $this->_request_switch['jobhistory_job_create_under'] = array
+        (
+            'handler' => array('fi_kilonkipinat_account_handler_job', 'create'),
+            'fixed_args' => array('jobhistory', 'job', 'create'),
+            'variable_args' => 2,
+        );
+        // Handle /jobhistory/job/create/<job_schemaname>/<person_guid>/
+        $this->_request_switch['jobhistory_job_create_for'] = array
+        (
+            'handler' => array('fi_kilonkipinat_account_handler_job', 'create'),
+            'fixed_args' => array('jobhistory', 'job', 'create_for'),
+            'variable_args' => 2,
+        );
+
+        // Handle /jobhistory/job/view/<job_guid>/
+        $this->_request_switch['jobhistory_job_read'] = array
+        (
+            'handler' => array('fi_kilonkipinat_account_handler_job', 'read'),
+            'fixed_args' => array('jobhistory', 'job', 'view'),
+            'variable_args' => 1,
+        );
+
+        // Handle /jobhistory/job/update/<job_guid>/
+        $this->_request_switch['jobhistory_job_update'] = array
+        (
+            'handler' => array('fi_kilonkipinat_account_handler_job', 'update'),
+            'fixed_args' => array('jobhistory', 'job', 'edit'),
+            'variable_args' => 1,
+        );
+
+        // Handle /jobhistory/job/delete/<job_guid>/
+        $this->_request_switch['jobhistory_job_delete'] = array
+        (
+            'handler' => array('fi_kilonkipinat_account_handler_job', 'delete'),
+            'fixed_args' => array('jobhistory', 'job', 'delete'),
+            'variable_args' => 1,
+        );
     }
 
     /**
@@ -285,6 +333,7 @@ class fi_kilonkipinat_account_viewer extends midcom_baseclasses_components_reque
         $this->_request_data['schemadb_person'] = midcom_helper_datamanager2_schema::load_database($this->_config->get('schemadb_person'));
         $this->_request_data['schemadb_jobhistory_jobgroup'] = midcom_helper_datamanager2_schema::load_database($this->_config->get('schemadb_jobhistory_jobgroup'));
         $this->_request_data['schemadb_jobhistory_jobtitle'] = midcom_helper_datamanager2_schema::load_database($this->_config->get('schemadb_jobhistory_jobtitle'));
+        $this->_request_data['schemadb_jobhistory_job'] = midcom_helper_datamanager2_schema::load_database($this->_config->get('schemadb_jobhistory_job'));
         $this->_request_data['prefix'] = $_MIDCOM->get_context_data(MIDCOM_CONTEXT_ANCHORPREFIX);
         
         $_MIDCOM->add_link_head(array('rel' => 'stylesheet',  'type' => 'text/css', 'href' => MIDCOM_STATIC_URL . '/fi.kilonkipinat.account/fi_kilonkipinat_account.css', 'media' => 'all'));

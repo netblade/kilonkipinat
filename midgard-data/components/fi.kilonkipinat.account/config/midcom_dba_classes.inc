@@ -10,3 +10,7 @@ array(
     'mgdschema_class_name' => 'fi_kilonkipinat_account_jobhistory_jobtitle',
     'midcom_class_name' => 'fi_kilonkipinat_account_jobhistory_jobtitle_dba',
 ),
+array(
+    'mgdschema_class_name' => 'fi_kilonkipinat_account_jobhistory_job',
+    'midcom_class_name' => 'fi_kilonkipinat_account_jobhistory_job_dba',
+),

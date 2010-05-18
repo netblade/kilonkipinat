@@ -41,3 +41,31 @@ foreach ($data['schemadb_person']['default']->fields as $key => $data) {
 }
 ?>
 </table>
+
+<h2>Pestit</h2>
+<?php
+$qb_jobs = fi_kilonkipinat_account_jobhistory_job_dba::new_query_builder();
+$qb_jobs->add_constraint('person', '=', $person->id);
+$qb_jobs->add_constraint('jobtitle', '<>', 0);
+$qb_jobs->add_order('start', 'DESC');
+$qb_jobs->add_order('jobtitle.title', 'ASC');
+$jobs = $qb_jobs->execute();
+
+if (count($jobs)>0) {
+    echo '<table cellpadding="2" cellspacing="2">'."\n";
+}
+foreach ($jobs as $job) {
+    $jobtitle = new fi_kilonkipinat_account_jobhistory_jobtitle_dba($job->jobtitle);
+    echo "\t<tr>\n";
+    echo "\t\t<td><a href=\"" . $prefix . 'jobhistory/job/view/' . $job->guid . "/\">" . $jobtitle->title . "</td>\n";
+    echo "\t\t<td>" . date('d.m.Y', strtotime($job->start)) . "</td>\n";
+    echo "\t\t<td>-></td>\n";
+    if (strtotime($job->start) < strtotime($job->end)) {
+        echo "\t\t<td>" . date('d.m.Y', strtotime($job->end)) . "</td>\n";
+    } else {
+        echo "\t\t<td>&nbsp;</td>\n";
+    }
+    echo "\t</tr>\n";
+}
+echo "</table>\n"
+?>

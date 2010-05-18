@@ -123,11 +123,31 @@
         <property name="link" type="string" index="yes">
             <description>Link to page describing the jobtitle</description>
         </property>
-        <property name="content" type="string" index="yes">
+        <property name="content" type="text">
             <description>Description of the jobtitle</description>
         </property>
         <property name="status" type="unsigned integer" index="yes">
             <description>Status of the jobtitle</description>
+        </property>
+    </type>
+    <type name="fi_kilonkipinat_account_jobhistory_job" table="fi_kilonkipinat_account_jobhistory_job">
+        <property name="id" type="unsigned integer" primaryfield="id" index="yes">
+            <description>Local non-replication-safe database identifier</description>
+        </property>
+        <property name="jobtitle" link="fi_kilonkipinat_account_jobhistory_jobtitle:id" type="unsigned integer">
+            <description>Jobtitle which the job belongs to</description>
+        </property>
+        <property name="person" link="fi_kilonkipinat_account_person:id" type="unsigned integer" upfield="person">
+            <description>Person for the job</description>
+        </property>
+        <property name="start" type="datetime" index="yes">
+            <description>Start of the job</description>
+        </property>
+        <property name="end" type="datetime" index="yes">
+            <description>end of the job</description>
+        </property>
+        <property name="description" type="text">
+            <description>Description about the job</description>
         </property>
     </type>
 </Schema>

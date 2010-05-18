@@ -40,6 +40,8 @@
 #fi_kilonkipinat_account_jobhistory_management ul li {
     display: block;
     clear: both;
+    min-height: 18px;
+    padding-left: 20px;
 }
 
 
@@ -50,4 +52,12 @@
 
 #fi_kilonkipinat_account_jobhistory_management a.group {
     font-style: italic;
+}
+
+#fi_kilonkipinat_account_jobhistory_management ul li.jobhistory_group {
+    background: url('/midcom-static/fi.kilonkipinat.website/fam/table_multiple.png') no-repeat top left;
+}
+
+#fi_kilonkipinat_account_jobhistory_management ul li.jobhistory_title {
+    background: url('/midcom-static/fi.kilonkipinat.website/fam/tag_blue.png') no-repeat top left;
 }

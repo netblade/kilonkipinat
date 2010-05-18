@@ -144,6 +144,25 @@ class fi_kilonkipinat_account_handler_person extends midcom_baseclasses_componen
                 )
             );
         }
+        if ($this->_object->can_do('midgard:update'))
+        {
+            foreach (array_keys($this->_request_data['schemadb_jobhistory_job']) as $name)
+            {
+                $this->_view_toolbar->add_item
+                (
+                    array
+                    (
+                        MIDCOM_TOOLBAR_URL => "jobhistory/job/create_for/{$name}/{$this->_object->guid}",
+                        MIDCOM_TOOLBAR_LABEL => sprintf
+                        (
+                            $this->_l10n_midcom->get('create %s'),
+                            $this->_request_data['schemadb_jobhistory_job'][$name]->description
+                        ),
+                        MIDCOM_TOOLBAR_ICON => 'fi.kilonkipinat.website/fam/tag_blue_add.png',
+                    )
+                );
+            }
+        }
     }
 
     public function _show_create($handler_id, &$data)

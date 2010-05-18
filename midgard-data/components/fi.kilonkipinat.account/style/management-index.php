@@ -14,7 +14,7 @@ if (   $groups
     echo "<div id=\"fi_kilonkipinat_account_jobhistory_management\">";
     echo "<ul>\n";
     foreach ($groups as $group) {
-        echo "<li>";
+        echo "<li class=\"jobhistory_group\">";
         echo "<div class=\"fi_kilonkipinat_account_jobhistory_management_tools\">\n";
         echo "<a title=\"Muokkaa\" href=\"" . $prefix . "jobhistory/jobgroup/edit/" . $group->guid . "/\"><img src=\"/midcom-static/fi.kilonkipinat.website/fam/page_edit.png\" /></a>";
         echo "<a title=\"Poista\" href=\"" . $prefix . "jobhistory/jobgroup/delete/" . $group->guid . "/\"><img src=\"/midcom-static/fi.kilonkipinat.website/fam/page_delete.png\" /></a>";
@@ -30,7 +30,7 @@ if (   $groups
             echo "<ul>\n";
             foreach ($titles as $title) {
                 $jobtitles[$title->id] = $title->id;
-                echo "<li>";
+                echo "<li class=\"jobhistory_title\">";
                 echo "<div class=\"fi_kilonkipinat_account_jobhistory_management_tools\">\n";
                 echo "<a title=\"Muokkaa\" href=\"" . $prefix . "jobhistory/jobtitle/edit/" . $title->guid . "/\"><img src=\"/midcom-static/fi.kilonkipinat.website/fam/page_edit.png\" /></a>";
                 echo "<a title=\"Poista\" href=\"" . $prefix . "jobhistory/jobtitle/delete/" . $title->guid . "/\"><img src=\"/midcom-static/fi.kilonkipinat.website/fam/page_delete.png\" /></a>";

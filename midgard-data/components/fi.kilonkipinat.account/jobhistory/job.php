@@ -9,7 +9,7 @@
 /**
  * @package fi.kilonkipinat.account
  */
-class fi_kilonkipinat_account_jobhistory_jobgroup_dba extends __fi_kilonkipinat_account_jobhistory_jobgroup_dba
+class fi_kilonkipinat_account_jobhistory_job_dba extends __fi_kilonkipinat_account_jobhistory_job_dba
 {    
     
     static function &get_cached($src)
@@ -76,11 +76,11 @@ class fi_kilonkipinat_account_jobhistory_jobgroup_dba extends __fi_kilonkipinat_
 
             if ($new_object)
             {
-                $activity->summary = sprintf('%s loi pestiryhmän %s', $actor->name, $this->title);
+                $activity->summary = sprintf('%s loi pestin %s', $actor->name, $this->title);
             }
             else
             {
-                $activity->summary = sprintf('%s muokkasi pestiryhmää %s', $actor->name, $this->title);
+                $activity->summary = sprintf('%s muokkasi pestiä %s', $actor->name, $this->title);
             }
             
 
