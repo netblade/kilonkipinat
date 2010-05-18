@@ -18,7 +18,7 @@ if ($jobtitle->jobgroup != 0) {
 
 ?>
 
-<h2>Pestit</h2>
+<h2>Pestihenkilöt</h2>
 <?php
 $qb_jobs = fi_kilonkipinat_account_jobhistory_job_dba::new_query_builder();
 $qb_jobs->add_constraint('jobtitle', '=', $jobtitle->id);

@@ -29,15 +29,18 @@
 	line-height: 1px;
 }
 
-#fi_kilonkipinat_account_jobhistory_management {
+#fi_kilonkipinat_account_jobhistory_management,
+#fi_kilonkipinat_account_jobhistory_jobtitles {
     width: 300px;
 }
 
-#fi_kilonkipinat_account_jobhistory_management ul {
+#fi_kilonkipinat_account_jobhistory_management ul,
+#fi_kilonkipinat_account_jobhistory_jobtitles ul {
     display: block;
 }
 
-#fi_kilonkipinat_account_jobhistory_management ul li {
+#fi_kilonkipinat_account_jobhistory_management ul li,
+#fi_kilonkipinat_account_jobhistory_jobtitles ul li {
     display: block;
     clear: both;
     min-height: 18px;
@@ -58,6 +61,7 @@
     background: url('/midcom-static/fi.kilonkipinat.website/fam/table_multiple.png') no-repeat top left;
 }
 
-#fi_kilonkipinat_account_jobhistory_management ul li.jobhistory_title {
+#fi_kilonkipinat_account_jobhistory_management ul li.jobhistory_title,
+#fi_kilonkipinat_account_jobhistory_jobtitles ul li.jobhistory_title {
     background: url('/midcom-static/fi.kilonkipinat.website/fam/tag_blue.png') no-repeat top left;
 }

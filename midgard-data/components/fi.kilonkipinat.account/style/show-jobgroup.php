@@ -6,6 +6,7 @@ $view = $data['view_jobgroup'];
 ?>
 <h1>Pestiryhmä: &(jobgroup.title);</h1>
 
+<div id="fi_kilonkipinat_account_jobhistory_jobtitles">
 <?php
 $qb_titles = fi_kilonkipinat_account_jobhistory_jobtitle_dba::new_query_builder();
 $qb_titles->add_constraint('jobgroup', '=', $jobgroup->id);
@@ -17,7 +18,7 @@ if (   $titles
     echo "<ul>\n";
     foreach ($titles as $title) {
         $jobtitles[$title->id] = $title->id;
-        echo "<li>";
+        echo "<li class=\"jobhistory_title\">";
         echo "<div class=\"fi_kilonkipinat_account_jobhistory_management_tools\">\n";
         echo "<a title=\"Muokkaa\" href=\"" . $prefix . "jobhistory/jobtitle/edit/" . $title->guid . "/\"><img src=\"/midcom-static/fi.kilonkipinat.website/fam/page_edit.png\" /></a>";
         echo "<a title=\"Poista\" href=\"" . $prefix . "jobhistory/jobtitle/delete/" . $title->guid . "/\"><img src=\"/midcom-static/fi.kilonkipinat.website/fam/page_delete.png\" /></a>";
@@ -29,3 +30,4 @@ if (   $titles
 unset($qb_titles);
 unset($titles);
 ?>
+</div>
