@@ -74,6 +74,21 @@ class fi_kilonkipinat_events_viewer extends midcom_baseclasses_components_reques
             'fixed_args' => array('delete_event'),
             'variable_args' => 1,
         );
+        
+        // Handle /archive/
+        $this->_request_switch['archive_index'] = array
+        (
+            'handler' => array('fi_kilonkipinat_events_handler_archive', 'index'),
+            'fixed_args' => array('archive'),
+        );
+
+        // Handle /archive/year/
+        $this->_request_switch['archive_year'] = array
+        (
+            'handler' => array('fi_kilonkipinat_events_handler_archive', 'index'),
+            'fixed_args' => array('archive', 'year'),
+            'variable_args' => 1,
+        );
     }
 
     /**
@@ -173,50 +188,6 @@ class fi_kilonkipinat_events_viewer extends midcom_baseclasses_components_reques
         $this->_populate_node_toolbar();
 
         return true;
-    }
-
-    function return_daylabel($label='start', $start, $end , $add_time = true, $add_year = false)
-    {
-        $daylabel = '';
-
-        if ($label == 'start')
-        {
-            // We want to output the label for start time
-            $daylabel .= strftime('%d.%m.', $start);
-
-            if (date('Y', $start) != date('Y', $end))
-            {
-                $daylabel .= date('Y', $start);
-            }
-
-            if ($add_time)
-            {
-                $daylabel .= date(' H:i', $start);
-            }
-        }
-        else
-        {
-            if (   $add_year
-                || date('Y', $start) != date('Y', $end))
-            {
-                $daylabel .= strftime('%d.%m.%Y ', $end);
-            }
-            elseif (date('m', $start) != date('m', $end))
-            {
-                $daylabel .= strftime('%d.%m. ', $end);
-            }
-            elseif (date('d', $start) != date('d', $end))
-            {
-                $daylabel .= strftime('%d.%m.', $end);
-            }
-
-            if ($add_time)
-            {
-                $daylabel .= date(' H:i', $end);
-            }
-        }
-
-        return $daylabel;
     }
 }
 

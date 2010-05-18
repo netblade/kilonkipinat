@@ -23,6 +23,18 @@ class fi_kilonkipinat_events_navigation extends midcom_baseclasses_components_na
     {
         parent::__construct();
     }
+
+    function get_leaves()
+    {
+        $leaves = array();
+        $leaves["archive"] = array
+        (
+            MIDCOM_NAV_URL => "archive/",
+            MIDCOM_NAV_NAME => 'Arkisto',
+        );
+
+        return $leaves;
+    }
 }
 
 ?>

@@ -8,8 +8,8 @@ $end_ts = strtotime($event->end);
 ?>
 <h1>&(event.title:h);</h1>
 <div class="dates">
-    <abbr class="dtstart" title="<?php echo gmdate('Y-m-d\TH:i:s\Z', $start_ts); ?>"><?php echo fi_kilonkipinat_events_viewer::return_daylabel('start', $start_ts, $end_ts); ?></abbr> -
-    <abbr class="dtend" title="<?php echo gmdate('Y-m-d\TH:i:s\Z', $end_ts); ?>"><?php echo fi_kilonkipinat_events_viewer::return_daylabel('end', $start_ts, $end_ts); ?></abbr>
+    <abbr class="dtstart" title="<?php echo gmdate('Y-m-d\TH:i:s\Z', $start_ts); ?>"><?php echo fi_kilonkipinat_website::returnDateLabel('start', $start_ts, $end_ts); ?></abbr> -
+    <abbr class="dtend" title="<?php echo gmdate('Y-m-d\TH:i:s\Z', $end_ts); ?>"><?php echo fi_kilonkipinat_website::returnDateLabel('end', $start_ts, $end_ts); ?></abbr>
 </div>
 <div class="event_content">
     <h4>Tapahtuman kuvaus</h4>

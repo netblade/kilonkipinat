@@ -25,9 +25,9 @@
         <property name="content" type="text">
             <description>Description of the event</description>
         </property>
-<!--        <property name="contentprivate" type="text">
+        <property name="contentprivate" type="text">
             <description>Private description of the event</description>
-        </property>--->
+        </property>
         <property name="status" type="unsigned integer" index="yes">
             <description>Status of the event</description>
         </property>
