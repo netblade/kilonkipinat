@@ -178,8 +178,11 @@ class fi_kilonkipinat_emailmappings_cron_emailmapper extends midcom_baseclasses_
 
                 $emails .=  $email;
             }
-            
-            $file2_content .= "\n" . $key . ': ' . $emails;
+            if (   strlen($emails) > 3)
+                && strstr($emails, '@'))
+            {
+                $file2_content .= "\n" . $key . ': ' . $emails;
+            }
         }
         
         if ($file2_content != '') {
