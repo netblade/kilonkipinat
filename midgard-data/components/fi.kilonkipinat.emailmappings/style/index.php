@@ -68,7 +68,7 @@ $prefix = $data['prefix'];
 
                 $persons_str .=  $person->firstname . ' ' . $person->lastname;
             }
-            
+            echo "\t\t<td>";
             echo $persons_str;
             echo "</td>\n";
             
