@@ -21,7 +21,7 @@ class fi_kilonkipinat_emailmappings_handler_emailmapping extends midcom_baseclas
     public function _load_object($handler_id, $args, &$data)
     {
         $qb = fi_kilonkipinat_emailmappings_emailmapping_dba::new_query_builder();
-        $qb->add_constraint('name', '=', $args[0]);
+        $qb->add_constraint('guid', '=', $args[0]);
         $qb->set_limit(1);
         $objects = $qb->execute();
 
@@ -58,7 +58,7 @@ class fi_kilonkipinat_emailmappings_handler_emailmapping extends midcom_baseclas
     public function _get_object_url()
     {
         $prefix = $_MIDCOM->get_context_data(MIDCOM_CONTEXT_ANCHORPREFIX);
-        $url = $prefix . 'emailmapping/view/' . $this->_emailmapping->name . '/';
+        $url = $prefix . 'emailmapping/view/' . $this->_emailmapping->guid . '/';
         return $url;
     }
     
@@ -108,7 +108,7 @@ class fi_kilonkipinat_emailmappings_handler_emailmapping extends midcom_baseclas
             (
                 array
                 (
-                    MIDCOM_TOOLBAR_URL => "emailmapping/edit/{$this->_object->name}/",
+                    MIDCOM_TOOLBAR_URL => "emailmapping/edit/{$this->_object->guid}/",
                     MIDCOM_TOOLBAR_LABEL => 'Muokkaa sähköpostiohjausta',
                     MIDCOM_TOOLBAR_ICON => 'fi.kilonkipinat.emailmappings/fam/email_edit.png',
                 )
@@ -120,7 +120,7 @@ class fi_kilonkipinat_emailmappings_handler_emailmapping extends midcom_baseclas
             (
                 array
                 (
-                    MIDCOM_TOOLBAR_URL => "emailmapping/delete/{$this->_object->name}/",
+                    MIDCOM_TOOLBAR_URL => "emailmapping/delete/{$this->_object->guid}/",
                     MIDCOM_TOOLBAR_LABEL => 'Poista sähköpostiohjaus',
                     MIDCOM_TOOLBAR_ICON => 'fi.kilonkipinat.emailmappings/fam/email_edit.png',
                 )

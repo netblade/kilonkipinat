@@ -10,11 +10,14 @@ $prefix = $data['prefix'];
 
 <h2><a href="#" onclick="jQuery('#fi_kilonkipinat_emailmapper_index_automatic_wrapper').toggle('slow'); return false;">Automaattisesti generoidut (<?php echo count($data['automatic_mappings']); ?>)</a></h2>
 <div id="fi_kilonkipinat_emailmapper_index_automatic_wrapper" style="display: none;">
-    <table>
-        <tr>
-            <th>Mikä</th>
-            <th>Minne</th>
-        </tr>
+    <table class="tablesorter">
+		<thead>
+        	<tr>
+            	<th>Mikä</th>
+            	<th>Minne</th>
+        	</tr>
+		</thead>
+		<tbody>
 <?php
     foreach ($data['automatic_mappings'] as $mapping) {
         echo "\t<tr>\n";
@@ -23,35 +26,38 @@ $prefix = $data['prefix'];
         echo "\t</tr>\n";
     }
 ?>
+		</tbody>
     </table>
 </div>
 
 <h2><a href="#" onclick="jQuery('#fi_kilonkipinat_emailmapper_index_additional_wrapper').toggle('slow'); return false;">Lisäohjaukset (<?php echo count($data['additional_mappings']); ?>)</a></h2>
 <div id="fi_kilonkipinat_emailmapper_index_additional_wrapper" style="display: none;">
-    <table>
-        <tr>
-            <th>Mikä</th>
-            <th>Minne</th>
-            <th>Keille</th>
-            <th>Muokattu</th>
-            <th>Työkalut</th>
-            
-        </tr>
+    <table class="tablesorter">
+		<thead>
+	        <tr>
+	            <th>Mikä</th>
+	            <th>Minne</th>
+	            <th>Keille</th>
+	            <th class="{sorter: 'fiDate'}">Muokattu</th>
+	            <th class="{sorter: false}">Työkalut</th>
+	        </tr>
+		</thead>
+		<tbody>
 <?php
     $mapping_names = array();
     foreach ($data['additional_mappings'] as $mapping) {
-        echo "\t<tr>\n";
-        echo "\t\t<td>" . $mapping['name'] . "</td>\n";
-        echo "\t\t<td>" . $mapping['emails'] . "</td>\n";
-        $qb_mapping = fi_kilonkipinat_emailmappings_emailmapping_dba::new_query_builder();
+	    $qb_mapping = fi_kilonkipinat_emailmappings_emailmapping_dba::new_query_builder();
         $qb_mapping->add_constraint('name', '=', trim($mapping['name']));
         $qb_mapping->set_limit(1);
         $mappings = $qb_mapping->execute();
-        
-        if (count($mappings) > 0) {
+       	echo "\t<tr>\n";
+       	echo "\t\t<td>" . $mapping['name'] . "</td>\n";
+       	echo "\t\t<td>" . $mapping['emails'] . "</td>\n";
+        if (   is_array($mappings)
+			&& count($mappings) > 0) {
             $emailmapping = $mappings[0];
             $mapping_names[] = trim($mapping['name']);
-            
+
             $persons = fi_kilonkipinat_emailmappings_viewer::loadPersons($emailmapping->persons);
 
             $persons_str = '';
@@ -63,7 +69,6 @@ $prefix = $data['prefix'];
                 $persons_str .=  $person->firstname . ' ' . $person->lastname;
             }
             
-            echo "\t\t<td>";
             echo $persons_str;
             echo "</td>\n";
             
@@ -73,35 +78,45 @@ $prefix = $data['prefix'];
             echo "\t\t<td>";
             echo "&nbsp;&nbsp;&nbsp;";
             if ($emailmapping->can_do('midgard:update')) {
-                echo "<a title=\"Muokkaa\" href=\"" . $prefix . 'emailmapping/edit/' . trim($mapping['name']) . "/\"><img src=\"/midcom-static/fi.kilonkipinat.emailmappings/email_edit.png\" /></a>";
+                echo "<a title=\"Muokkaa\" href=\"" . $prefix . 'emailmapping/edit/' . $mappings[0]->guid . "/\"><img src=\"/midcom-static/fi.kilonkipinat.emailmappings/email_edit.png\" /></a>";
             }
             echo "&nbsp;&nbsp;&nbsp;";
             if ($emailmapping->can_do('midgard:delete')) {
-                echo "<a title=\"Poista\" href=\"" . $prefix . 'emailmapping/delete/' . trim($mapping['name']) . "/\"><img src=\"/midcom-static/fi.kilonkipinat.emailmappings/email_delete.png\" /></a>";
+                echo "<a title=\"Poista\" href=\"" . $prefix . 'emailmapping/delete/' . $mappings[0]->guid . "/\"><img src=\"/midcom-static/fi.kilonkipinat.emailmappings/email_delete.png\" /></a>";
             }
             echo "&nbsp;&nbsp;&nbsp;";
             echo "</td>\n";
-        }
+        } else {
+			echo "\t\t<td>&nbsp;</td>\n";
+			echo "\t\t<td>&nbsp;</td>\n";
+			echo "\t\t<td>&nbsp;</td>\n";
+		}
         echo "\t</tr>\n";
     }
 ?>
+		<tbody>
     </table>
 <?php
 $qb = fi_kilonkipinat_emailmappings_emailmapping_dba::new_query_builder();
-$qb->add_constraint('name', 'NOT IN', $mapping_names);
+if (count($mapping_names)>0) {
+	$qb->add_constraint('name', 'NOT IN', $mapping_names);
+}
 $results = $qb->execute();
 
 if (count($results) != 0) {
 ?>
 <br /><br /><br />
 <h3>Odottaa päivitystä</h3>
-<table>
-    <tr>
-        <th>Mikä</th>
-        <th>Keille</th>
-        <th>Muokattu</th>
-        <th>Työkalut</th>
-    </tr>
+<table class="tablesorter">
+	<thead>
+	    <tr>
+	        <th>Mikä</th>
+	        <th>Keille</th>
+	        <th class="{sorter: 'fiDate'}">Muokattu</th>
+	        <th class="{sorter: false}">Työkalut</th>
+	    </tr>
+	</thead>
+	<tbody>
 <?php
     foreach ($results as $result) {
 
@@ -135,6 +150,7 @@ if (count($results) != 0) {
         echo "\t</tr>\n";
     }
 ?>
+		<tbody>
     </table>
 <?php
 }

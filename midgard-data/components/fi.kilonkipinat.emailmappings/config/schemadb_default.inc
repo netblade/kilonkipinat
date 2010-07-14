@@ -7,7 +7,7 @@
         (
             'title' => 'url name',
             'storage' => 'name',
-            'type' => 'urlname',
+            'type' => 'text',
             'widget' => 'text',
         ),
         'persons' => array
