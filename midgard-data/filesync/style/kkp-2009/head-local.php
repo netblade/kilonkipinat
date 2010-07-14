@@ -17,6 +17,12 @@
 
 <script type="text/javascript" src="/style/js/additional/jquery.corner.js"></script>
 
+<script type="text/javascript" src="/style/js/additional/jquery.metadata.js"></script>
+
+<link rel="stylesheet" href="/style/css/additional/tablesorter/style.css" type="text/css" media="screen" />
+<script type="text/javascript" src="/style/js/additional/jquery.tablesorter.min.js"></script>
+<script type="text/javascript" src="/style/js/additional/jquery.tablesorter.pager.js"></script>
+
 <script type="text/javascript" src="/style/js/additional/thickbox-compressed.js"></script>
 <link rel="stylesheet" href="/style/css/additional/thickbox.css" type="text/css" media="screen" />
 

@@ -731,3 +731,8 @@ ul.org_routamc_photostream_photos li {
 p.excerpt {
     font-weight: bold;
 }
+
+
+.tablesorter thead tr th {
+    padding-right: 20px !important;
+}
