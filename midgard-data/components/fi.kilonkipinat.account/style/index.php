@@ -6,7 +6,7 @@
 	            <th>Nimi</th>
 	            <th>Kutsumanimi</th>
 	            <th>Puhelin</th>
-	            <th class="{sorter: 'date'}">Viimesin loggautuminen</th>
+	            <th class="{sorter: 'fiDate'}">Viimesin loggautuminen</th>
 	            <th>GTalk</th>
 	            <th>MSN</th>
 	            <th>Skype</th>
