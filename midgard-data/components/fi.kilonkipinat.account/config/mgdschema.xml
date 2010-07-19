@@ -111,9 +111,6 @@
         <property name="jobgroup" link="fi_kilonkipinat_account_jobhistory_jobgroup:id" type="unsigned integer" upfield="jobgroup">
             <description>Jobgroup which the jobtitle belongs to</description>
         </property>
-        <property name="name" type="string" index="yes">
-            <description>urlname of the jobtitle</description>
-        </property>
         <property name="shorttitle" type="string" index="yes">
             <description>Short title of the jobtitle</description>
         </property>

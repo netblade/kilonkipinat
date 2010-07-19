@@ -46,7 +46,6 @@ class fi_kilonkipinat_account_handler_jobtitle extends midcom_baseclasses_compon
     
     public function _load_parent($handler_id, $args, &$data)
     {
-        
         $this->_parent = $this->_jobgroup;
         return $this->_parent;
     }

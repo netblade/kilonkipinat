@@ -37,11 +37,6 @@ class fi_kilonkipinat_account_jobhistory_jobtitle_dba extends __fi_kilonkipinat_
     {
         // Invalidate topic in cache to refresh all views
         // TODO: Do this only on status changes
-        $topic = midcom_db_topic::get_cached($this->topic);
-        if ($topic->guid)
-        {
-            $_MIDCOM->cache->invalidate($topic->guid);
-        }
 
         if (isset($GLOBALS['disable_activitystream']))
         {

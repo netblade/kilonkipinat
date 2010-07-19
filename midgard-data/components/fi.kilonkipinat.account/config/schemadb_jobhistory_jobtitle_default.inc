@@ -3,14 +3,6 @@
     'description' => 'Pestinimike',
     'fields'      => array
     (
-        'name' => Array
-        (
-            'title' => 'name',
-            'storage' => 'name',
-            'required' => true,
-            'type' => 'urlname',
-            'widget' => 'text',
-        ),
         'title' => Array
         (
             'title' => 'Otsikko',

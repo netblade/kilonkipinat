@@ -146,23 +146,23 @@ class fi_kilonkipinat_account_handler_jobgroup extends midcom_baseclasses_compon
         }
         if ($this->_topic->can_do('midgard:create'))
         {
-			foreach (array_keys($this->_request_data['schemadb_jobhistory_jobtitle']) as $name)
-		       {
-		           $this->_view_toolbar->add_item
-		           (
-		               array
-		               (
-		                   MIDCOM_TOOLBAR_URL => "jobhistory/jobtitle/create/{$name}/{$this->_object->guid}",
-		                   MIDCOM_TOOLBAR_LABEL => sprintf
-		                   (
-		                       $this->_l10n_midcom->get('Luo %s tämän alle'),
-		                       $this->_request_data['schemadb_jobhistory_jobtitle'][$name]->description
-		                   ),
-		                   MIDCOM_TOOLBAR_ICON => 'fi.kilonkipinat.website/fam/page_add.png',
-		               )
-		           );
-		       }
-		}
+            foreach (array_keys($this->_request_data['schemadb_jobhistory_jobtitle']) as $name)
+               {
+                   $this->_view_toolbar->add_item
+                   (
+                       array
+                       (
+                           MIDCOM_TOOLBAR_URL => "jobhistory/jobtitle/create/{$name}/{$this->_object->guid}",
+                           MIDCOM_TOOLBAR_LABEL => sprintf
+                           (
+                               $this->_l10n_midcom->get('Luo %s tämän alle'),
+                               $this->_request_data['schemadb_jobhistory_jobtitle'][$name]->description
+                           ),
+                           MIDCOM_TOOLBAR_ICON => 'fi.kilonkipinat.website/fam/page_add.png',
+                       )
+                   );
+               }
+        }
     }
 
     public function _show_create($handler_id, &$data)
