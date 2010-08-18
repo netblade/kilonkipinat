@@ -36,12 +36,23 @@ class fi_kilonkipinat_emailmappings_cron_emailmapper extends midcom_baseclasses_
 
         if ($email_group_guid == null) {
             // Email group not set in global config, we try to search for topic
-            $nap_topic = midcom_helper_find_node_by_component('fi.kilonkipinat.emailmappings');
-            $topic = new midcom_db_topic($nap_topic[MIDCOM_NAV_GUID]);
+//            $nap_topic = midcom_helper_find_node_by_component('fi.kilonkipinat.emailmappings');
+//            $topic = new midcom_db_topic($nap_topic[MIDCOM_NAV_GUID]);
+            $qb = midcom_db_topic::new_query_builder();
+            $qb->add_constraint('component', '=', 'fi.kilonkipinat.emailmappings');
+            $qb->add_constraint('name', '<>', '');
+            $qb->set_limit(1);
+            $topics = $qb->execute();
+            
+            $topic = False;
+            
+            if (count($topics)>0) {
+                $topic = $topics[0];
+            }
+            
             if (   $topic
                 && $topic->guid
-                && $topic->guid != ''
-                && $topic->guid == $nap_topic[MIDCOM_NAV_GUID]) {
+                && $topic->guid != '') {
                 $real_config = new midcom_helper_configuration($topic, 'fi.kilonkipinat.emailmappings');
                 $email_group_guid = $real_config->get('group_for_emails');
             } else {
@@ -76,7 +87,9 @@ class fi_kilonkipinat_emailmappings_cron_emailmapper extends midcom_baseclasses_
                 }
                 
                 $mc_persons = fi_kilonkipinat_account_person_dba::new_collector('sitegroup', $_MIDGARD['sitegroup']);
-                $mc_persons->add_constraint('id', 'IN', $person_ids);
+                if (count($person_ids)>0) {
+                    $mc_persons->add_constraint('id', 'IN', $person_ids);
+                }
                 $mc_persons->add_constraint('username', '<>', '');
                 $mc_persons->add_constraint('email', '<>', '');
                 $mc_persons->add_constraint('email', 'LIKE', '%@%');
@@ -146,7 +159,7 @@ class fi_kilonkipinat_emailmappings_cron_emailmapper extends midcom_baseclasses_
         $mc_mappings = fi_kilonkipinat_emailmappings_emailmapping_dba::new_collector('sitegroup', $_MIDGARD['sitegroup']);
         $mc_mappings->add_value_property('name');
         $mc_mappings->add_value_property('persons');
-        if (count($usernames != 0)) {
+        if (count($usernames) != 0) {
             $mc_mappings->add_constraint('name', 'NOT IN', $usernames);
         }
         $mc_mappings->execute();
@@ -163,7 +176,9 @@ class fi_kilonkipinat_emailmappings_cron_emailmapper extends midcom_baseclasses_
 
             $persons_mc = fi_kilonkipinat_account_person_dba::new_collector('sitegroup', $_MIDGARD['sitegroup']);
             $persons_mc->add_value_property('email');
-            $persons_mc->add_constraint('guid', 'IN', $guids);
+            if (count($guids)>0) {
+                $persons_mc->add_constraint('guid', 'IN', $guids);
+            }
             $persons_mc->add_constraint('email', '<>', '');
             $persons_mc->execute();
             $persons_tmp = $persons_mc->list_keys();
