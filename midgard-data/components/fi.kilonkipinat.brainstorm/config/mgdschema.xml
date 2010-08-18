@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schema xmlns="http://www.midgard-project.org/repligard/1.4">
+    <type name="fi_kilonkipinat_brainstorm_idea" table="fi_kilonkipinat_brainstorm_idea">
+        <property name="id" type="unsigned integer" primaryfield="id" index="yes">
+            <description>Local non-replication-safe database identifier</description>
+        </property>
+        <property name="topic" link="midgard_topic:id" type="unsigned integer" parentfield="topic">
+            <description>Topic which the idea relates to</description>
+        </property>
+        <property name="name" type="string" index="yes">
+            <description>URL name of the idea</description>
+        </property>
+        <property name="title" type="string">
+            <description>Title of the idea</description>
+        </property>
+        <property name="content" type="text">
+            <description>Description of the idea</description>
+        </property>
+        <property name="status" type="unsigned integer" index="yes">
+            <description>Status of the idea</description>
+        </property>
+        <property name="category" type="string" index="yes">
+            <description>Categories of the idea, split by pipe (`|`)</description>
+        </property>
+        <property name="duplicateof" link="fi_kilonkipinat_brainstorm_idea:id" type="unsigned integer" upfield="duplicateof">
+            <description>Idea which the idea is a duplicate of</description>
+        </property>
+    </type>
+
+    <type name="fi_kilonkipinat_brainstorm_idea_solution" table="fi_kilonkipinat_brainstorm_idea_solution">
+        <property name="id" type="unsigned integer" primaryfield="id">
+            <description>Local non-replication-safe database identifier</description>
+        </property>
+        <property name="name" type="string" index="yes">
+            <description>URL name of the solution</description>
+        </property>
+        <property name="idea" link="fi_kilonkipinat_brainstorm_idea:id" type="unsigned integer" parentfield="idea">
+            <description>Idea which the solution relates to</description>
+        </property>
+        <property name="counter" type="unsigned integer">
+            <description>Static counter of the solution</description>
+        </property>
+        <property name="title" type="string">
+            <description>Title of the solution</description>
+        </property>
+        <property name="content" type="text">
+            <description>Description of the solution</description>
+        </property>
+        <property name="duplicateof" link="fi_kilonkipinat_brainstorm_idea_solution:id" type="unsigned integer" upfield="duplicateof">
+            <description>Solution which the solution is a duplicate of</description>
+        </property>
+    </type>
+
+    <type name="fi_kilonkipinat_brainstorm_idea_member" table="fi_kilonkipinat_brainstorm_idea_member">
+        <property name="id" type="unsigned integer" primaryfield="id" index="yes">
+            <description>Local non-replication-safe database identifier</description>
+        </property>
+        <property name="idea" link="fi_kilonkipinat_brainstorm_idea:id" type="unsigned integer" parentfield="idea">
+            <description>Idea which the solution relates to</description>
+        </property>
+        <property name="solution" link="fi_kilonkipinat_brainstorm_idea_solution:id" type="unsigned integer">
+            <description>Selected solution</description>
+        </property>
+    </type>
+</Schema>

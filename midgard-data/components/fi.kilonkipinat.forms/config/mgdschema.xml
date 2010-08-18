@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schema xmlns="http://www.midgard-project.org/repligard/1.4">
+    <type name="fi_kilonkipinat_forms_expence_lpk" table="fi_kilonkipinat_forms_expence_lpk">
+        <property name="id" type="unsigned integer" primaryfield="id">
+            <description>Local non-replication-safe database identifier</description>
+        </property>
+        <property name="event" type="string" index="yes">
+            <description>Event name</description>
+        </property>
+    </type>
+    <type name="fi_kilonkipinat_forms_expence_lpk_line" table="fi_kilonkipinat_forms_expence_lpk_line">
+        <property name="id" type="unsigned integer" primaryfield="id">
+            <description>Local non-replication-safe database identifier</description>
+        </property>
+        <property name="report" type="unsigned integer" parentfield="report" link="fi_kilonkipinat_forms_expence_lpk:id">
+            <description>Report the line belongs to</description>
+        </property>
+    </type>
+    <type name="fi_kilonkipinat_forms_expence_group" table="fi_kilonkipinat_forms_expence_group">
+        <property name="id" type="unsigned integer" primaryfield="id">
+            <description>Local non-replication-safe database identifier</description>
+        </property>
+        <property name="event" type="string" index="yes">
+            <description>Event name</description>
+        </property>
+    </type>
+    <type name="fi_kilonkipinat_forms_expence_group_line" table="fi_kilonkipinat_forms_expence_group_line">
+        <property name="id" type="unsigned integer" primaryfield="id">
+            <description>Local non-replication-safe database identifier</description>
+        </property>
+        <property name="report" type="unsigned integer" parentfield="report" link="fi_kilonkipinat_forms_expence_group:id">
+            <description>Report the line belongs to</description>
+        </property>
+    </type>
+</Schema>

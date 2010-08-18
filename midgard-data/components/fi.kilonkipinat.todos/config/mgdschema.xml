@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schema xmlns="http://www.midgard-project.org/repligard/1.4">
+    <type name="fi_kilonkipinat_todos_todoitem" table="fi_kilonkipinat_todos_todoitem">
+        <property name="id" type="unsigned integer" primaryfield="id" index="yes">
+            <description>Local non-replication-safe database identifier</description>
+        </property>
+        <property name="topic" link="midgard_topic:id" type="unsigned integer" parentfield="topic">
+            <description>Topic which the todo relates to</description>
+        </property>
+        <property name="title" type="string">
+            <description>Title of the todo</description>
+        </property>
+        <property name="content" type="text">
+            <description>Description of the todo</description>
+        </property>
+        <property name="status" type="unsigned integer" index="yes">
+            <description>Status of the todo</description>
+        </property>
+        <property name="category" type="string" index="yes">
+            <description>Categories of the todo, split by pipe (`|`)</description>
+        </property>
+        <property name="person" type="unsigned integer" link="fi_kilonkipinat_account_person:id" index="yes">
+            <description>Person the todoitem relates to</description>
+        </property>
+        <property name="event" type="unsigned integer" link="fi_kilonkipinat_events_event:id" index="yes">
+            <description>Event the todoitem relates to</description>
+        </property>
+    </type>
+    <type name="fi_kilonkipinat_todos_todoitem_related" table="fi_kilonkipinat_todos_todoitem_related">
+	</type>
+</Schema>
