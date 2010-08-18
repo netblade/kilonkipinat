@@ -125,6 +125,27 @@
             'type' => 'text',
             'widget' => 'text',
         ),
+        'bankAccountNumber' => Array
+        (
+            'title' => 'Tilinumero',
+            'storage' => 'bankAccountNumber',
+            'type' => 'text',
+            'widget' => 'text',
+        ),
+        'bankAccountBank' => Array
+        (
+            'title' => 'Pankki',
+            'storage' => 'bankAccountBank',
+            'type' => 'text',
+            'widget' => 'text',
+        ),
+        'bankRefNum' => Array
+        (
+            'title' => 'Viitenumero',
+            'storage' => 'bankRefNum',
+            'type' => 'text',
+            'widget' => 'text',
+        ),
     ),
 ),
 
