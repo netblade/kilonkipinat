@@ -1,3 +1,6 @@
 'schemadb_config' => 'file:/fi/kilonkipinat/forms/config/config_schemadb.inc',
-'schemadb' => 'file:/fi/kilonkipinat/forms/config/schemadb_default.inc',
+'schemadb_expense_lpk' => 'file:/fi/kilonkipinat/forms/config/schemadb_expense_lpk_default.inc',
+'schemadb_expense_lpk_line' => 'file:/fi/kilonkipinat/forms/config/schemadb_expense_lpk_line_default.inc',
+'schemadb_expense_group' => 'file:/fi/kilonkipinat/forms/config/schemadb_expense_group_default.inc',
+'schemadb_expense_group_line' => 'file:/fi/kilonkipinat/forms/config/schemadb_expense_group_line_default.inc',
 'schema' => 'default',

@@ -42,6 +42,40 @@ class fi_kilonkipinat_forms_viewer extends midcom_baseclasses_components_request
         (
             'handler' => array('fi_kilonkipinat_forms_handler_index', 'index'),
         );
+        
+        // CRUD for expense lpk
+
+        // Handle /expense/lpk/create/<schemaname>/
+        $this->_request_switch['expense_lpk_create'] = array
+        (
+            'handler' => array('fi_kilonkipinat_forms_handler_expense_lpk', 'create'),
+            'fixed_args' => array('expense', 'lpk', 'create'),
+            'variable_args' => 1,
+        );
+
+        // Handle /jobhistory/jobgroup/view/<guid>/
+        $this->_request_switch['expense_lpk_read'] = array
+        (
+            'handler' => array('fi_kilonkipinat_forms_handler_expense_lpk', 'read'),
+            'fixed_args' => array('expense', 'lpk', 'view'),
+            'variable_args' => 1,
+        );
+
+        // Handle /jobhistory/jobgroup/update/<guid>/
+        $this->_request_switch['expense_lpk_update'] = array
+        (
+            'handler' => array('fi_kilonkipinat_forms_handler_expense_lpk', 'update'),
+            'fixed_args' => array('expense', 'lpk', 'edit'),
+            'variable_args' => 1,
+        );
+
+        // Handle /jobhistory/jobgroup/delete/<guid>/
+        $this->_request_switch['expense_lpk_delete'] = array
+        (
+            'handler' => array('fi_kilonkipinat_forms_handler_expense_lpk', 'delete'),
+            'fixed_args' => array('expense', 'lpk', 'delete'),
+            'variable_args' => 1,
+        );
     }
 
     /**
@@ -91,27 +125,26 @@ class fi_kilonkipinat_forms_viewer extends midcom_baseclasses_components_request
      */
     function _populate_node_toolbar()
     {
-        /*
+
         if ($this->_topic->can_do('midgard:create'))
         {
-            foreach (array_keys($this->_request_data['schemadb']) as $name)
+            foreach (array_keys($this->_request_data['schemadb_expense_lpk']) as $name)
             {
                 $this->_node_toolbar->add_item
                 (
                     array
                     (
-                        MIDCOM_TOOLBAR_URL => "create/{$name}/",
+                        MIDCOM_TOOLBAR_URL => "expense/lpk/create/{$name}/",
                         MIDCOM_TOOLBAR_LABEL => sprintf
                         (
                             $this->_l10n_midcom->get('create %s'),
-                            $this->_request_data['schemadb'][$name]->description
+                            $this->_request_data['schemadb_expense_lpk'][$name]->description
                         ),
                         MIDCOM_TOOLBAR_ICON => 'stock-icons/16x16/new-text.png',
                     )
                 );
             }
         }
-        */
         if (   $this->_topic->can_do('midgard:update')
             && $this->_topic->can_do('midcom:component_config'))
         {
@@ -134,7 +167,10 @@ class fi_kilonkipinat_forms_viewer extends midcom_baseclasses_components_request
      */
     function _on_handle($handler, $args)
     {
-        $this->_request_data['schemadb'] = midcom_helper_datamanager2_schema::load_database($this->_config->get('schemadb'));
+        $this->_request_data['schemadb_expense_lpk'] = midcom_helper_datamanager2_schema::load_database($this->_config->get('schemadb_expense_lpk'));
+//        $this->_request_data['schemadb_expense_lpk_line'] = midcom_helper_datamanager2_schema::load_database($this->_config->get('schemadb_expense_lpk_line'));
+//        $this->_request_data['schemadb_expense_group'] = midcom_helper_datamanager2_schema::load_database($this->_config->get('schemadb_expense_group'));
+//        $this->_request_data['schemadb_expense_group_line'] = midcom_helper_datamanager2_schema::load_database($this->_config->get('schemadb_expense_group_line'));
 
         $this->_populate_node_toolbar();
 

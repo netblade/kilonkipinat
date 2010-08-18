@@ -45,20 +45,34 @@ class fi_kilonkipinat_forms_handler_index extends midcom_baseclasses_components_
     function _handler_index($handler_id, $args, &$data)
     {
         $this->_request_data['name']  = "fi.kilonkipinat.forms";
-        // the handler must return true
-        /***
-         * Set the breadcrumb text
-         */
         $this->_update_breadcrumb_line($handler_id);
-        /**
-         * change the pagetitle. (must be supported in the style)
-         */
         $title = $this->_l10n_midcom->get('index');
         $_MIDCOM->set_pagetitle(":: {$title}");
-        /**
-         * Example of getting a config var.
-         */
-        $this->_request_data['sort_order'] = $this->_config->get('sort_order');
+        
+        $my_forms = array();
+        
+        if ($_MIDGARD['user']) {
+
+            $current_person = new midcom_db_person($_MIDGARD['user']);
+
+            $qb_expence_lpk = fi_kilonkipinat_forms_expense_lpk_dba::new_query_builder();
+            $qb_expence_lpk->add_constraint('metadata.creator', '=', $current_person->guid);
+            $forms_expence_lpk = $qb_expence_lpk->execute();
+            if (count($forms_expence_lpk)>0) {
+                $my_forms['expence_lpk'] = $forms_expence_lpk;
+            }
+            
+            $qb_expence_group = fi_kilonkipinat_forms_expense_group_dba::new_query_builder();
+            $qb_expence_group->add_constraint('metadata.creator', '=', $current_person->guid);
+            $forms_expence_group = $qb_expence_group->execute();
+            if (count($forms_expence_group)>0) {
+                $my_forms['expence_group'] = $forms_expence_group;
+            }
+            
+        }
+        
+        $this->_request_data['my_forms'] = $my_forms;
+
         return true;
     }
 

@@ -1,35 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Schema xmlns="http://www.midgard-project.org/repligard/1.4">
-    <type name="fi_kilonkipinat_forms_expence_lpk" table="fi_kilonkipinat_forms_expence_lpk">
+    <type name="fi_kilonkipinat_forms_expense_lpk" table="fi_kilonkipinat_forms_expense_lpk">
         <property name="id" type="unsigned integer" primaryfield="id">
             <description>Local non-replication-safe database identifier</description>
         </property>
-        <property name="event" type="string" index="yes">
+        <property name="title" type="string" index="yes">
+            <description>Expense report title</description>
+        </property>
+        <property name="event" type="unsigned integer" link="fi_kilonkipinat_events_event:id" index="yes">
+            <description>Event name</description>
+        </property>
+        <property name="reportType" type="unsigned integer" index="yes">
+            <description>Type of report</description>
+        </property>
+        <property name="person" type="string" index="yes">
+            <description>Person of report</description>
+        </property>
+        <property name="reporter" type="string" index="yes">
+            <description>Reporter</description>
+        </property>
+        <property name="accountNumber" type="string" index="yes">
+            <description>Reporter</description>
+        </property>
+        <property name="place" type="string" index="yes">
+            <description>Place</description>
+        </property>
+        <property name="date" type="datetime" index="yes">
+            <description>Date</description>
+        </property>
+    </type>
+    <type name="fi_kilonkipinat_forms_expense_lpk_line" table="fi_kilonkipinat_forms_expense_lpk_line">
+        <property name="id" type="unsigned integer" primaryfield="id">
+            <description>Local non-replication-safe database identifier</description>
+        </property>
+        <property name="report" type="unsigned integer" parentfield="report" link="fi_kilonkipinat_forms_expense_lpk:id">
+            <description>Report the line belongs to</description>
+        </property>
+        <property name="title" type="string" index="yes">
+            <description>Title of line</description>
+        </property>
+        <property name="value" type="string" index="yes">
+            <description>Value of line</description>
+        </property>
+    </type>
+    <type name="fi_kilonkipinat_forms_expense_group" table="fi_kilonkipinat_forms_expense_group">
+        <property name="id" type="unsigned integer" primaryfield="id">
+            <description>Local non-replication-safe database identifier</description>
+        </property>
+        <property name="title" type="string" index="yes">
+            <description>Expense report title</description>
+        </property>
+        <property name="event" type="unsigned integer" link="fi_kilonkipinat_events_event:id" index="yes">
             <description>Event name</description>
         </property>
     </type>
-    <type name="fi_kilonkipinat_forms_expence_lpk_line" table="fi_kilonkipinat_forms_expence_lpk_line">
+    <type name="fi_kilonkipinat_forms_expense_group_line" table="fi_kilonkipinat_forms_expense_group_line">
         <property name="id" type="unsigned integer" primaryfield="id">
             <description>Local non-replication-safe database identifier</description>
         </property>
-        <property name="report" type="unsigned integer" parentfield="report" link="fi_kilonkipinat_forms_expence_lpk:id">
+        <property name="report" type="unsigned integer" parentfield="report" link="fi_kilonkipinat_forms_expense_group:id">
             <description>Report the line belongs to</description>
         </property>
-    </type>
-    <type name="fi_kilonkipinat_forms_expence_group" table="fi_kilonkipinat_forms_expence_group">
-        <property name="id" type="unsigned integer" primaryfield="id">
-            <description>Local non-replication-safe database identifier</description>
+        <property name="title" type="string" index="yes">
+            <description>Title of line</description>
         </property>
-        <property name="event" type="string" index="yes">
-            <description>Event name</description>
-        </property>
-    </type>
-    <type name="fi_kilonkipinat_forms_expence_group_line" table="fi_kilonkipinat_forms_expence_group_line">
-        <property name="id" type="unsigned integer" primaryfield="id">
-            <description>Local non-replication-safe database identifier</description>
-        </property>
-        <property name="report" type="unsigned integer" parentfield="report" link="fi_kilonkipinat_forms_expence_group:id">
-            <description>Report the line belongs to</description>
+        <property name="value" type="string" index="yes">
+            <description>Value of line</description>
         </property>
     </type>
 </Schema>
