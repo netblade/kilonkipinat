@@ -25,7 +25,22 @@
         <property name="event" type="unsigned integer" link="fi_kilonkipinat_events_event:id" index="yes">
             <description>Event the todoitem relates to</description>
         </property>
+        <property name="up" type="unsigned integer" link="fi_kilonkipinat_todos_todoitem:id" index="yes" upfield="up">
+            <description>Parent todo</description>
+        </property>
     </type>
     <type name="fi_kilonkipinat_todos_todoitem_related" table="fi_kilonkipinat_todos_todoitem_related">
+        <property name="id" type="unsigned integer" primaryfield="id" index="yes">
+            <description>Local non-replication-safe database identifier</description>
+        </property>
+        <property name="parentTodo" type="unsigned integer" link="fi_kilonkipinat_todos_todoitem:id" index="yes">
+            <description>Parent todo</description>
+        </property>
+        <property name="childTodo" type="unsigned integer" link="fi_kilonkipinat_todos_todoitem:id" index="yes">
+            <description>Child todo</description>
+        </property>
+        <property name="linkType" type="unsigned integer" index="yes">
+            <description>Type of link</description>
+        </property>
 	</type>
 </Schema>
