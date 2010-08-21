@@ -50,6 +50,11 @@ class fi_kilonkipinat_account_handler_account extends midcom_baseclasses_compone
         
         $person = new fi_kilonkipinat_account_person_dba($_MIDGARD['user']);
         if ($person) {
+            if (!$person->can_do('midgard:owner')) {
+                $_MIDCOM->auth->request_sudo();
+                $person->set_privilege('midgard:owner', "person:{$person->guid}");
+                $_MIDCOM->auth->drop_sudo();
+            }
             $_MIDCOM->relocate($this->_request_data['prefix'] . 'person/view/' . $person->guid . '/');
         } else {
             $_MIDCOM->relocate($this->_request_data['prefix']);
