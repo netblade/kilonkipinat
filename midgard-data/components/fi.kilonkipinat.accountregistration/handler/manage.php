@@ -165,6 +165,8 @@ class fi_kilonkipinat_accountregistration_handler_manage extends midcom_baseclas
                         }
                     }
                 }
+                
+                $person->set_privilege('midgard:owner', "user:{$person->guid}");
             
                 $request->status = FI_KILONKIPINAT_ACCOUNTREGISTRATION_ACCOUNT_STATUS_RESOLVED;
                 $request->personGuid = $person->guid;
