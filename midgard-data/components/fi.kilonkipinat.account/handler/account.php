@@ -52,7 +52,8 @@ class fi_kilonkipinat_account_handler_account extends midcom_baseclasses_compone
         if ($person) {
             if (!$person->can_do('midgard:owner')) {
                 $_MIDCOM->auth->request_sudo();
-                $person->set_privilege('midgard:owner', "person:{$person->guid}");
+                $person->set_privilege('midgard:owner', "user:{$person->guid}");
+//                midcom_baseclasses_core_dbobject::set_privilege($person, 'midgard:owner', "user:{$person->guid}", MIDCOM_PRIVILEGE_ALLOW);
                 $_MIDCOM->auth->drop_sudo();
             }
             $_MIDCOM->relocate($this->_request_data['prefix'] . 'person/view/' . $person->guid . '/');
