@@ -16,9 +16,6 @@
         <property name="end" type="datetime" index="yes">
             <description>Event end time</description>
         </property>
-        <property name="name" type="string" index="yes">
-            <description>URL name of the event</description>
-        </property>
         <property name="title" type="string" index="yes">
             <description>Title of the event</description>
         </property>

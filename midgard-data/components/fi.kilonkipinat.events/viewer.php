@@ -75,24 +75,38 @@ class fi_kilonkipinat_events_viewer extends midcom_baseclasses_components_reques
             'variable_args' => 1,
         );
         
-        // Handle /archive/
-        $this->_request_switch['archive_index'] = array
+        // /archive/between/<from date>/<to date> shows all events of selected week
+        // in Archive mode, only relevant for style code, it sets a flag
+        // which allows better URL handling: The request context key 'archive_mode'
+        // will be true in this case.
+        $this->_request_switch['archive-between'] = Array
         (
-            'handler' => array('fi_kilonkipinat_events_handler_archive', 'index'),
-            'fixed_args' => array('archive'),
+            'handler' => Array('fi_kilonkipinat_events_handler_list', 'between'),
+            'fixed_args' => Array('archive', 'between'),
+            'variable_args' => 2,
         );
 
-        // Handle /archive/year/
-        $this->_request_switch['archive_year'] = array
+        // /archive Main archive page
+        $this->_request_switch['archive-welcome'] = Array
         (
-            'handler' => array('fi_kilonkipinat_events_handler_archive', 'index'),
-            'fixed_args' => array('archive', 'year'),
+            'handler' => Array('fi_kilonkipinat_events_handler_archive', 'welcome'),
+            'fixed_args' => Array('archive'),
+        );
+
+        // /archive/view/<event GUID> duplicate of the view handler for archive
+        // operation, only relevant for style code, it sets a flag
+        // which allows better URL handling: The request context key 'archive_mode'
+        // will be true in this case.
+        $this->_request_switch['archive-view'] = Array
+        (
+            'handler' => Array('fi_kilonkipinat_events_handler_event', 'view'),
+            'fixed_args' => Array('archive', 'view'),
             'variable_args' => 1,
         );
     }
 
     /**
-     * Indexes an article.
+     * Indexes an event.
      *
      * This function is usually called statically from various handlers.
      *
@@ -188,6 +202,172 @@ class fi_kilonkipinat_events_viewer extends midcom_baseclasses_components_reques
         $this->_populate_node_toolbar();
 
         return true;
+    }
+    
+    /**
+     * Prepare filters used for event handling
+     *
+     * @access static
+     */
+    static function prepare_filters(&$config)
+    {
+        $filters = array();
+        $type_filter = $config->get('type_filter_upcoming');
+        
+        if (   $type_filter !== false
+            && $type_filter !== null)
+        {
+            // Type filter from configuration
+            $filters['type_filter'] = $config->get('type_filter_upcoming');
+        }
+        
+        if ($config->get('category_filter'))
+        {
+            // Category filter from configuration
+            $filters['category_filter'] = $config->get('category_filter');
+        }
+        
+        // PONDER: Should this be inside the if ($config->get('enable_filters')) -block below
+        if (isset($_REQUEST['fi_kilonkipinat_events_category']))
+        {
+            // Category filter from GET or POST
+            $filters['category_filter'] = trim(strip_tags($_REQUEST['fi_kilonkipinat_events_category']));
+        }
+        
+        if ($config->get('enable_filters'))
+        {
+            // Other, direct property mappign filters from GET or POST
+            if (   array_key_exists('fi_kilonkipinat_events_filter', $_REQUEST)
+                && is_array($_REQUEST['fi_kilonkipinat_events_filter']))
+            {
+                $filters['other'] = $_REQUEST['fi_kilonkipinat_events_filter'];
+            }
+        }
+        
+        return $filters;
+    }
+    
+    /**
+     * Prepare event listing query builder that takes all configured filters into account
+     *
+     * @access static
+     */
+    static function prepare_event_qb(&$data, &$config)
+    {
+        // Load filters
+        $filters = fi_kilonkipinat_events_viewer::prepare_filters($config);
+
+        $qb = fi_kilonkipinat_events_event_dba::new_query_builder();
+        // Add node or root event constraints
+        if ($config->get('list_from_master'))
+        {
+            // List under an event tree by up field
+            $qb->add_constraint('up', 'INTREE', $data['master_event']);
+        }
+        else
+        {
+            $list_from_folders = $config->get('list_from_folders');
+            if ($list_from_folders)
+            {
+                // We have specific folders to list from, therefore list from them and current node
+                $guids = explode('|', $config->get('list_from_folders'));
+                $guids_array = array();
+                $guids_array[] = $data['content_topic']->guid;
+                foreach ($guids as $guid)
+                {
+                    if (   !$guid
+                        || !mgd_is_guid($guid))
+                    {
+                        // Skip empty and broken guids
+                        continue;
+                    }
+    
+                    $guids_array[] = $guid;
+                }
+
+                /**
+                 * Ref #1776, expands GUIDs before adding them as constraints, should save query time
+                 */
+                $topic_ids = array();
+                $topic_ids[] = $data['content_topic']->id;
+                if (!empty($guids_array))
+                {
+                    $mc = midcom_db_topic::new_collector('sitegroup', $_MIDGARD['sitegroup']);
+                    $mc->add_constraint('guid', 'IN', $guids_array);
+                    $mc->add_value_property('id');
+                    $mc->execute();
+                    $keys = $mc->list_keys();
+                    foreach ($keys as $guid => $dummy)
+                    {
+                        $topic_ids[] = $mc->get_subkey($guid, 'id');
+                    }
+                    unset($mc, $keys, $guid, $dummy);
+                }
+
+                /**
+                 * Ref #1776, expands GUIDs before adding them as constraints, should save query time
+                $qb->add_constraint('topic.guid', 'IN', $guids_array);
+                 */
+                $qb->add_constraint('topic', 'IN', $topic_ids);
+            }
+            else
+            {
+                // List from current node only
+                $qb->add_constraint('topic', '=', $data['content_topic']->id);
+            }
+        }
+        
+        // Add filtering constraint
+        if (isset($filters['type_filter']))
+        {
+            $qb->add_constraint('type', '=', (int) $filters['type_filter']);
+        }
+        
+        if (isset($filters['other']))
+        {
+            // Handle other direct field mapping constraints
+            foreach ($filters['other'] as $field => $filter)
+            {
+                $qb->add_constraint($field, '=', $filter);
+            }
+        }
+
+        // Handle category filter
+        if (isset($filters['category_filter']))
+        {
+            /**
+             * This triggers bug http://trac.midgard-project.org/ticket/1009
+            $qb->begin_group('AND');
+                $qb->add_constraint('parameter.domain', '=', 'net.nemein.calendar');
+                $qb->add_constraint('parameter.name', '=', 'categories');
+                $qb->add_constraint('parameter.value', 'LIKE', "%|{$filters['category_filter']}|%");
+            $qb->end_group();
+             */
+            /**
+             * BEGIN: Workaround http://trac.midgard-project.org/ticket/1009 
+             * see also: http://trac.midgard-project.org/ticket/261
+             */
+            $mc = new midgard_collector('midgard_parameter', 'domain', 'net.nemein.calendar');
+            $mc->set_key_property('parentguid');
+            $mc->add_constraint('name', '=', 'categories');
+            $mc->add_constraint('value', 'LIKE', "%|{$filters['category_filter']}|%");
+            $mc->execute();
+            $keys = $mc->list_keys();
+            unset($mc);
+            $guids = array_keys($keys);
+            if (empty($guids))
+            {
+                // array constraint cannot be empty, see #1636
+                $guids[] = 'dummy';
+            }
+            $qb->add_constraint('guid', 'IN', $guids);
+            unset($keys, $guids);
+            /**
+             * END: Workaround http://trac.midgard-project.org/ticket/1009 
+             */
+        }
+
+        return $qb;
     }
 }
 

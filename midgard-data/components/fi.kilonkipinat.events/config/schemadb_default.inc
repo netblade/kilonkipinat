@@ -3,13 +3,6 @@
     'description' => 'Retki',
     'fields'      => array
     (
-        'name' => Array
-        (
-            'title' => 'Tiedostonimi',
-            'storage' => 'name',
-            'type' => 'urlname',
-            'widget' => 'text',
-        ),
         'title' => Array
         (
             'title' => 'Otsikko',
@@ -105,13 +98,6 @@
     'description' => 'Kokous',
     'fields'      => array
     (
-        'name' => Array
-        (
-            'title' => 'Tiedostonimi',
-            'storage' => 'name',
-            'type' => 'urlname',
-            'widget' => 'text',
-        ),
         'title' => Array
         (
             'title' => 'Otsikko',

@@ -20,6 +20,14 @@ class fi_kilonkipinat_events_interface extends midcom_baseclasses_components_int
     {
         parent::__construct();
         $this->_component = 'fi.kilonkipinat.events';
+        $this->_autoload_files = array
+        (
+            'functions.php',
+        );
+        $this->_autoload_libraries = array
+        (
+            'midcom.helper.datamanager2',
+        );
     }
 
     function _on_initialize()
