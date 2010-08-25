@@ -72,14 +72,14 @@ class fi_kilonkipinat_events_handler_event extends midcom_baseclasses_components
         if (isset($this->_object))
         {
             if ($handler_id == 'edit_event') {
-                $_MIDCOM->set_pagetitle("{$this->_topic->extra}: " . $this->_l10n_midcom->get('edit event') . " {$this->_object->title}");
+                $_MIDCOM->set_pagetitle("{$this->_topic->extra}: " . $_MIDCOM->i18n->get_string('edit event', 'fi.kilonkipinat.events') . " {$this->_object->title}");
             } elseif ($handler_id == 'delete_event') {
-                $_MIDCOM->set_pagetitle("{$this->_topic->extra}: " . $this->_l10n_midcom->get('delete event') . " {$this->_object->title}");
+                $_MIDCOM->set_pagetitle("{$this->_topic->extra}: " . $_MIDCOM->i18n->get_string('delete event', 'fi.kilonkipinat.events') . " {$this->_object->title}");
             } else {
                 $_MIDCOM->set_pagetitle("{$this->_topic->extra}: {$this->_object->title}");
             }
         } elseif ($handler_id == 'create_event') {
-            $_MIDCOM->set_pagetitle("{$this->_topic->extra}: " . $this->_l10n_midcom->get('create event'));
+            $_MIDCOM->set_pagetitle("{$this->_topic->extra}: " . $_MIDCOM->i18n->get_string('create event', 'fi.kilonkipinat.events'));
         }
         return;
     }
@@ -104,25 +104,6 @@ class fi_kilonkipinat_events_handler_event extends midcom_baseclasses_components
     
     public function _populate_toolbar($handler_id)
     {
-        if ($this->_topic->can_do('midgard:create'))
-        {
-            foreach (array_keys($this->_request_data['schemadb']) as $name)
-            {
-                $this->_node_toolbar->add_item
-                (
-                    array
-                    (
-                        MIDCOM_TOOLBAR_URL => "create_event/{$name}/",
-                        MIDCOM_TOOLBAR_LABEL => sprintf
-                        (
-                            $this->_l10n_midcom->get('create %s'),
-                            $this->_request_data['schemadb'][$name]->description
-                        ),
-                        MIDCOM_TOOLBAR_ICON => 'stock-icons/16x16/new-text.png',
-                    )
-                );
-            }
-        }
         if (!$this->_object)
         {
             return;
@@ -134,7 +115,7 @@ class fi_kilonkipinat_events_handler_event extends midcom_baseclasses_components
                 array
                 (
                     MIDCOM_TOOLBAR_URL => "edit_event/{$this->_object->guid}/",
-                    MIDCOM_TOOLBAR_LABEL => $this->_l10n_midcom->get('edit event'),
+                    MIDCOM_TOOLBAR_LABEL => $_MIDCOM->i18n->get_string('edit event', 'fi.kilonkipinat.events'),
                     MIDCOM_TOOLBAR_ICON => 'stock-icons/16x16/edit.png',
                 )
             );
@@ -146,7 +127,7 @@ class fi_kilonkipinat_events_handler_event extends midcom_baseclasses_components
                 array
                 (
                     MIDCOM_TOOLBAR_URL => "delete_event/{$this->_object->guid}/",
-                    MIDCOM_TOOLBAR_LABEL => $this->_l10n_midcom->get('delete event'),
+                    MIDCOM_TOOLBAR_LABEL => $_MIDCOM->i18n->get_string('delete event', 'fi.kilonkipinat.events'),
                     MIDCOM_TOOLBAR_ICON => 'stock-icons/16x16/trash.png',
                 )
             );

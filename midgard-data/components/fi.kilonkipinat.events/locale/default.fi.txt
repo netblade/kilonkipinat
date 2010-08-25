@@ -5,3 +5,19 @@
 ---STRING fi.kilonkipinat.events
 Tapahtumat-komponentti
 ---STRINGEND
+
+---STRING edit event
+Muokkaa tapahtumaa
+---STRINGEND
+
+---STRING delete event
+Poista tapahtuma
+---STRINGEND
+
+---STRING create event
+Luo tapahtuma
+---STRINGEND
+
+---STRING events event
+Tapahtuma
+---STRINGEND
