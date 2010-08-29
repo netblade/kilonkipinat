@@ -81,16 +81,16 @@ class fi_kilonkipinat_events_viewer extends midcom_baseclasses_components_reques
         // will be true in this case.
         $this->_request_switch['archive-between'] = Array
         (
-            'handler' => Array('fi_kilonkipinat_events_handler_list', 'between'),
-            'fixed_args' => Array('archive', 'between'),
+            'handler' => array('fi_kilonkipinat_events_handler_list', 'between'),
+            'fixed_args' => array('archive', 'between'),
             'variable_args' => 2,
         );
 
         // /archive Main archive page
         $this->_request_switch['archive-welcome'] = Array
         (
-            'handler' => Array('fi_kilonkipinat_events_handler_archive', 'welcome'),
-            'fixed_args' => Array('archive'),
+            'handler' => array('fi_kilonkipinat_events_handler_archive', 'welcome'),
+            'fixed_args' => array('archive'),
         );
 
         // /archive/view/<event GUID> duplicate of the view handler for archive
@@ -99,8 +99,22 @@ class fi_kilonkipinat_events_viewer extends midcom_baseclasses_components_reques
         // will be true in this case.
         $this->_request_switch['archive-view'] = Array
         (
-            'handler' => Array('fi_kilonkipinat_events_handler_event', 'view'),
-            'fixed_args' => Array('archive', 'view'),
+            'handler' => array('fi_kilonkipinat_events_handler_event', 'view'),
+            'fixed_args' => array('archive', 'view'),
+            'variable_args' => 1,
+        );
+        // Handle /upcoming/trips/<count>
+        $this->_request_switch['upcoming_trips'] = array
+        (
+            'handler' => array('fi_kilonkipinat_events_handler_list', 'upcoming'),
+            'fixed_args' => array('upcoming', 'trips'),
+            'variable_args' => 1,
+        );
+        // Handle /upcoming/meetings/<count>
+        $this->_request_switch['upcoming_meetings'] = array
+        (
+            'handler' => array('fi_kilonkipinat_events_handler_list', 'upcoming'),
+            'fixed_args' => array('upcoming', 'meetings'),
             'variable_args' => 1,
         );
     }
@@ -258,6 +272,9 @@ class fi_kilonkipinat_events_viewer extends midcom_baseclasses_components_reques
         $filters = fi_kilonkipinat_events_viewer::prepare_filters($config);
 
         $qb = fi_kilonkipinat_events_event_dba::new_query_builder();
+        if (!$_MIDGARD['user']) {
+            $qb->add_constraint('visibility', '=', FI_KILONKIPINAT_EVENTS_EVENT_VISIBILITY_PUBLIC);
+        }
         // Add node or root event constraints
         if ($config->get('list_from_master'))
         {

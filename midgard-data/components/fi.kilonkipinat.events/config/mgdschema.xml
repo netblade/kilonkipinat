@@ -28,8 +28,8 @@
         <property name="status" type="unsigned integer" index="yes">
             <description>Status of the event</description>
         </property>
-        <property name="public" type="unsigned integer" index="yes">
-            <description>Status of the event</description>
+        <property name="visibility" type="unsigned integer" index="yes">
+            <description>Is event public or not</description>
         </property>
         <property name="category" type="string" index="yes">
             <description>Categories of the event, split by pipe (`|`)</description>

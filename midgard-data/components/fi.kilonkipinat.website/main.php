@@ -43,7 +43,7 @@ class fi_kilonkipinat_website
 
             if ($add_time)
             {
-                $daylabel .= ' ' . fi_kilonkipinat_website::returnDate($end, 'timeShort');
+                $daylabel .= ' ' . fi_kilonkipinat_website::returnDate($start, 'timeShort');
             }
         }
         else

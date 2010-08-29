@@ -1,10 +1,10 @@
 <?php
 $prefix = $data['prefix'];
 
-$event = $data['trip'];
+$event = $data['meeting'];
 
-$start_ts = strtotime($data['trip']->start);
-$end_ts = strtotime($data['trip']->end);
+$start_ts = strtotime($data['meeting']->start);
+$end_ts = strtotime($data['meeting']->end);
 $view_url = $prefix . 'view_event/' . $event->guid;
 ?>
 <h3><a href="&(view_url:h);">&(event.title:h);</a></h3>

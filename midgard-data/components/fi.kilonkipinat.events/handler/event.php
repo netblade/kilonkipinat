@@ -31,6 +31,10 @@ class fi_kilonkipinat_events_handler_event extends midcom_baseclasses_components
         {
             $this->_object = $objects[0];
             $this->_event = $this->_object;
+            if (   !$_MIDGARD['user']
+                && $this->_event->visibility == FI_KILONKIPINAT_EVENTS_EVENT_VISIBILITY_SECURE) {
+                $_MIDCOM->auth->require_valid_user();
+            }
         }
         else
         {

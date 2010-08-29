@@ -5,7 +5,7 @@
     (
         'title' => Array
         (
-            'title' => 'Otsikko',
+            'title' => 'Tapahtuman nimi',
             'storage' => 'title',
             'required' => true,
             'type' => 'text',
@@ -77,18 +77,35 @@
             ),
             'widget' => 'tinymce',
         ),
-/*        'contentprivate' => Array
+        'contentprivate' => Array
         (
             'title' => 'Sisältö (näkyy vain käyttäjille)',
             'storage' => 'contentprivate',
-            'required' => true,
             'type' => 'text',
             'type_config' => array
             (
                 'output_mode' => 'html'
             ),
             'widget' => 'tinymce',
-        ),*/
+        ),
+        'visibility' => Array
+        (
+            'title' => 'Näkyvyys',
+            'storage' => 'visibility',
+            'required' => true,
+            'type' => 'select',
+            'widget' => 'select',
+            'type_config' => array
+            (
+                'allow_multiple' => false,
+                'allow_other' => false,
+                'options' => array
+                (
+                    FI_KILONKIPINAT_EVENTS_EVENT_VISIBILITY_PUBLIC => 'Näkyy kaikille',
+                    FI_KILONKIPINAT_EVENTS_EVENT_VISIBILITY_SECURE => 'Näkyy vain käyttäjille',
+                ),
+            ),
+        ),
     ),
 ),
 
@@ -100,7 +117,7 @@
     (
         'title' => Array
         (
-            'title' => 'Otsikko',
+            'title' => 'Kokouksen nimi',
             'storage' => 'title',
             'required' => true,
             'type' => 'text',
@@ -170,17 +187,34 @@
             ),
             'widget' => 'tinymce',
         ),
-/*        'contentprivate' => Array
+        'contentprivate' => Array
         (
             'title' => 'Sisältö (näkyy vain käyttäjille)',
             'storage' => 'contentprivate',
-            'required' => true,
             'type' => 'text',
             'type_config' => array
             (
                 'output_mode' => 'html'
             ),
             'widget' => 'tinymce',
-        ),*/
+        ),
+        'visibility' => Array
+        (
+            'title' => 'Näkyvyys',
+            'storage' => 'visibility',
+            'required' => true,
+            'type' => 'select',
+            'widget' => 'select',
+            'type_config' => array
+            (
+                'allow_multiple' => false,
+                'allow_other' => false,
+                'options' => array
+                (
+                    FI_KILONKIPINAT_EVENTS_EVENT_VISIBILITY_PUBLIC => 'Näkyy kaikille',
+                    FI_KILONKIPINAT_EVENTS_EVENT_VISIBILITY_SECURE => 'Näkyy vain käyttäjille',
+                ),
+            ),
+        ),
     ),
 ),

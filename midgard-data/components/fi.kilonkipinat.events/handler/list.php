@@ -138,6 +138,83 @@ class fi_kilonkipinat_events_handler_list extends midcom_baseclasses_components_
         midcom_show_style('index-footer');
         midcom_show_style('events-footer');
     }
+    
+    /**
+     * @param mixed $handler_id The ID of the handler.
+     * @param Array $args The argument list.
+     * @param Array &$data The local request data.
+     * @return boolean Indicating success.
+     */
+    function _handler_upcoming($handler_id, $args, &$data)
+    {
+        $this->_request_data['name']  = "fi.kilonkipinat.events";
+        $_MIDCOM->skip_page_style = true;
+        
+        $_MIDCOM->set_pagetitle("{$this->_topic->extra}");
 
+        $this->_load_datamanager();
+
+        // Get the requested date range
+        // TODO: Check format as YYYY-MM-DD via regexp
+        $start = time();
+        
+        $qb_events = fi_kilonkipinat_events_event_dba::new_query_builder();
+        $qb_events->add_constraint('topic', '=', $this->_topic->id);
+        if ($handler_id == 'upcoming_trips') {
+            $qb_events->add_constraint('type', '>=', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_GENERIC);
+            $qb_events->add_constraint('type', '<', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_GENERIC);
+        } else {
+            $qb_events->add_constraint('type', '>=', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_GENERIC);
+            $qb_events->add_constraint('type', '<', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_ANNUAL);
+        }
+        $qb_events->add_constraint('start', '>=', date('Y-m-d H:i:s', $start));
+        $events = $qb_events->execute();
+
+        $this->_events = $events;
+
+        return true;
+    }
+
+    /**
+     *
+     * @param mixed $handler_id The ID of the handler.
+     * @param mixed &$data The local request data.
+     */
+    function _show_upcoming($handler_id, &$data)
+    {
+        if ($handler_id == 'upcoming_trips') {
+            midcom_show_style('trips-header');
+            foreach ($this->_events as $trip) {
+                if (! $this->_request_data['datamanager']->autoset_storage($trip))
+                {
+                    debug_push_class(__CLASS__, __FUNCTION__);
+                    debug_add("The datamanager for trip {$trip->id} could not be initialized, skipping it.");
+                    debug_print_r('Object was:', $trip);
+                    debug_pop();
+                    continue;
+                }
+                $this->_request_data['view_trip'] = $data['datamanager']->get_content_html();
+                $this->_request_data['trip'] = $trip;
+                midcom_show_style('trips-item');
+            }
+            midcom_show_style('trips-footer');
+        } else {
+            midcom_show_style('meetings-header');
+            foreach ($this->_events as $meeting) {
+                if (! $this->_request_data['datamanager']->autoset_storage($meeting))
+                {
+                    debug_push_class(__CLASS__, __FUNCTION__);
+                    debug_add("The datamanager for meeting {$meeting->id} could not be initialized, skipping it.");
+                    debug_print_r('Object was:', $trip);
+                    debug_pop();
+                    continue;
+                }
+                $this->_request_data['view_meeting'] = $data['datamanager']->get_content_html();
+                $this->_request_data['meeting'] = $meeting;
+                midcom_show_style('meetings-item');
+            }
+            midcom_show_style('meetings-footer');
+        }
+    }
 }
 ?>
