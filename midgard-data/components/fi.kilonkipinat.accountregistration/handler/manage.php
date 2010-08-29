@@ -118,80 +118,89 @@ class fi_kilonkipinat_accountregistration_handler_manage extends midcom_baseclas
 
         if (   isset($_POST)
             && isset($_POST['username'])) {
-            if (isset($_POST['merge_user_guid'])
-                && $_POST['merge_user_guid'] != '') {
-                $person = new fi_kilonkipinat_account_person_dba(trim($_POST['merge_user_guid']));
-            } else {
-                $qb = fi_kilonkipinat_account_person_dba::new_query_builder();
-                $qb->add_constraint('username', '=', trim($_POST['username']));
-                $results = $qb->execute();
-                if (count($results)>0) {
-                    $message['title'] = $this->_l10n_midcom->get("error");
-                    $message['content'] = $this->_l10n_midcom->get("Kyseinen tyyppi on jo olemassa");
-                } else {
-                    $person = new fi_kilonkipinat_account_person_dba();
-                    $person->username = trim($_POST['username']);
-                    $person->create();
-                }
-            }
-            
-            if (isset($person)) {
-            
-                $person->firstname = $request->firstname;
-                $person->lastname = $request->lastname;
-                $person->email = $request->email;
-            
-                $password = fi_kilonkipinat_accountregistration_viewer::generatePassword($this->_config->get('password_length'));
-
-                // Enforce crypt mode
-                $salt = chr(rand(64,126)) . chr(rand(64,126));
-                $crypt_password = crypt($password, $salt);
-            
-                $person->password = $crypt_password;
-            
+            if (   isset($_POST['isduplicate'])
+                && $_POST['isduplicate'] == '1') {
+                $person->status = FI_KILONKIPINAT_ACCOUNTREGISTRATION_ACCOUNT_STATUS_INVALID;
                 $person->update();
-                if (   isset($_POST['add_to_groups'])
-                    && count($_POST['add_to_groups']) > 0) {
-                    foreach ($_POST['add_to_groups'] as $group_guid) {
-                        $group = new midcom_db_group($group_guid);
-                        if (   isset($group)
-                            && isset($group->guid)
-                            && $group->guid == $group_guid) {
-                    
-                            $membership = new midcom_db_member();
-                            $membership->uid = $person->id;
-                            $membership->gid = $group->id;
-                            $membership->create();
-                        }
+                $message['title'] = $this->_l10n_midcom->get("Poistettu");
+                $message['content'] = $this->_l10n_midcom->get("Kyseinen hakemus on merkattu duplikaatiksi, ts poistettu.");
+            } else {
+
+                if (isset($_POST['merge_user_guid'])
+                    && $_POST['merge_user_guid'] != '') {
+                    $person = new fi_kilonkipinat_account_person_dba(trim($_POST['merge_user_guid']));
+                } else {
+                    $qb = fi_kilonkipinat_account_person_dba::new_query_builder();
+                    $qb->add_constraint('username', '=', trim($_POST['username']));
+                    $results = $qb->execute();
+                    if (count($results)>0) {
+                        $message['title'] = $this->_l10n_midcom->get("error");
+                        $message['content'] = $this->_l10n_midcom->get("Kyseinen tyyppi on jo olemassa");
+                    } else {
+                        $person = new fi_kilonkipinat_account_person_dba();
+                        $person->username = trim($_POST['username']);
+                        $person->create();
                     }
                 }
-                
-                $person->set_privilege('midgard:owner', "user:{$person->guid}");
             
-                $request->status = FI_KILONKIPINAT_ACCOUNTREGISTRATION_ACCOUNT_STATUS_RESOLVED;
-                $request->personGuid = $person->guid;
-                $request->update();
+                if (isset($person)) {
+            
+                    $person->firstname = $request->firstname;
+                    $person->lastname = $request->lastname;
+                    $person->email = $request->email;
+            
+                    $password = fi_kilonkipinat_accountregistration_viewer::generatePassword($this->_config->get('password_length'));
 
-                $subject = 'Tunnuksesi kilonkipinat.fi-sivustolle';
-                $body = sprintf('Hei %s', $person->firstname);
-                $body .= "\n\n";
-                $body .= sprintf('käyttäjätunnus: %s', $person->username);
-                $body .= "\n\n";
-                $body .= sprintf('salasana: %s', $password);
+                    // Enforce crypt mode
+                    $salt = chr(rand(64,126)) . chr(rand(64,126));
+                    $crypt_password = crypt($password, $salt);
+            
+                    $person->password = $crypt_password;
+            
+                    $person->update();
+                    if (   isset($_POST['add_to_groups'])
+                        && count($_POST['add_to_groups']) > 0) {
+                        foreach ($_POST['add_to_groups'] as $group_guid) {
+                            $group = new midcom_db_group($group_guid);
+                            if (   isset($group)
+                                && isset($group->guid)
+                                && $group->guid == $group_guid) {
+                    
+                                $membership = new midcom_db_member();
+                                $membership->uid = $person->id;
+                                $membership->gid = $group->id;
+                                $membership->create();
+                            }
+                        }
+                    }
+                
+                    $person->set_privilege('midgard:owner', "user:{$person->guid}");
+            
+                    $request->status = FI_KILONKIPINAT_ACCOUNTREGISTRATION_ACCOUNT_STATUS_RESOLVED;
+                    $request->personGuid = $person->guid;
+                    $request->update();
+
+                    $subject = 'Tunnuksesi kilonkipinat.fi-sivustolle';
+                    $body = sprintf('Hei %s', $person->firstname);
+                    $body .= "\n\n";
+                    $body .= sprintf('käyttäjätunnus: %s', $person->username);
+                    $body .= "\n\n";
+                    $body .= sprintf('salasana: %s', $password);
         
-                $mail = new org_openpsa_mail();
-                $mail->from = $this->_config->get('mail_sender_title') . ' <' . $this->_config->get('mail_sender_address') . '>';
-                $mail->to = $person->firstname . ' ' . $person->lastname . ' <' . $person->email . '>';
-                $mail->body = $body;
-                $mail->subject = $subject;
+                    $mail = new org_openpsa_mail();
+                    $mail->from = $this->_config->get('mail_sender_title') . ' <' . $this->_config->get('mail_sender_address') . '>';
+                    $mail->to = $person->firstname . ' ' . $person->lastname . ' <' . $person->email . '>';
+                    $mail->body = $body;
+                    $mail->subject = $subject;
 
-                $message = array();
-                if ($mail->send('mail')) {
-                    $message['title'] = $this->_l10n_midcom->get("Onnistui");
-                    $message['content'] = '';
-                } else {
-                    $message['title'] = $this->_l10n_midcom->get("error");
-                    $message['content'] = $this->_l10n_midcom->get("Oops, something went wrong.");
+                    $message = array();
+                    if ($mail->send('mail')) {
+                        $message['title'] = $this->_l10n_midcom->get("Onnistui");
+                        $message['content'] = '';
+                    } else {
+                        $message['title'] = $this->_l10n_midcom->get("error");
+                        $message['content'] = $this->_l10n_midcom->get("Oops, something went wrong.");
+                    }
                 }
             }
 

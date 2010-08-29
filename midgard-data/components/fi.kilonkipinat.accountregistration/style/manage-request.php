@@ -110,6 +110,9 @@ function list_groups($parent)
             <h2>Henkilön ryhmät</h2>
             <?php echo list_groups(0); ?>
         </div>
+        <div id="fi_kilonkipinat_accountregistration_isduplicate">
+            <input type="checkbox" name="isduplicate" value="1" id="isduplicate" />&nbsp;<label for="isduplicate">Duplikaatti (==> poista hakemus)</label>
+        </div>
         <div id="fi_kilonkipinat_accountregistration_submit">
             <input type="submit" value="Luo tunnus ja lähetä tiedot sähköpostilla" />
         </div>
