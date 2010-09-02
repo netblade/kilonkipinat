@@ -92,7 +92,7 @@ class fi_kilonkipinat_todos_viewer extends midcom_baseclasses_components_request
      */
     function _populate_node_toolbar()
     {
-        /*
+
         if ($this->_topic->can_do('midgard:create'))
         {
             foreach (array_keys($this->_request_data['schemadb']) as $name)
@@ -112,7 +112,6 @@ class fi_kilonkipinat_todos_viewer extends midcom_baseclasses_components_request
                 );
             }
         }
-        */
         if (   $this->_topic->can_do('midgard:update')
             && $this->_topic->can_do('midcom:component_config'))
         {
@@ -136,6 +135,7 @@ class fi_kilonkipinat_todos_viewer extends midcom_baseclasses_components_request
     function _on_handle($handler, $args)
     {
         $this->_request_data['schemadb'] = midcom_helper_datamanager2_schema::load_database($this->_config->get('schemadb'));
+        $this->_request_data['schemadb_related'] = midcom_helper_datamanager2_schema::load_database($this->_config->get('schemadb_related'));
 
         $this->_populate_node_toolbar();
 

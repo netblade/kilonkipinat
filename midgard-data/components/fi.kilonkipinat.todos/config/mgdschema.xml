@@ -13,6 +13,9 @@
         <property name="content" type="text">
             <description>Description of the todo</description>
         </property>
+        <property name="deadline" type="datetime" index="yes">
+            <description>Todo deadline</description>
+        </property>
         <property name="status" type="unsigned integer" index="yes">
             <description>Status of the todo</description>
         </property>
@@ -21,6 +24,12 @@
         </property>
         <property name="person" type="unsigned integer" link="fi_kilonkipinat_account_person:id" index="yes">
             <description>Person the todoitem relates to</description>
+        </property>
+        <property name="supervisor" type="unsigned integer" link="fi_kilonkipinat_account_person:id" index="yes">
+            <description>Person supervising this (default is creator)</description>
+        </property>
+        <property name="grp" type="unsigned integer" link="midgard_group:id" index="yes">
+            <description>Group the todoitem relates to</description>
         </property>
         <property name="event" type="unsigned integer" link="fi_kilonkipinat_events_event:id" index="yes">
             <description>Event the todoitem relates to</description>

@@ -44,6 +44,11 @@ class fi_kilonkipinat_todos_handler_todo extends midcom_baseclasses_components_h
         return $this->_object;
     }
     
+    public function _load_defaults()
+    {
+        $this->_defaults['supervisor'] = $_MIDGARD['user'];
+    }
+    
     public function _load_parent($handler_id, $args, &$data)
     {
         $this->_parent = $this->_request_data['content_topic'];
