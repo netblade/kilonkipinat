@@ -48,11 +48,6 @@ class fi_kilonkipinat_events_handler_event extends midcom_baseclasses_components
         return $this->_object;
     }
     
-    public function _load_defaults()
-    {
-        $this->_defaults['hideendtime'] = true;
-    }
-    
     public function _load_parent($handler_id, $args, &$data)
     {
         $this->_parent = $this->_request_data['content_topic'];
@@ -153,6 +148,15 @@ class fi_kilonkipinat_events_handler_event extends midcom_baseclasses_components
      */
     function _handler_create($handler_id, $args, &$data)
     {
+        if (!isset($this->_defaults)) {
+            $this->_defaults = array();
+        }
+        if ($args[0] == 'retki') {
+            $this->_defaults['allday'] = true;
+        } else {
+            $this->_defaults['hideendtime'] = true;
+        }
+
         $status =  parent::_handler_create($handler_id, $args, $data);
         $this->_request_data['event_desc'] = $this->_schemadb[$args[0]]->description;
         return $status;
