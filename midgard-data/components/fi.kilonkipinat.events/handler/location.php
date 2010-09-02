@@ -11,9 +11,6 @@
  */
 class fi_kilonkipinat_events_handler_location extends midcom_baseclasses_components_handler_crud
 {
-    var $_location = null;
-    var $_locationtitle = null;
-    var $_person = null;
 
     function __construct()
     {
@@ -40,7 +37,7 @@ class fi_kilonkipinat_events_handler_location extends midcom_baseclasses_compone
                 'Failed to load location, cannot continue. Last Midgard error was: '. midcom_application::get_error_string());
             // This will exit.
         }
-
+        $this->_component_data['active_leaf'] = "{$this->_topic->id}_LOCATIONS";
         return $this->_object;
     }
     
@@ -162,6 +159,7 @@ class fi_kilonkipinat_events_handler_location extends midcom_baseclasses_compone
      */
     function _handler_create($handler_id, $args, &$data)
     {
+        $_MIDCOM->auth->require_valid_user();
         return parent::_handler_create($handler_id, $args, $data);
     }
 
@@ -176,17 +174,20 @@ class fi_kilonkipinat_events_handler_location extends midcom_baseclasses_compone
         if ($handler_id == 'view_location_dl') {
             midcom_show_style('show-location-dl');
         } else {
+            $_MIDCOM->auth->require_valid_user();
             midcom_show_style('show-location');
         }
     }
 
     public function _show_update($handler_id, &$data)
     {
+        $_MIDCOM->auth->require_valid_user();
         midcom_show_style('admin-location-update');
     }
 
     public function _show_delete($handler_id, &$data)
     {
+        $_MIDCOM->auth->require_valid_user();
         $this->_request_data['view_location'] = $data['datamanager']->get_content_html();
         midcom_show_style('admin-location-delete');
     }
@@ -201,6 +202,8 @@ class fi_kilonkipinat_events_handler_location extends midcom_baseclasses_compone
      */
     function _handler_index($handler_id, $args, &$data)
     {
+        $_MIDCOM->auth->require_valid_user();
+        $this->_component_data['active_leaf'] = "{$this->_topic->id}_LOCATIONS";
         $this->_request_data['name']  = "fi.kilonkipinat.events";
         
         $_MIDCOM->set_pagetitle("{$this->_topic->extra}");
