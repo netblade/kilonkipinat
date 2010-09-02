@@ -8,3 +8,16 @@
 	float: left;
 	width: 320px;
 }
+
+#fi_kilonkipinat_events_event_details {
+    float: left;
+    margin-right: 20px;
+    width: 45%;
+    min-width: 150px;
+}
+
+#fi_kilonkipinat_events_event_location_details {
+    float: left;
+    width: 45%;
+    min-width: 150px;
+}
