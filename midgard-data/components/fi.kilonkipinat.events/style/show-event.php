@@ -40,6 +40,11 @@ $end_ts = strtotime($event->end);
             &(event.contentprivate:h);
         </div>
         <?php
+        if (strlen($event->url) > 5 ) {
+            echo "<p><a href=\"".$event->url."\" target=\"_blank\">Lisätiedot</a></p>";
+        }
+        ?>
+        <?php
         }
         ?>
         <?php

@@ -128,6 +128,13 @@
                 'output_mode' => 'html'
             ),
             'widget' => 'tinymce',
+        ),
+        'url' => Array
+        (
+            'title' => 'URL',
+            'storage' => 'url',
+            'type' => 'text',
+            'widget' => 'text',
             'end_fieldset' => 1,
         ),
         'eventslocation' => array
@@ -389,6 +396,13 @@
                 'output_mode' => 'html'
             ),
             'widget' => 'tinymce',
+        ),
+        'url' => Array
+        (
+            'title' => 'URL',
+            'storage' => 'url',
+            'type' => 'text',
+            'widget' => 'text',
             'end_fieldset' => 1,
         ),
         'eventslocation' => array
