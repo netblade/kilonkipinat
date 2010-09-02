@@ -1,6 +1,6 @@
 'name' => 'fi.kilonkipinat.events',
 'purecode' => false,
-'version' => '0.0.1',
+'version' => '8.09.9',
 'state' => 'stable',
 'privileges' => array(),
 'class_definitions' => array
@@ -23,5 +23,6 @@
     'dependencies' => array
     (
         'midcom.helper.datamanager2' => array(),
+        'org.routamc.positioning' => array(),
     ),
 ),

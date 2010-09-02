@@ -1,7 +1,7 @@
 'name' => 'fi.kilonkipinat.account',
 'icon' => 'fi.kilonkipinat.account/group.png',
 'purecode' => false,
-'version' => '8.09.8.0',
+'version' => '8.09.9',
 'state' => 'stable',
 'privileges' => array
 (
