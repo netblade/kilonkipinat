@@ -99,7 +99,8 @@ class fi_kilonkipinat_events_navigation extends midcom_baseclasses_components_na
     {
 
         $guid = $this->_config->get('symlink_topic');
-        if (is_null($guid))
+        if (   is_null($guid)
+            || $guid == false)
         {
             // No symlink topic
             // Workaround, we should talk to a DBA object automatically here in fact.
