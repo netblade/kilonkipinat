@@ -87,5 +87,50 @@ class fi_kilonkipinat_website
             }
         }
     }
+    
+    function getDownloads($types, $fieldname, $title)
+    {
+        $ret_str = '';
+        if(isset($types[$fieldname]))
+        {
+            $tmp_downloads = $types[$fieldname]->attachments_info;
+        }
+        if (   isset($tmp_downloads)
+            && count($tmp_downloads)>0)
+        {
+            $ret_str .= '<div class="downloads">' . "\n";
+            $ret_str .= "\t".'<h3>' . $title . '</h3>' . "\n";
+            $ret_str .= "\t".'<ul>' . "\n";
+            foreach($tmp_downloads as $tmp_download)
+            {
+                $filesize = round(($tmp_download['filesize'] / 1024), 0);
+                if($filesize > 1000)
+                {
+                    $filesize = round(($filesize / 1024), 2) . ' MB';
+                }
+                else
+                {
+                    $filesize = $filesize . ' kb';
+                }
+                $filetype = str_replace('application/', '', $tmp_download['mimetype']);
+                $filetype = str_replace('image/', '', $filetype);
+                if ($filetype != '')
+                {
+                    $filetype .= ', ';
+                }
+                if($tmp_download['description'] != '')
+                {
+                    $ret_str .= "\t\t<li><a href=\"" . $tmp_download['url'] . "\">" . $tmp_download['description'] . "</a> (" . $filetype . $filesize . ")</li>\n";
+                }
+                else
+                {
+                    $ret_str .= "\t\t<li><a href=\"" . $tmp_download['url'] . "\">" . $tmp_download['filename'] . "</a> (" . $filetype . $filesize . ")</li>\n";
+                }
+            }
+            $ret_str .= "\t".'</ul>' . "\n";
+            $ret_str .= '</div>' . "\n";
+        }
+        return $ret_str;
+    }
 }
 ?>

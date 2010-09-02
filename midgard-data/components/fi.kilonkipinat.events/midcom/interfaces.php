@@ -27,6 +27,7 @@ class fi_kilonkipinat_events_interface extends midcom_baseclasses_components_int
         $this->_autoload_libraries = array
         (
             'midcom.helper.datamanager2',
+            'org.routamc.positioning',
         );
     }
 
@@ -69,6 +70,10 @@ class fi_kilonkipinat_events_interface extends midcom_baseclasses_components_int
         
         define('FI_KILONKIPINAT_EVENTS_EVENT_VISIBILITY_PUBLIC', 1000);
         define('FI_KILONKIPINAT_EVENTS_EVENT_VISIBILITY_SECURE', 1100);
+        
+        define('FI_KILONKIPINAT_EVENTS_EVENT_LOCATION_VISIBILITY_PUBLIC', 1000);
+        define('FI_KILONKIPINAT_EVENTS_EVENT_LOCATION_VISIBILITY_TEXT_PUBLIC', 1100);
+        define('FI_KILONKIPINAT_EVENTS_EVENT_LOCATION_VISIBILITY_SECURE', 1200);
     }
 }
 ?>

@@ -31,6 +31,21 @@
         <property name="visibility" type="unsigned integer" index="yes">
             <description>Is event public or not</description>
         </property>
+        <property name="eventslocation" link="fi_kilonkipinat_events_location:id" type="unsigned integer">
+            <description>Events location for event</description>
+        </property>
+        <property name="location" type="string">
+            <description>Location for event</description>
+        </property>
+        <property name="locationzoom" type="unsigned integer" index="yes">
+            <description>Zoom level for map</description>
+        </property>
+        <property name="locationvisibility" type="unsigned integer" index="yes">
+            <description>Is event location public or not</description>
+        </property>
+        <property name="locationtext" type="string" index="yes">
+            <description>Easy text for location</description>
+        </property>
         <property name="category" type="string" index="yes">
             <description>Categories of the event, split by pipe (`|`)</description>
         </property>
@@ -39,6 +54,32 @@
         </property>
         <property name="closeregistration" type="datetime" index="yes">
             <description>Event registration end time</description>
+        </property>
+    </type>
+    <type name="fi_kilonkipinat_events_location" table="fi_kilonkipinat_events_location">
+        <property name="id" type="unsigned integer" primaryfield="id" index="yes">
+            <description>Local non-replication-safe database identifier</description>
+        </property>
+        <property name="type" type="unsigned integer" index="yes">
+            <description>Type of the location</description>
+        </property>
+        <property name="title" type="string" index="yes">
+            <description>Title of the location</description>
+        </property>
+        <property name="content" type="text">
+            <description>Description of the event</description>
+        </property>
+        <property name="contentprivate" type="text">
+            <description>Private description of the event</description>
+        </property>
+        <property name="url" type="string" index="yes">
+            <description>URL of more info</description>
+        </property>
+        <property name="location" type="string">
+            <description>Location for location</description>
+        </property>
+        <property name="locationzoom" type="unsigned integer" index="yes">
+            <description>Zoom level for map</description>
         </property>
     </type>
 </Schema>

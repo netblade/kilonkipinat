@@ -117,6 +117,51 @@ class fi_kilonkipinat_events_viewer extends midcom_baseclasses_components_reques
             'fixed_args' => array('upcoming', 'meetings'),
             'variable_args' => 1,
         );
+        
+         /* Crud for location */
+        // Handle /location/create/<schema name>
+        $this->_request_switch['create_location'] = array
+        (
+            'handler' => array('fi_kilonkipinat_events_handler_location', 'create'),
+            'fixed_args' => array('location', 'create'),
+            'variable_args' => 1,
+        );
+        // Handle /location/view/<location_guid>
+        $this->_request_switch['view_location'] = array
+        (
+            'handler' => array('fi_kilonkipinat_events_handler_location', 'read'),
+            'fixed_args' => array('location', 'view'),
+            'variable_args' => 1,
+        );
+        // Handle /location/dl_view/<location_guid>
+        $this->_request_switch['view_location_dl'] = array
+        (
+            'handler' => array('fi_kilonkipinat_events_handler_location', 'read'),
+            'fixed_args' => array('location', 'dl_view'),
+            'variable_args' => 1,
+        );
+        // Handle /location/edit/<location_guid>
+        $this->_request_switch['edit_location'] = array
+        (
+            'handler' => array('fi_kilonkipinat_events_handler_location', 'update'),
+            'fixed_args' => array('location', 'edit'),
+            'variable_args' => 1,
+        );
+        // Handle /location/delete/<location_guid>
+        $this->_request_switch['delete_location'] = array
+        (
+            'handler' => array('fi_kilonkipinat_events_handler_location', 'delete'),
+            'fixed_args' => array('location', 'delete'),
+            'variable_args' => 1,
+        );
+        
+        // Handle /locations
+        $this->_request_switch['locations'] = array
+        (
+            'handler' => array('fi_kilonkipinat_events_handler_location', 'index'),
+            'fixed_args' => array('locations'),
+            'variable_args' => 0,
+        );
     }
 
     /**
@@ -199,6 +244,20 @@ class fi_kilonkipinat_events_viewer extends midcom_baseclasses_components_reques
                 )
             );
         }
+        if (   $this->_topic->can_do('midgard:create')
+            && $this->_topic->can_do('midcom:component_config'))
+        {
+            $this->_node_toolbar->add_item
+            (
+                array
+                (
+                    MIDCOM_TOOLBAR_URL => 'locations/',
+                    MIDCOM_TOOLBAR_LABEL => 'Paikkatiedot',
+                    MIDCOM_TOOLBAR_HELPTEXT => $this->_l10n_midcom->get('component configuration helptext'),
+                    MIDCOM_TOOLBAR_ICON => 'fi.kilonkipinat.website/fam/map_magnify.png',
+                )
+            );
+        }
 
     }
 
@@ -208,6 +267,7 @@ class fi_kilonkipinat_events_viewer extends midcom_baseclasses_components_reques
     function _on_handle($handler, $args)
     {
         $this->_request_data['schemadb'] = midcom_helper_datamanager2_schema::load_database($this->_config->get('schemadb'));
+        $this->_request_data['schemadb_location'] = midcom_helper_datamanager2_schema::load_database($this->_config->get('schemadb_location'));
         $this->_request_data['prefix'] = $_MIDCOM->get_context_data(MIDCOM_CONTEXT_ANCHORPREFIX);
         $this->_request_data['datamanager'] = new midcom_helper_datamanager2_datamanager($this->_request_data['schemadb']);
         

@@ -102,6 +102,48 @@ ul li {
     background: url('/style/img/bullet_star.gif') left top no-repeat;
 }
 
+.midcom_helper_datamanager2_widget_position ul li {
+    min-height: 13px;
+    margin: 0px;
+    padding: 0px;
+    background: none;
+}
+
+.chooser_widget_header_item {
+    min-height: 15px;
+    background: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.chooser_widget_result_item {
+    min-height: 15px;
+    margin: 0px;
+    padding: 0px;
+    background: none;
+}
+.chooser_widget_result_item_hover {
+    color: #000000;
+    background: #CCCCCC !important;
+}
+
+.chooser_widget_search_input {
+    padding: 2px 4px;
+    min-height: 20px;
+    min-width: 300px;
+    font-size: 1.1em;
+}
+
+.chooser_widget_search_saved {
+    padding: 2px 4px;
+    min-height: 20px;
+    min-width: 300px;
+    font-size: 1.1em;
+    background: #CCCCCC;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
 ol {
     margin: 0px;
     padding: 0px 0px 0px 10px;

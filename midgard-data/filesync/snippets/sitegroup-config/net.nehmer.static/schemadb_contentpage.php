@@ -3,7 +3,7 @@
     'description' => 'article',
     'fields'      => array
     (
-        'name' => Array
+        'name' => array
         (
             // COMPONENT-REQUIRED
             'title' => 'url name',
@@ -11,7 +11,7 @@
             'type' => 'urlname',
             'widget' => 'text',
         ),
-        'title' => Array
+        'title' => array
         (
             // COMPONENT-REQUIRED
             'title' => 'title',
@@ -20,19 +20,19 @@
             'type' => 'text',
             'widget' => 'text',
         ),
-        'content' => Array
+        'content' => array
         (
             // COMPONENT-REQUIRED
             'title' => 'content',
             'storage' => 'content',
             'type' => 'text',
-            'type_config' => Array
+            'type_config' => array
             (
                 'output_mode' => 'html',
             ),
             'widget' => 'tinymce',
         ),
-        'downloads' => Array
+        'downloads' => array
         (
             'title' => 'Tiedostot',
             'storage' => null,
@@ -42,12 +42,12 @@
             ),
             'widget' => 'downloads',
         ),
-        'abstract' => Array
+        'abstract' => array
         (
             'title' => 'huomiot',
             'storage' => 'abstract',
             'type' => 'text',
-            'type_config' => Array
+            'type_config' => array
             (
                 'output_mode' => 'markdown',
             ),
