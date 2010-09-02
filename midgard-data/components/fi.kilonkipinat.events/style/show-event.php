@@ -21,13 +21,13 @@ $end_ts = strtotime($event->end);
 
         <?php
         if (   $_MIDGARD['user']
-            && isset($event->contentpriv)
-            && $event->contentpriv != '')
+            && isset($event->contentprivate)
+            && $event->contentprivate != '')
         {
         ?>
         <div class="event_content_private">
             <h4>Kuvaus (jäsenille)</h4>
-            &(event.contentpriv:h);
+            &(event.contentprivate:h);
         </div>
         <?php
         }
