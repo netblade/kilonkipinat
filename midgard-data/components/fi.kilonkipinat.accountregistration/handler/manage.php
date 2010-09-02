@@ -120,8 +120,8 @@ class fi_kilonkipinat_accountregistration_handler_manage extends midcom_baseclas
             && isset($_POST['username'])) {
             if (   isset($_POST['isduplicate'])
                 && $_POST['isduplicate'] == '1') {
-                $person->status = FI_KILONKIPINAT_ACCOUNTREGISTRATION_ACCOUNT_STATUS_INVALID;
-                $person->update();
+                $request->status = FI_KILONKIPINAT_ACCOUNTREGISTRATION_ACCOUNT_STATUS_INVALID;
+                $request->update();
                 $message['title'] = $this->_l10n_midcom->get("Poistettu");
                 $message['content'] = $this->_l10n_midcom->get("Kyseinen hakemus on merkattu duplikaatiksi, ts poistettu.");
             } else {
