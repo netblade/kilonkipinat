@@ -270,6 +270,7 @@ class fi_kilonkipinat_events_viewer extends midcom_baseclasses_components_reques
         $this->_request_data['schemadb_location'] = midcom_helper_datamanager2_schema::load_database($this->_config->get('schemadb_location'));
         $this->_request_data['prefix'] = $_MIDCOM->get_context_data(MIDCOM_CONTEXT_ANCHORPREFIX);
         $this->_request_data['datamanager'] = new midcom_helper_datamanager2_datamanager($this->_request_data['schemadb']);
+        $this->_request_data['datamanager_location'] = new midcom_helper_datamanager2_datamanager($this->_request_data['schemadb_location']);
         
         $_MIDCOM->add_link_head(array('rel' => 'stylesheet',  'type' => 'text/css', 'href' => MIDCOM_STATIC_URL . '/fi.kilonkipinat.events/fi_kilonkipinat_events.css', 'media' => 'all'));
 

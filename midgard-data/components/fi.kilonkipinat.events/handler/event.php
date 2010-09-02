@@ -48,6 +48,11 @@ class fi_kilonkipinat_events_handler_event extends midcom_baseclasses_components
         return $this->_object;
     }
     
+    public function _load_defaults()
+    {
+        $this->_defaults['hideendtime'] = true;
+    }
+    
     public function _load_parent($handler_id, $args, &$data)
     {
         $this->_parent = $this->_request_data['content_topic'];

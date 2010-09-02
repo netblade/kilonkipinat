@@ -69,8 +69,28 @@ class fi_kilonkipinat_website
         }
         return $daylabel;
     }
+
+    public function returnDateLabels($start, $end , $add_time = true, $add_end_time = true, $add_year = false)
+    {
+        $ret_str = '';
+        
+        if (   date('d.m.Y', $start) == date('d.m.Y', $end)
+            && (   $add_time == false
+                || $add_end_time == false)) {
+            $ret_str .= '<abbr class="dtstart" title="' . gmdate('Y-m-d\TH:i:s\Z', $start) . '">' . fi_kilonkipinat_website::returnDateLabel('start', $start, $end, $add_time, $add_year) .'</abbr>';
+            $ret_str .= '<abbr class="dtend" title="' . gmdate('Y-m-d\TH:i:s\Z', $end) . '"></abbr>';
+        } elseif ($start > $end) {
+            $ret_str .= '<abbr class="dtstart" title="' . gmdate('Y-m-d\TH:i:s\Z', $start) . '">' . fi_kilonkipinat_website::returnDateLabel('start', $start, $end, $add_time, $add_year) .'</abbr>';
+        } else {
+            $ret_str .= '<abbr class="dtstart" title="' . gmdate('Y-m-d\TH:i:s\Z', $start) . '">' . fi_kilonkipinat_website::returnDateLabel('start', $start, $end, $add_time, $add_year) .'</abbr>';
+            $ret_str .= ' - ';
+            $ret_str .= '<abbr class="dtend" title="' . gmdate('Y-m-d\TH:i:s\Z', $end) . '">' . fi_kilonkipinat_website::returnDateLabel('end', $start, $end, $add_end_time, $add_year) .'</abbr>';
+        }
+        
+        return $ret_str;
+    }
     
-    function check_login()
+    public function check_login()
     {
         if (   isset($GLOBALS['fi_kilonkipinat_website_login_detected'])
             && $GLOBALS['fi_kilonkipinat_website_login_detected'] == true) {
@@ -88,7 +108,7 @@ class fi_kilonkipinat_website
         }
     }
     
-    function getDownloads($types, $fieldname, $title)
+    public function getDownloads($types, $fieldname, $title)
     {
         $ret_str = '';
         if(isset($types[$fieldname]))
@@ -131,6 +151,44 @@ class fi_kilonkipinat_website
             $ret_str .= '</div>' . "\n";
         }
         return $ret_str;
+    }
+    
+    /**
+     * Try to find a comments node (cache results)
+     *
+     * @access public
+     */
+    public function seek_comments(&$data)
+    {
+        if ($data['config']->get('comments_topic'))
+        {
+            // We have a specified photostream here
+            $comments_topic = new midcom_db_topic($data['config']->get('comments_topic'));
+            if (   !is_object($comments_topic)
+                || !isset($comments_topic->guid)
+                || empty($comments_topic->guid))
+            {
+                return false;
+            }
+
+            // We got a topic. Make it a NAP node
+            $nap = new midcom_helper_nav();
+            $comments_node = $nap->get_node($comments_topic->id);
+
+            return $comments_node;
+        }
+
+        // No comments topic specified, autoprobe
+        $comments_node = midcom_helper_find_node_by_component('net.nehmer.comments');
+
+        // Cache the data
+        if ($_MIDCOM->auth->request_sudo($data['topic']->component))
+        {
+            $data['topic']->set_parameter($data['topic']->component, 'comments_topic', $comments_node[MIDCOM_NAV_GUID]);
+            $_MIDCOM->auth->drop_sudo();
+        }
+
+        return $comments_node;
     }
 }
 ?>

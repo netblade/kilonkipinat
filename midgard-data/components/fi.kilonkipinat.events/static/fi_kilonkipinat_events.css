@@ -21,3 +21,17 @@
     width: 45%;
     min-width: 150px;
 }
+
+#fi_kilonkipinat_events_event_comments {
+    width: 400px;
+    overflow: hidden;
+    float: left;
+}
+
+#fi_kilonkipinat_events_event_comments h2 {
+    margin-top: 0px;
+}
+
+#fi_kilonkipinat_events_event_comments textarea {
+    width: 370px;
+}

@@ -35,8 +35,7 @@ class fi_kilonkipinat_todos_interface extends midcom_baseclasses_components_inte
         define('FI_KILONKIPINAT_TODOS_TODOITEM_STATUS_NEW', 1000);
         define('FI_KILONKIPINAT_TODOS_TODOITEM_STATUS_PENDING', 1010);
         define('FI_KILONKIPINAT_TODOS_TODOITEM_STATUS_ACKNOWLEDGED', 1020);
-        define('FI_KILONKIPINAT_TODOS_TODOITEM_STATUS_RESOLVED', 1010);
-        define('FI_KILONKIPINAT_TODOS_TODOITEM_STATUS_PENDING', 1010);
+        define('FI_KILONKIPINAT_TODOS_TODOITEM_STATUS_RESOLVED', 1040);
     }
 }
 ?>

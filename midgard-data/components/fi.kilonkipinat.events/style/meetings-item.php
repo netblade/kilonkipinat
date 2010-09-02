@@ -7,8 +7,20 @@ $start_ts = strtotime($data['meeting']->start);
 $end_ts = strtotime($data['meeting']->end);
 $view_url = $prefix . 'view_event/' . $event->guid;
 ?>
-<h3><a href="&(view_url:h);">&(event.title:h);</a></h3>
-<div class="dates">
-    <abbr class="dtstart" title="<?php echo gmdate('Y-m-d\TH:i:s\Z', $start_ts); ?>"><?php echo fi_kilonkipinat_website::returnDateLabel('start', $start_ts, $end_ts); ?></abbr> -
-    <abbr class="dtend" title="<?php echo gmdate('Y-m-d\TH:i:s\Z', $end_ts); ?>"><?php echo fi_kilonkipinat_website::returnDateLabel('end', $start_ts, $end_ts); ?></abbr>
+<div class="fi_kilonkipinat_events_list_item">
+    <h3><a href="&(view_url:h);">&(event.title:h);</a></h3>
+    <div class="dates">
+        <?php
+        if ($event->hideendtime) {
+            $add_end_time = false;
+        } else {
+            $add_end_time = true;
+        }
+        if ($event->allday) {
+            echo fi_kilonkipinat_website::returnDateLabels($start_ts, $end_ts, false, $add_end_time);
+        } else {
+            echo fi_kilonkipinat_website::returnDateLabels($start_ts, $end_ts, true, $add_end_time);
+        }
+        ?>
+    </div>
 </div>

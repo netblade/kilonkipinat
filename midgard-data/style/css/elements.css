@@ -733,3 +733,15 @@ p.excerpt {
 .tablesorter thead tr th {
     padding-right: 20px !important;
 }
+
+.fi_kilonkipinat_events_list_item {
+    margin-bottom: 4px;
+}
+
+.fi_kilonkipinat_events_list_item h3 {
+    margin-bottom: 0px;
+}
+
+.fi_kilonkipinat_events_list_item .dates {
+    margin-left: 5px;
+}

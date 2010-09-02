@@ -175,7 +175,7 @@ class fi_kilonkipinat_events_handler_location extends midcom_baseclasses_compone
 
     public function _show_read($handler_id, &$data)
     {
-        $this->_request_data['view_location'] = $data['datamanager']->get_content_html();
+        $this->_request_data['view_location'] = $data['datamanager_location']->get_content_html();
         if ($handler_id == 'view_location_dl') {
             midcom_show_style('show-location-dl');
         } else {
@@ -190,7 +190,7 @@ class fi_kilonkipinat_events_handler_location extends midcom_baseclasses_compone
 
     public function _show_delete($handler_id, &$data)
     {
-        $this->_request_data['view_location'] = $data['datamanager']->get_content_html();
+        $this->_request_data['view_location'] = $data['datamanager_location']->get_content_html();
         midcom_show_style('admin-location-delete');
     }
     

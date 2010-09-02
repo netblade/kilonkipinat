@@ -14,7 +14,7 @@ $locations = $data['locations'];
 		<tbody>
 <?php
 foreach ($locations as $location) {
-    if (! $data['datamanager']->autoset_storage($location))
+    if (! $data['datamanager_location']->autoset_storage($location))
     {
         debug_push_class(__CLASS__, __FUNCTION__);
         debug_add("The datamanager for location {$location->id} could not be initialized, skipping it.");
@@ -22,7 +22,7 @@ foreach ($locations as $location) {
         debug_pop();
         continue;
     }
-    $view_location = $data['datamanager']->get_content_html();
+    $view_location = $data['datamanager_location']->get_content_html();
 ?>
             <tr>
                 <td><a href="<?php echo $prefix .'location/view/'.$location->guid; ?>"><?php echo $location->title; ?></a></td>

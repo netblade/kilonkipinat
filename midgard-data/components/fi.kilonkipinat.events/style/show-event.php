@@ -11,8 +11,18 @@ $end_ts = strtotime($event->end);
     <div id="fi_kilonkipinat_events_event_details">
         <div class="dates">
             <h4>Ajankohta</h4>
-            <abbr class="dtstart" title="<?php echo gmdate('Y-m-d\TH:i:s\Z', $start_ts); ?>"><?php echo fi_kilonkipinat_website::returnDateLabel('start', $start_ts, $end_ts); ?></abbr> -
-            <abbr class="dtend" title="<?php echo gmdate('Y-m-d\TH:i:s\Z', $end_ts); ?>"><?php echo fi_kilonkipinat_website::returnDateLabel('end', $start_ts, $end_ts); ?></abbr>
+            <?php
+            if ($event->hideendtime) {
+                $add_end_time = false;
+            } else {
+                $add_end_time = true;
+            }
+            if ($event->allday) {
+                echo fi_kilonkipinat_website::returnDateLabels($start_ts, $end_ts, false, false);
+            } else {
+                echo fi_kilonkipinat_website::returnDateLabels($start_ts, $end_ts, true, $add_end_time);
+            }
+            ?>
         </div>
         <div class="event_content">
             <h4>Kuvaus</h4>
@@ -94,7 +104,8 @@ if ($show_location) {
         { 
             ?>
                 <div class="loc">
-                    Osoite: <span class="location">&(view['location']:h);</span>
+                    <h3>Paikka:</h3>
+                    <span class="location">&(view['location']:h);</span>
                 </div>
             <?php 
         }
@@ -132,4 +143,19 @@ if ($show_location) {
 <?php
 }
 ?>
+<?php
+$comments_node = fi_kilonkipinat_website::seek_comments($data);
+if ($comments_node)
+{
+    $comments_url = $comments_node[MIDCOM_NAV_RELATIVEURL] . "comment/{$event->guid}";
+}
+?>
+<div id="fi_kilonkipinat_events_event_comments">
+<?php
+if (isset($comments_url))
+{
+    $_MIDCOM->dynamic_load($comments_url);
+}
+?>
+</div>
 </div>

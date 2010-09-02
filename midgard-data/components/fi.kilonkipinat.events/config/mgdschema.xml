@@ -16,6 +16,12 @@
         <property name="end" type="datetime" index="yes">
             <description>Event end time</description>
         </property>
+        <property name="allday" type="unsigned integer" index="yes">
+            <description>Boolean indicating if this is an allday event</description>
+        </property>
+        <property name="hideendtime" type="unsigned integer" index="yes">
+            <description>Boolean indicating if we should hide just the end time</description>
+        </property>
         <property name="title" type="string" index="yes">
             <description>Title of the event</description>
         </property>
@@ -24,6 +30,9 @@
         </property>
         <property name="contentprivate" type="text">
             <description>Private description of the event</description>
+        </property>
+        <property name="url" type="string" index="yes">
+            <description>URL of more info</description>
         </property>
         <property name="status" type="unsigned integer" index="yes">
             <description>Status of the event</description>

@@ -86,6 +86,20 @@
             (
                 'hide_seconds' => true,
             ),
+        ),
+        'allday' => array
+        (
+            'title' => 'Koko päivän tapahtuma (ei näytetä kellonaikoja)',
+            'storage' => 'allday',
+            'type' => 'boolean',
+            'widget' => 'checkbox',
+        ),
+        'hideendtime' => array
+        (
+            'title' => 'Piiloita loppumisaika',
+            'storage' => 'hideendtime',
+            'type' => 'boolean',
+            'widget' => 'checkbox',
             'end_fieldset' => 1,
         ),
         'content' => Array
@@ -333,6 +347,21 @@
             (
                 'hide_seconds' => true,
             ),
+        ),
+        'allday' => array
+        (
+            'title' => 'Koko päivän tapahtuma (ei näytetä kellonaikoja)',
+            'storage' => 'allday',
+            'type' => 'boolean',
+            'widget' => 'checkbox',
+        ),
+        'hideendtime' => array
+        (
+            'title' => 'Piiloita loppumisaika',
+            'storage' => 'hideendtime',
+            'type' => 'boolean',
+            'widget' => 'checkbox',
+            'end_fieldset' => 1,
         ),
         'content' => Array
         (
