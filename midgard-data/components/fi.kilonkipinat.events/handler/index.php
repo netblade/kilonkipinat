@@ -55,6 +55,7 @@ class fi_kilonkipinat_events_handler_index extends midcom_baseclasses_components
         $qb_trips->add_constraint('type', '>=', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_GENERIC);
         $qb_trips->add_constraint('type', '<', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_GENERIC);
         $qb_trips->add_constraint('start', '>', date('Y-m-d H:i:s', time()));
+        $qb_trips->add_order('start');
         if (!$_MIDGARD['user']) {
             $qb_trips->add_constraint('visibility', '=', FI_KILONKIPINAT_EVENTS_EVENT_VISIBILITY_PUBLIC);
         }
@@ -65,6 +66,7 @@ class fi_kilonkipinat_events_handler_index extends midcom_baseclasses_components
         $qb_meetings->add_constraint('type', '>=', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_GENERIC);
         $qb_meetings->add_constraint('type', '<', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_ANNUAL);
         $qb_meetings->add_constraint('start', '>', date('Y-m-d H:i:s', time()));
+        $qb_meetings->add_order('start');
         if (!$_MIDGARD['user']) {
             $qb_meetings->add_constraint('visibility', '=', FI_KILONKIPINAT_EVENTS_EVENT_VISIBILITY_PUBLIC);
         }
