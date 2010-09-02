@@ -59,6 +59,9 @@ $show_location_txt = false;
 
 if ($_MIDGARD['user']) {
     $show_location = true;
+    if ($event->locationvisibility == FI_KILONKIPINAT_EVENTS_EVENT_LOCATION_VISIBILITY_TEXT_PUBLIC) {
+        $show_location_txt = true;
+    }
 } else {
     if ($event->locationvisibility == FI_KILONKIPINAT_EVENTS_EVENT_LOCATION_VISIBILITY_PUBLIC) {
         $show_location = true;
@@ -75,12 +78,12 @@ if ($show_location) {
         $dl_path = $prefix . 'location/dl_view/'.$event->eventslocation;
         $_MIDCOM->dynamic_load($dl_path);
     } else {
+        $location_object = $data['object'];
+        if (class_exists('org_routamc_positioning_object'))
+        {
 ?>
         <div id="fi_kilonkipinat_events_event_location">
 <?php
-$location_object = $data['object'];
-if (class_exists('org_routamc_positioning_object'))
-{
     $object_position = new org_routamc_positioning_object($location_object);
     $coordinates = $object_position->get_coordinates();
     if (   $coordinates['latitude']
@@ -100,11 +103,23 @@ if (class_exists('org_routamc_positioning_object'))
         $marker = array('path' => '/style/img/pin-kkp.png');
         $map->add_object($location_object, $marker);
         $map->show(); 
+    } elseif ($show_location_txt) {
+    ?>
+        <div id="fi_kilonkipinat_events_event_location">
+            <h3>Paikka: &(event.locationtext:h);</h3>
+        </div>
+    <?php
     }
-}
 ?>
         </div>
 <?php
+        } elseif ($show_location_txt) {
+        ?>
+            <div id="fi_kilonkipinat_events_event_location">
+                <h3>Paikka: &(event.locationtext:h);</h3>
+            </div>
+        <?php
+        }
     }
 ?>
     </div>
@@ -112,7 +127,7 @@ if (class_exists('org_routamc_positioning_object'))
 } elseif ($show_location_txt) {
 ?>
     <div id="fi_kilonkipinat_events_event_location">
-        Paikka: &(event.locationtext:h);
+        <h3>Paikka: Paikka: &(event.locationtext:h);</h3>
     </div>
 <?php
 }
