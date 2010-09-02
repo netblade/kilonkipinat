@@ -17,7 +17,7 @@ $view_url = $prefix . 'view_event/' . $event->guid;
             $add_end_time = true;
         }
         if ($event->allday) {
-            echo fi_kilonkipinat_website::returnDateLabels($start_ts, $end_ts, false, $add_end_time);
+            echo fi_kilonkipinat_website::returnDateLabels($start_ts, $end_ts, false, false);
         } else {
             echo fi_kilonkipinat_website::returnDateLabels($start_ts, $end_ts, true, $add_end_time);
         }
