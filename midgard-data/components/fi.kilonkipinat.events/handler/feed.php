@@ -231,5 +231,18 @@ class fi_kilonkipinat_events_handler_feed extends midcom_baseclasses_components_
         $data['events'] = $this->_events;
         midcom_show_style('feeds-ical');
     }
+    
+    function _handler_index($handler_id, $args, &$data)
+    {
+        $this->_component_data['active_leaf'] = "{$this->_topic->id}_FEEDS";
+        return true;
+    }
+    
+    function _show_index($handler_id, &$data)
+    {
+        midcom_show_style('index-header');
+        midcom_show_style('feeds');
+        midcom_show_style('index-footer');
+    }
 }
 ?>

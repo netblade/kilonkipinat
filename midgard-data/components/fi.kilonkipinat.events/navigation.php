@@ -43,6 +43,13 @@ class fi_kilonkipinat_events_navigation extends midcom_baseclasses_components_na
                 MIDCOM_NAV_NAME => 'Paikkatiedot',
             );
         }
+        if ($this->_config->get('show_navigation_pseudo_leaves')) {
+            $leaves["{$this->_topic->id}_FEEDS"] = array
+            (
+                MIDCOM_NAV_URL => "feeds/",
+                MIDCOM_NAV_NAME => 'Syötteet',
+            );
+        }
         if (   $this->_config->get('archive_enable')
             && $this->_config->get('archive_in_navigation')
             && $this->_config->get('show_navigation_pseudo_leaves'))

@@ -1,2 +1,2 @@
 <div id="fi_kilonkipinat_events_index_container">
-<h1><?php echo $data['content_topic']->extra; ?><a href="<?php echo $prefix . 'ical.ics' ?>" class="fi_kilonkipinat_events_link_feeds_ical" target="_blank" alt="iCal" title="iCal" border="0"><img src="/midcom-static/fi.kilonkipinat.events/ical.gif" alt="iCal" title="iCal" border="0" /></a></h1>
+<h1><?php echo $data['content_topic']->extra; ?></h1>

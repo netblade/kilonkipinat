@@ -190,6 +190,12 @@ class fi_kilonkipinat_events_viewer extends midcom_baseclasses_components_reques
             'handler' => array('fi_kilonkipinat_events_handler_feed', 'ical'),
             'fixed_args' => array('trips','ical.ics'),
         );
+        
+        $this->_request_switch['feeds'] = Array
+        (
+            'handler' => array('fi_kilonkipinat_events_handler_feed', 'index'),
+            'fixed_args' => array('feeds'),
+        );
     }
 
     /**
