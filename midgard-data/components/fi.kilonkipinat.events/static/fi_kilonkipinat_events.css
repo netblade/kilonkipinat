@@ -35,3 +35,7 @@
 #fi_kilonkipinat_events_event_comments textarea {
     width: 370px;
 }
+
+.fi_kilonkipinat_events_link_feeds_ical {
+    float: right;
+}

@@ -167,5 +167,69 @@ class fi_kilonkipinat_events_handler_feed extends midcom_baseclasses_components_
 
         echo $this->_feed->createFeed('RSS2.0');
     }
+    
+    /**
+     * Shows the autoindex list. Nothing to do in the handle phase except setting last modified
+     * dates.
+     *
+     * @param mixed $handler_id The ID of the handler.
+     * @param Array $args The argument list.
+     * @param Array &$data The local request data.
+     * @return boolean Indicating success.
+     */
+    function _handler_ical($handler_id, $args, &$data)
+    {
+        $_MIDCOM->cache->content->content_type("text/calendar; charset=UTF-8");
+        // FIXME: There should be some lifetime specification for the cache engine
+        $_MIDCOM->cache->content->uncached();
+        $_MIDCOM->header("Content-type: text/calendar; charset=UTF-8");
+
+        $_MIDCOM->skip_page_style = true;
+
+        // Prepare control structures
+        $this->_datamanager = new midcom_helper_datamanager2_datamanager($data['schemadb']);
+
+        // Get the pre-filtered QB
+        $qb = fi_kilonkipinat_events_viewer::prepare_event_qb($this->_request_data, $this->_config);
+        if ($handler_id == 'feed-ical-meetings') {
+            $qb->add_constraint('type', '>=', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_GENERIC);
+            $qb->add_constraint('type', '<', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_ANNUAL);
+        } elseif ($handler_id == 'feed-ical-trips') {
+            $qb->add_constraint('type', '>=', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_GENERIC);
+            $qb->add_constraint('type', '<', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_GENERIC);
+        }
+
+        // Show only events that haven't ended
+        $qb->add_constraint('end', '>', date('Y-m-d H:i:s'));
+
+        $sorts = $this->_config->get('ical_sort_rules');
+        if (!is_array($sorts))
+        {
+            $sorts = array('start' => 'ASC');
+        }
+        foreach ($sorts as $prop => $rule)
+        {
+            $qb->add_order($prop, $rule);
+        }
+
+        $qb->set_limit($this->_config->get('ical_count'));
+        $this->_events = $qb->execute();
+
+        return true;
+    }
+    
+    /**
+     * Displays the feed
+     *
+     * @param mixed $handler_id The ID of the handler.
+     * @param mixed &$data The local request data.
+     */
+    function _show_ical($handler_id, &$data)
+    {
+        $data['handler_id'] = $handler_id;
+        $data['datamanager'] = $this->_datamanager;
+        $data['events'] = $this->_events;
+        midcom_show_style('feeds-ical');
+    }
 }
 ?>

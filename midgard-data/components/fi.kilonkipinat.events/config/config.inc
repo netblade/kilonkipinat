@@ -22,4 +22,6 @@
 'archive_in_navigation' => true,
 'archive_years_in_navigation' => true,
 
+'ical_count' => 20, // show that many items by default
+
 'show_navigation_pseudo_leaves' => true,   // Set this to false if you want to hide archive navigation items

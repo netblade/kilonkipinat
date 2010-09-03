@@ -162,6 +162,34 @@ class fi_kilonkipinat_events_viewer extends midcom_baseclasses_components_reques
             'fixed_args' => array('locations'),
             'variable_args' => 0,
         );
+        
+        // / shows next N (configured number) events in RSS format
+        $this->_request_switch['feed-rss2'] = Array
+        (
+            'handler' => array('fi_kilonkipinat_events_handler_feed', 'rss'),
+            'fixed_args' => array('rss.xml'),
+        );
+        
+        // / shows next N (configured number) events in RSS format
+        $this->_request_switch['feed-ical'] = Array
+        (
+            'handler' => array('fi_kilonkipinat_events_handler_feed', 'ical'),
+            'fixed_args' => array('ical.ics'),
+        );
+        
+        // / shows next N (configured number) meetings in RSS format
+        $this->_request_switch['feed-ical-meetings'] = Array
+        (
+            'handler' => array('fi_kilonkipinat_events_handler_feed', 'ical'),
+            'fixed_args' => array('meetings','ical.ics'),
+        );
+        
+        // / shows next N (configured number) events in RSS format
+        $this->_request_switch['feed-ical-trips'] = Array
+        (
+            'handler' => array('fi_kilonkipinat_events_handler_feed', 'ical'),
+            'fixed_args' => array('trips','ical.ics'),
+        );
     }
 
     /**
@@ -230,6 +258,7 @@ class fi_kilonkipinat_events_viewer extends midcom_baseclasses_components_reques
                 );
             }
         }
+        
         if (   $this->_topic->can_do('midgard:update')
             && $this->_topic->can_do('midcom:component_config'))
         {
@@ -273,6 +302,17 @@ class fi_kilonkipinat_events_viewer extends midcom_baseclasses_components_reques
         $this->_request_data['datamanager_location'] = new midcom_helper_datamanager2_datamanager($this->_request_data['schemadb_location']);
         
         $_MIDCOM->add_link_head(array('rel' => 'stylesheet',  'type' => 'text/css', 'href' => MIDCOM_STATIC_URL . '/fi.kilonkipinat.events/fi_kilonkipinat_events.css', 'media' => 'all'));
+        
+        $_MIDCOM->add_link_head
+        (
+            array
+            (
+                'rel'   => 'alternate',
+                'type'  => 'application/rss+xml',
+                'title' => $this->_l10n->get('rss 2.0 feed'),
+                'href'  => $_MIDCOM->get_context_data(MIDCOM_CONTEXT_ANCHORPREFIX) . 'rss.xml',
+            )
+        );
 
         $this->_populate_node_toolbar();
 
