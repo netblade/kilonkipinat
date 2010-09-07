@@ -25,6 +25,8 @@ class fi_kilonkipinat_todos_viewer extends midcom_baseclasses_components_request
      */
     function _on_initialize()
     {
+        $this->_request_data['content_topic'] = $this->_topic;
+
         /**
          * Prepare the request switch, which contains URL handlers for the component
          */
@@ -33,7 +35,6 @@ class fi_kilonkipinat_todos_viewer extends midcom_baseclasses_components_request
         $this->_request_switch['config'] = array
         (
             'handler' => array('midcom_core_handler_configdm2', 'config'),
-            'schemadb' => 'file:/fi/kilonkipinat/todo/config/config_schemadb.inc',
             'schema' => 'config',
             'fixed_args' => array('config'),
         );
@@ -42,6 +43,36 @@ class fi_kilonkipinat_todos_viewer extends midcom_baseclasses_components_request
         $this->_request_switch['index'] = array
         (
             'handler' => array('fi_kilonkipinat_todos_handler_index', 'index'),
+        );
+        
+        /* Crud for todoites */
+        // Handle /create_todo/<schema name>
+        $this->_request_switch['create_todo'] = array
+        (
+            'handler' => array('fi_kilonkipinat_todos_handler_todo', 'create'),
+            'fixed_args' => array('create_todo'),
+            'variable_args' => 1,
+        );
+        // Handle /view_todo/<todo_guid>
+        $this->_request_switch['view_todo'] = array
+        (
+            'handler' => array('fi_kilonkipinat_todos_handler_todo', 'read'),
+            'fixed_args' => array('view_todo'),
+            'variable_args' => 1,
+        );
+        // Handle /edit_todo/<todo_guid>
+        $this->_request_switch['edit_event'] = array
+        (
+            'handler' => array('fi_kilonkipinat_todos_handler_todo', 'update'),
+            'fixed_args' => array('edit_todo'),
+            'variable_args' => 1,
+        );
+        // Handle /delete_todo/<todo_guid>
+        $this->_request_switch['delete_todo'] = array
+        (
+            'handler' => array('fi_kilonkipinat_todos_handler_todo', 'delete'),
+            'fixed_args' => array('delete_todo'),
+            'variable_args' => 1,
         );
     }
 
@@ -101,7 +132,7 @@ class fi_kilonkipinat_todos_viewer extends midcom_baseclasses_components_request
                 (
                     array
                     (
-                        MIDCOM_TOOLBAR_URL => "create/{$name}/",
+                        MIDCOM_TOOLBAR_URL => "create_todo/{$name}/",
                         MIDCOM_TOOLBAR_LABEL => sprintf
                         (
                             $this->_l10n_midcom->get('create %s'),

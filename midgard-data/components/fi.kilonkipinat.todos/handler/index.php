@@ -44,6 +44,7 @@ class fi_kilonkipinat_todos_handler_index extends midcom_baseclasses_components_
      */
     function _handler_index($handler_id, $args, &$data)
     {
+        $_MIDCOM->auth->require_valid_user();
         $this->_request_data['name']  = "fi.kilonkipinat.todos";
 
         $this->_update_breadcrumb_line($handler_id);

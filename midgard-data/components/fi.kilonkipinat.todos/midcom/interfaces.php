@@ -39,6 +39,31 @@ class fi_kilonkipinat_todos_interface extends midcom_baseclasses_components_inte
 
         define('FI_KILONKIPINAT_TODOS_TODOITEM_RELATED_LINKTYPE_PENDING', 1000);
         define('FI_KILONKIPINAT_TODOS_TODOITEM_RELATED_LINKTYPE_DUPLICATE', 1100);
+        
+        define('FI_KILONKIPINAT_TODOS_TODOITEM_WEIGHT_ULTRALIGHT', 1000);
+        define('FI_KILONKIPINAT_TODOS_TODOITEM_WEIGHT_LIGHT', 1100);
+        define('FI_KILONKIPINAT_TODOS_TODOITEM_WEIGHT_MEDIUM', 1200);
+        define('FI_KILONKIPINAT_TODOS_TODOITEM_WEIGHT_HEAVY', 1300);
+        define('FI_KILONKIPINAT_TODOS_TODOITEM_WEIGHT_SUPERHEAVY', 1400);
+    }
+    
+    /**
+     * Simple lookup method which tries to map the guid to an article of out topic.
+     */
+    function _on_resolve_permalink($topic, $config, $guid)
+    {    
+        $event = new fi_kilonkipinat_todos_todoitem_dba($guid);
+        if (!$event)
+        {
+            return null;
+        }
+        
+        if ($event->topic != $topic->id)
+        {
+            return null;
+        }
+        
+        return "view_todo/{$event->guid}/";
     }
 }
 ?>

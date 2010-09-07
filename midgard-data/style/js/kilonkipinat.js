@@ -44,8 +44,17 @@ var ApplicationBase = function()
             _buildTableSorters();
 			
             _self = this;
+            
+            this._load_togglers();
+        },
+        _load_togglers: function() {
+            jQuery('.fi_kilonkipinat_website_toggler_container').each(function() {
+                var tmp_parent = this;
+                jQuery('.fi_kilonkipinat_website_toggler_trigger', this).click(function() {
+                    jQuery('.fi_kilonkipinat_website_toggler_content', tmp_parent).toggle('slow');
+                });
+            });
         }
-
     };
 };
 

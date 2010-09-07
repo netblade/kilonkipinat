@@ -47,6 +47,11 @@ class fi_kilonkipinat_todos_handler_todo extends midcom_baseclasses_components_h
     public function _load_defaults()
     {
         $this->_defaults['supervisor'] = $_MIDGARD['user'];
+        $this->_defaults['weight'] = FI_KILONKIPINAT_TODOS_TODOITEM_WEIGHT_MEDIUM;
+        $now = time(); 
+        $two_weeks = 2 * 7 * 24 * 3600;
+        $two_weeks_ahead = $now + $two_weeks;
+        $this->_defaults['deadline'] = date('Y-m-d', $two_weeks_ahead);
     }
     
     public function _load_parent($handler_id, $args, &$data)
@@ -109,25 +114,6 @@ class fi_kilonkipinat_todos_handler_todo extends midcom_baseclasses_components_h
     
     public function _populate_toolbar($handler_id)
     {
-        if ($this->_topic->can_do('midgard:create'))
-        {
-            foreach (array_keys($this->_request_data['schemadb']) as $name)
-            {
-                $this->_node_toolbar->add_item
-                (
-                    array
-                    (
-                        MIDCOM_TOOLBAR_URL => "create_todo/{$name}/",
-                        MIDCOM_TOOLBAR_LABEL => sprintf
-                        (
-                            $this->_l10n_midcom->get('create %s'),
-                            $this->_request_data['schemadb'][$name]->description
-                        ),
-                        MIDCOM_TOOLBAR_ICON => 'stock-icons/16x16/new-text.png',
-                    )
-                );
-            }
-        }
         if (!$this->_object)
         {
             return;
@@ -139,7 +125,7 @@ class fi_kilonkipinat_todos_handler_todo extends midcom_baseclasses_components_h
                 array
                 (
                     MIDCOM_TOOLBAR_URL => "edit_todo/{$this->_object->guid}/",
-                    MIDCOM_TOOLBAR_LABEL => $this->_l10n_midcom->get('edit todo'),
+                    MIDCOM_TOOLBAR_LABEL => 'Muokkaa nakkia',
                     MIDCOM_TOOLBAR_ICON => 'stock-icons/16x16/edit.png',
                 )
             );
@@ -151,7 +137,7 @@ class fi_kilonkipinat_todos_handler_todo extends midcom_baseclasses_components_h
                 array
                 (
                     MIDCOM_TOOLBAR_URL => "delete_todo/{$this->_object->guid}/",
-                    MIDCOM_TOOLBAR_LABEL => $this->_l10n_midcom->get('delete todo'),
+                    MIDCOM_TOOLBAR_LABEL => 'Poista nakki',
                     MIDCOM_TOOLBAR_ICON => 'stock-icons/16x16/trash.png',
                 )
             );

@@ -745,3 +745,11 @@ p.excerpt {
 .fi_kilonkipinat_events_list_item .dates {
     margin-left: 5px;
 }
+
+.fi_kilonkipinat_website_toggler_container {
+    margin-bottom: 10px;
+}
+
+.fi_kilonkipinat_website_toggler_content {
+    padding: 5px 0;
+}

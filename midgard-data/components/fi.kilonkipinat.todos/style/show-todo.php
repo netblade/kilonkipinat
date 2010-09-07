@@ -1,31 +1,65 @@
 <?php
 $prefix = $data['prefix'];
 
-$event = $data['object'];
+$todo = $data['object'];
 
-$start_ts = strtotime($event->start);
-$end_ts = strtotime($event->end);
 ?>
-<h1>&(event.title:h);</h1>
-<div class="dates">
-    <abbr class="dtstart" title="<?php echo gmdate('Y-m-d\TH:i:s\Z', $start_ts); ?>"><?php echo fi_kilonkipinat_website::returnDateLabel('start', $start_ts, $end_ts); ?></abbr> -
-    <abbr class="dtend" title="<?php echo gmdate('Y-m-d\TH:i:s\Z', $end_ts); ?>"><?php echo fi_kilonkipinat_website::returnDateLabel('end', $start_ts, $end_ts); ?></abbr>
+<h1>Nakki: &(todo.title:h);</h1>
+<div id="fi_kilonkipinat_todos_todoitem_details">
+    Parasta ennen: <?php echo fi_kilonkipinat_website::returnDate(strtotime($todo->deadline), 'short'); ?><br />
+    Valmistettu: <?php echo fi_kilonkipinat_website::returnDate($todo->metadata->created, 'short'); ?><br />
+    Paino: <?php $_MIDCOM->i18n->show_string('weight_'.$todo->weight, 'fi.kilonkipinat.todos'); ?>
 </div>
-<div class="event_content">
-    <h4>Tapahtuman kuvaus</h4>
-    &(event.content:h);
+<div id="fi_kilonkipinat_todos_todoitem_content">
+    <h4>Kuvaus</h4>
+    &(todo.content:h);
 </div>
-
+<div id="fi_kilonkipinat_todos_todoitem_info">
 <?php
-if (   $_MIDGARD['user']
-    && isset($event->contentpriv)
-    && $event->contentpriv != '')
-{
+if ($todo->person != 0) {
+    $person = new fi_kilonkipinat_account_person_dba($todo->person);
+    if ($person->id == $todo->person) {
+        $person_str = '<a href="/extranet/nettisivut/kayttajat/person/view/' . $person->guid . '/" title="' . $person->firstname .' ' . $person->lastname . '">' . $person->nickname . '</a>';
 ?>
-<div class="event_content_private">
-    <h4>Tapahtuman kuvaus (jäsenille)</h4>
-    &(event.contentpriv:h);
-</div>
+    Nakitettu: &(person_str:h);<br />
 <?php
+    }
+} elseif ($todo->grp != 0) {
+    $group = new midcom_db_group($todo->grp);
+    if ($group->id == $todo->grp) {
+        $group_str = $group->official;
+?>
+    Nakitettu ryhmä: &(group_str:h);<br />
+<?php
+    }
+}
+if ($todo->supervisor != 0) {
+    $supervisor = new fi_kilonkipinat_account_person_dba($todo->supervisor);
+    if ($supervisor->id == $todo->supervisor) {
+        $supervisor_str = '<a href="/extranet/nettisivut/kayttajat/person/view/' . $supervisor->guid . '/" title="' . $supervisor->firstname .' ' . $supervisor->lastname . '">' . $supervisor->nickname . '</a>';
+?>
+    Valvoja: &(supervisor_str:h);<br />
+<?php
+    }
+}
+if ($todo->event != 0) {
+    $event = new fi_kilonkipinat_events_event_dba($todo->event);
+    if ($event->id == $todo->event) {
+        $event_str = '<a href="/midcom-permalink-' . $event->guid . '/" title="' . $event->title .'">' . $event->title . '</a>';
+?>
+    Tapahtuma: &(event_str:h);<br />
+<?php
+    }
+}
+if (   !isset($supervisor)
+    || $supervisor->guid != $todo->metadata->creator) {
+    $creator = new fi_kilonkipinat_account_person_dba($todo->metadata->creator);
+    if ($creator->id == $todo->metadata->creator) {
+        $creator_str = '<a href="/extranet/nettisivut/kayttajat/person/view/' . $creator->guid . '/" title="' . $creator->firstname .' ' . $creator->lastname . '">' . $creator->nickname . '</a>';
+?>
+    Nakin luoja: &(creator_str:h);<br />
+<?php
+    }
 }
 ?>
+</div>

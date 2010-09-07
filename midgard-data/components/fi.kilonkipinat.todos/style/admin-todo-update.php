@@ -2,6 +2,6 @@
 // Available request keys: controller, indexmode, schema, schemadb
 ?>
 
-<h1>Muokkaa tehtävää</h1>
+<h1>Muokkaa nakkia</h1>
 
 <?php $data['controller']->display_form (); ?>

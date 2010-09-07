@@ -1,6 +1,6 @@
 'default' => array
 (
-    'description' => 'tehtävä',
+    'description' => 'nakki',
     'fields'      => array
     (
         'title' => Array
@@ -11,9 +11,44 @@
             'type' => 'text',
             'widget' => 'text',
         ),
+        'deadline' => array
+        (
+            'title' => 'Parasta ennen',
+            'storage' => 'deadline',
+            'type' => 'date',
+            'type_config' => array
+            (
+                'storage_type' => 'ISO'
+            ),
+            'widget' => 'jsdate',
+            'widget_config' => array
+            (
+                'hide_seconds' => true,
+                'show_time' => false,
+            ),
+        ),
+        'weight' => array
+        (
+            'title' => 'Paino',
+            'storage' => 'weight',
+            'type' => 'select',
+            'type_config' => array
+            (
+                'options' => array(
+                    FI_KILONKIPINAT_TODOS_TODOITEM_WEIGHT_ULTRALIGHT => 'weight_'.FI_KILONKIPINAT_TODOS_TODOITEM_WEIGHT_ULTRALIGHT,
+                    FI_KILONKIPINAT_TODOS_TODOITEM_WEIGHT_LIGHT => 'weight_'.FI_KILONKIPINAT_TODOS_TODOITEM_WEIGHT_LIGHT,
+                    FI_KILONKIPINAT_TODOS_TODOITEM_WEIGHT_MEDIUM => 'weight_'.FI_KILONKIPINAT_TODOS_TODOITEM_WEIGHT_MEDIUM,
+                    FI_KILONKIPINAT_TODOS_TODOITEM_WEIGHT_HEAVY => 'weight_'.FI_KILONKIPINAT_TODOS_TODOITEM_WEIGHT_HEAVY,
+                    FI_KILONKIPINAT_TODOS_TODOITEM_WEIGHT_SUPERHEAVY => 'weight_'.FI_KILONKIPINAT_TODOS_TODOITEM_WEIGHT_SUPERHEAVY,
+                ),
+                'allow_other' => false,
+                'allow_multiple' => false,
+            ),
+            'widget' => 'select',
+        ),
         'content' => Array
         (
-            'title' => 'content',
+            'title' => 'Kuvaus',
             'storage' => 'content',
             'required' => true,
             'type' => 'text',

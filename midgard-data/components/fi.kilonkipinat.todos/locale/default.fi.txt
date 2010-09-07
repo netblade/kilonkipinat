@@ -6,3 +6,22 @@
 Nakkilistat
 ---STRINGEND
 
+---STRING weight_1000
+Lähes olematon
+---STRINGEND
+
+---STRING weight_1200
+Kevyehkö
+---STRINGEND
+
+---STRING weight_1300
+Normimeisinki
+---STRINGEND
+
+---STRING weight_1400
+Raskas
+---STRINGEND
+
+---STRING weight_1500
+Lyijyklöntti
+---STRINGEND
