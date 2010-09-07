@@ -21,5 +21,18 @@ class fi_kilonkipinat_account_interface extends midcom_baseclasses_components_in
         parent::__construct();
         $this->_component = 'fi.kilonkipinat.account';
     }
+    /**
+     * Simple lookup method which tries to map the guid to an article of out topic.
+     */
+    function _on_resolve_permalink($topic, $config, $guid)
+    {
+        $person = new fi_kilonkipinat_account_person_dba($guid);
+        if (!$person)
+        {
+            return null;
+        }
+
+        return "person/view/{$person->guid}/";
+    }
 }
 ?>
