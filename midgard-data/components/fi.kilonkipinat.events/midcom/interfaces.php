@@ -28,6 +28,7 @@ class fi_kilonkipinat_events_interface extends midcom_baseclasses_components_int
         (
             'midcom.helper.datamanager2',
             'org.routamc.positioning',
+            'net.nemein.rss',
         );
     }
 

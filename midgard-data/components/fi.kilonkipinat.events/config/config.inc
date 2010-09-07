@@ -1,4 +1,5 @@
 /* The schema database to use */
+'schemadb_config' => 'file:/fi/kilonkipinat/events/config/config_schemadb.inc',
 'schemadb' => 'file:/fi/kilonkipinat/events/config/schemadb_default.inc',
 'schemadb_location' => 'file:/fi/kilonkipinat/events/config/schemadb_location_default.inc',
 'schemadb_feed'        => 'file:/net/nemein/rss/config/schemadb_default.inc',

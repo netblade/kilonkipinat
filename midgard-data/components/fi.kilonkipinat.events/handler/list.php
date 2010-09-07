@@ -155,6 +155,13 @@ class fi_kilonkipinat_events_handler_list extends midcom_baseclasses_components_
         $_MIDCOM->set_pagetitle("{$this->_topic->extra}");
 
         $this->_load_datamanager();
+        
+        $limit = 10;
+        
+        if (   isset($args[0])
+            && (int)$args[0] > 0) {
+            $limit = (int)$args[0];
+        }
 
         // Get the requested date range
         // TODO: Check format as YYYY-MM-DD via regexp
@@ -171,6 +178,7 @@ class fi_kilonkipinat_events_handler_list extends midcom_baseclasses_components_
         }
         $qb_events->add_constraint('start', '>=', date('Y-m-d H:i:s', $start));
         $qb_events->add_order('start');
+        $qb_events->set_limit($limit);
         $events = $qb_events->execute();
 
         $this->_events = $events;

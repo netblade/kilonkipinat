@@ -2,15 +2,14 @@
 (
     'description' => 'Default Configuration Schema',
     'fields'      => array
-    ( 
-        /**** Display settings ****/
+    (
         'index_count' => array
         (
             'title' =>  'index count',
             'storage' => array
             (
                 'location' => 'configuration',
-                'domain' => 'net.nemein.calendar',
+                'domain' => 'fi.kilonkipinat.events',
                 'name' => 'index_count',
             ),
             'type' => 'text',
@@ -20,14 +19,13 @@
                 'title' => 'display settings',
             ),
         ),
-        
         'categories' => array
         (
             'title' =>  'categories',
             'storage' => array
             (
                 'location' => 'configuration',
-                'domain' => 'net.nemein.calendar',
+                'domain' => 'fi.kilonkipinat.events',
                 'name' => 'categories',
             ),
             'type' => 'text',
@@ -39,7 +37,7 @@
             'storage' => array
             (
                 'location' => 'configuration',
-                'domain' => 'net.nemein.calendar',
+                'domain' => 'fi.kilonkipinat.events',
                 'name' => 'enable_filters',
             ),
             'type' => 'select',
@@ -60,7 +58,7 @@
             'storage' => array
             (
                 'location' => 'configuration',
-                'domain' => 'net.nemein.calendar',
+                'domain' => 'fi.kilonkipinat.events',
                 'name' => 'archive_year_order',
             ),
             'type' => 'select',
@@ -82,7 +80,7 @@
             'storage' => array
             (
                 'location' => 'configuration',
-                'domain' => 'net.nemein.calendar',
+                'domain' => 'fi.kilonkipinat.events',
                 'name' => 'rss_subscription_enable',
             ),
             'type' => 'select',
@@ -102,6 +100,90 @@
             ),
             'end_fieldset' => 1,
         ),
-        net_nemein_rss_helpers::default_rss_config_schema_fields('fi.kilonkipinat.events')
-    )
+        'rss_enable' => array
+        (
+            'title' => $_MIDCOM->i18n->get_string('rss_enable', 'net.nemein.rss'),
+            'storage' => array
+            (
+                'location' => 'configuration',
+                'domain' => 'fi.kilonkipinat.events',
+                'name' => 'rss_enable',
+            ),
+            'type' => 'select',
+            'type_config' => array
+            (
+                'options' => array
+                (
+                    '' => 'default setting',
+                    '1' => 'yes',
+                    '0' => 'no',
+                ),
+            ),
+            'widget' => 'select',
+            'start_fieldgroup' => array
+            (
+                'title' =>  $_MIDCOM->i18n->get_string('rss export settings', 'net.nemein.rss'),
+            ),
+        ),
+        'rss_count' => array
+        (
+            'title' => $_MIDCOM->i18n->get_string('rss_count', 'net.nemein.rss'),
+            'storage' => array
+            (
+                'location' => 'configuration',
+                'domain' => 'fi.kilonkipinat.events',
+                'name' => 'rss_count',
+            ),
+            'type' => 'text',
+            'widget' => 'text',
+        ),
+        'rss_title' => array
+        (
+            'title' => $_MIDCOM->i18n->get_string('rss_title', 'net.nemein.rss'),
+            'storage' => array
+            (
+                'location' => 'configuration',
+                'domain' => 'fi.kilonkipinat.events',
+                'name' => 'rss_title',
+            ),
+            'type' => 'text',
+            'widget' => 'text',
+        ),
+        'rss_description' => array
+        (
+            'title' => $_MIDCOM->i18n->get_string('rss_description', 'net.nemein.rss'),
+            'storage' => array
+            (
+                'location' => 'configuration',
+                'domain' => 'fi.kilonkipinat.events',
+                'name' => 'rss_description',
+            ),
+            'type' => 'text',
+            'widget' => 'text',
+        ),
+        'rss_webmaster' => array
+        (
+            'title' => $_MIDCOM->i18n->get_string('rss_webmaster', 'net.nemein.rss'),
+            'storage' => array
+            (
+                'location' => 'configuration',
+                'domain' => 'fi.kilonkipinat.events',
+                'name' => 'rss_webmaster',
+            ),
+            'type' => 'text',
+            'widget' => 'text',
+        ),
+        'rss_language' => array
+        (
+            'title' => $_MIDCOM->i18n->get_string('rss_language', 'net.nemein.rss'),
+            'storage' => array
+            (
+                'location' => 'configuration',
+                'domain' => 'fi.kilonkipinat.events',
+                'name' => 'rss_language',
+            ),
+            'type' => 'text',
+            'widget' => 'text',
+        ),
+    ),
 ),
