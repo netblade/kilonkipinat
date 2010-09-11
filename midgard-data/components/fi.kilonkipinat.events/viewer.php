@@ -428,10 +428,6 @@ class fi_kilonkipinat_events_viewer extends midcom_baseclasses_components_reques
                     unset($mc, $keys, $guid, $dummy);
                 }
 
-                /**
-                 * Ref #1776, expands GUIDs before adding them as constraints, should save query time
-                $qb->add_constraint('topic.guid', 'IN', $guids_array);
-                 */
                 $qb->add_constraint('topic', 'IN', $topic_ids);
             }
             else
@@ -459,36 +455,7 @@ class fi_kilonkipinat_events_viewer extends midcom_baseclasses_components_reques
         // Handle category filter
         if (isset($filters['category_filter']))
         {
-            /**
-             * This triggers bug http://trac.midgard-project.org/ticket/1009
-            $qb->begin_group('AND');
-                $qb->add_constraint('parameter.domain', '=', 'net.nemein.calendar');
-                $qb->add_constraint('parameter.name', '=', 'categories');
-                $qb->add_constraint('parameter.value', 'LIKE', "%|{$filters['category_filter']}|%");
-            $qb->end_group();
-             */
-            /**
-             * BEGIN: Workaround http://trac.midgard-project.org/ticket/1009 
-             * see also: http://trac.midgard-project.org/ticket/261
-             */
-            $mc = new midgard_collector('midgard_parameter', 'domain', 'net.nemein.calendar');
-            $mc->set_key_property('parentguid');
-            $mc->add_constraint('name', '=', 'categories');
-            $mc->add_constraint('value', 'LIKE', "%|{$filters['category_filter']}|%");
-            $mc->execute();
-            $keys = $mc->list_keys();
-            unset($mc);
-            $guids = array_keys($keys);
-            if (empty($guids))
-            {
-                // array constraint cannot be empty, see #1636
-                $guids[] = 'dummy';
-            }
-            $qb->add_constraint('guid', 'IN', $guids);
-            unset($keys, $guids);
-            /**
-             * END: Workaround http://trac.midgard-project.org/ticket/1009 
-             */
+            $qb->add_constraint('category', 'LIKE', "%|{$filters['category_filter']}|%");
         }
 
         return $qb;
