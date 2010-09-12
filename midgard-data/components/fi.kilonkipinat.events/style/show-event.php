@@ -87,6 +87,7 @@ if ($_MIDGARD['user']) {
 
 
 if ($show_location) {
+    $show_location_txt = true;
 ?>
     <div id="fi_kilonkipinat_events_event_location_details"><?php
     if ($event->eventslocation != 0) {
