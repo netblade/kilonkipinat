@@ -8,7 +8,7 @@ $end_ts = strtotime($data['trip']->end);
 $view_url = $prefix . 'view_event/' . $event->guid;
 ?>
 <div class="fi_kilonkipinat_events_list_item">
-    <h3><a href="&(view_url:h);">&(event.title:h);</a></h3>
+    <h3><a href="&(view_url:h);">&(event.title:h);<?php if ($event->visibility == FI_KILONKIPINAT_EVENTS_EVENT_VISIBILITY_SECURE) { echo ' *'; } ?></a></h3>
     <div class="dates">
         <?php
         if ($event->hideendtime) {

@@ -7,7 +7,7 @@ $start_ts = strtotime($event->start);
 $end_ts = strtotime($event->end);
 ?>
 <div id="fi_kilonkipinat_events_event">
-    <h1>&(event.title:h);</h1>
+    <h1>&(event.title:h);<?php if ($event->visibility == FI_KILONKIPINAT_EVENTS_EVENT_VISIBILITY_SECURE) { echo ' *'; } ?></h1>
     <div id="fi_kilonkipinat_events_event_details">
         <div class="dates">
             <h4>Ajankohta</h4>
