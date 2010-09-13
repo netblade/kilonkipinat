@@ -63,7 +63,7 @@ class fi_kilonkipinat_accountregistration_handler_index extends midcom_baseclass
                 if (trim($_POST['username']) == '') {
                     $error_msg = 'Täytä käyttäjätunnus-kenttä';
                 } else {
-                    $qb = fi_kilonkipinat_accountregistration_resetrequest_dba::new_query_builder();
+                    $qb = fi_kilonkipinat_account_person_dba::new_query_builder();
                     $qb->add_constraint('username', '=', trim($_POST['username']));
                     $qb->set_limit(1);
                     $user = $qb->execute();
