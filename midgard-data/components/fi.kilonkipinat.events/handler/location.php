@@ -19,7 +19,11 @@ class fi_kilonkipinat_events_handler_location extends midcom_baseclasses_compone
     
     public function _load_object($handler_id, $args, &$data)
     {
-        $object = new fi_kilonkipinat_events_location_dba($args[0]);
+        if (is_numeric($args[0])) {
+            $object = new fi_kilonkipinat_events_location_dba((int)$args[0]);
+        } else {
+            $object = new fi_kilonkipinat_events_location_dba($args[0]);
+        }
 
         if (   isset($object)
             && isset($object->guid)
