@@ -11,9 +11,13 @@
         <link rel="stylesheet" href="/style/css/ie6.css" type="text/css" media="screen" charset="utf-8">
     <![endif]-->
 
+    <link rel="shortcut icon" href="/style/img/favicon.ico">
+
 <!-- jqModal, http://dev.iceburg.net/jquery/jqModal/ -->
 <script type="text/javascript" src="/style/js/additional/jqModal.js"></script>
 <link rel="stylesheet" href="/style/css/additional/jqModal.css" type="text/css" media="screen" />
+
+<script type="text/javascript" src="/style/js/additional/jquery.simplemodal.1.4.min.js"></script>
 
 <script type="text/javascript" src="/style/js/additional/jquery.corner.js"></script>
 
