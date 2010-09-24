@@ -104,7 +104,7 @@ class fi_kilonkipinat_events_handler_feed extends midcom_baseclasses_components_
         $this->_events = $qb->execute();
 
         // Prepare the feed (this will also validate the handler_id)
-        $this->_create_feed($handler_id);
+        $this->_create_feed(str_replace('-user', '', $handler_id));
 
         return true;
     }
