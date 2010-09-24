@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="/style/css/ie6.css" type="text/css" media="screen" charset="utf-8">
     <![endif]-->
 
-    <link rel="shortcut icon" href="/style/img/favicon.ico">
+    <link rel="shortcut icon" href="/style/img/kkp_favicon.ico">
 
 <!-- jqModal, http://dev.iceburg.net/jquery/jqModal/ -->
 <script type="text/javascript" src="/style/js/additional/jqModal.js"></script>
