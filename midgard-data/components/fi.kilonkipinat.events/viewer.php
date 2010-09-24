@@ -169,6 +169,13 @@ class fi_kilonkipinat_events_viewer extends midcom_baseclasses_components_reques
             'handler' => array('fi_kilonkipinat_events_handler_feed', 'rss'),
             'fixed_args' => array('rss.xml'),
         );
+
+	    // / shows next N (configured number) events in RSS format
+	    $this->_request_switch['feed-rss2-user'] = Array
+	    (
+	        'handler' => array('fi_kilonkipinat_events_handler_feed', 'rss'),
+	        'fixed_args' => array('user', 'rss.xml'),
+	    );
         
         // / shows next N (configured number) events in RSS format
         $this->_request_switch['feed-ical'] = Array
@@ -190,6 +197,27 @@ class fi_kilonkipinat_events_viewer extends midcom_baseclasses_components_reques
             'handler' => array('fi_kilonkipinat_events_handler_feed', 'ical'),
             'fixed_args' => array('trips','ical.ics'),
         );
+
+	    // / shows next N (configured number) events in RSS format
+	    $this->_request_switch['feed-ical-user'] = Array
+	    (
+	        'handler' => array('fi_kilonkipinat_events_handler_feed', 'ical'),
+	        'fixed_args' => array('user', 'ical.ics'),
+	    );
+    
+	    // / shows next N (configured number) meetings in RSS format
+	    $this->_request_switch['feed-ical-meetings-user'] = Array
+	    (
+	        'handler' => array('fi_kilonkipinat_events_handler_feed', 'ical'),
+	        'fixed_args' => array('user', 'meetings','ical.ics'),
+	    );
+    
+	    // / shows next N (configured number) events in RSS format
+	    $this->_request_switch['feed-ical-trips-user'] = Array
+	    (
+	        'handler' => array('fi_kilonkipinat_events_handler_feed', 'ical'),
+	        'fixed_args' => array('user', 'trips','ical.ics'),
+	    );
         
         $this->_request_switch['feeds'] = Array
         (

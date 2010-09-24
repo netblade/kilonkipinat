@@ -64,7 +64,7 @@ class fi_kilonkipinat_events_handler_index extends midcom_baseclasses_components
         $qb_meetings = fi_kilonkipinat_events_event_dba::new_query_builder();
         $qb_meetings->add_constraint('topic', '=', $this->_topic->id);
         $qb_meetings->add_constraint('type', '>=', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_GENERIC);
-        $qb_meetings->add_constraint('type', '<', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_ANNUAL);
+        $qb_meetings->add_constraint('type', '<=', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_ANNUAL);
         $qb_meetings->add_constraint('end', '>', date('Y-m-d H:i:s', time()));
         $qb_meetings->add_order('start');
         if (!$_MIDGARD['user']) {

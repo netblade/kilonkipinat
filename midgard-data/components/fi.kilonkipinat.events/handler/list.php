@@ -80,7 +80,7 @@ class fi_kilonkipinat_events_handler_list extends midcom_baseclasses_components_
         $qb_meetings = fi_kilonkipinat_events_event_dba::new_query_builder();
         $qb_meetings->add_constraint('topic', '=', $this->_topic->id);
         $qb_meetings->add_constraint('type', '>=', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_GENERIC);
-        $qb_meetings->add_constraint('type', '<', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_ANNUAL);
+        $qb_meetings->add_constraint('type', '<=', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_ANNUAL);
         $qb_meetings->add_constraint('start', '>=', date('Y-m-d H:i:s', $start));
         $qb_meetings->add_constraint('start', '<', date('Y-m-d H:i:s', $end));
         if (!$_MIDGARD['user']) {
@@ -180,7 +180,7 @@ class fi_kilonkipinat_events_handler_list extends midcom_baseclasses_components_
             $qb_events->add_constraint('type', '<', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_GENERIC);
         } else {
             $qb_events->add_constraint('type', '>=', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_GENERIC);
-            $qb_events->add_constraint('type', '<', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_ANNUAL);
+            $qb_events->add_constraint('type', '<=', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_ANNUAL);
         }
         $qb_events->add_constraint('start', '>=', date('Y-m-d H:i:s', $start));
         if (!$_MIDGARD['user']) {

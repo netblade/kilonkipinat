@@ -75,6 +75,10 @@ class fi_kilonkipinat_events_handler_feed extends midcom_baseclasses_components_
 
         $_MIDCOM->skip_page_style = true;
 
+		if (strstr($handler_id, 'user')) {
+			$_MIDCOM->auth->require_valid_user('basic');
+		}
+
         // Prepare control structures
         $this->_datamanager = new midcom_helper_datamanager2_datamanager($data['schemadb']);
 
@@ -186,15 +190,19 @@ class fi_kilonkipinat_events_handler_feed extends midcom_baseclasses_components_
 
         $_MIDCOM->skip_page_style = true;
 
+		if (strstr($handler_id, 'user')) {
+			$_MIDCOM->auth->require_valid_user('basic');
+		}
+
         // Prepare control structures
         $this->_datamanager = new midcom_helper_datamanager2_datamanager($data['schemadb']);
 
         // Get the pre-filtered QB
         $qb = fi_kilonkipinat_events_viewer::prepare_event_qb($this->_request_data, $this->_config);
-        if ($handler_id == 'feed-ical-meetings') {
+        if (strstr($handler_id, 'meetings')) {
             $qb->add_constraint('type', '>=', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_GENERIC);
-            $qb->add_constraint('type', '<', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_ANNUAL);
-        } elseif ($handler_id == 'feed-ical-trips') {
+            $qb->add_constraint('type', '<=', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_ANNUAL);
+        } elseif (strstr($handler_id, 'trips')) {
             $qb->add_constraint('type', '>=', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_GENERIC);
             $qb->add_constraint('type', '<', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_GENERIC);
         }
