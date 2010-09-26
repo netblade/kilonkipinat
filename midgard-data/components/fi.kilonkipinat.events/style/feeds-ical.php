@@ -9,6 +9,19 @@ if ($data['events'])
 {
     foreach ($data['events'] as $event)
     {
+		$content = $event->content;
+		if (   strstr($data['handler_id'], 'user')
+			&& strlen(strip_tags($event->contentprivate))>0) {
+			$content .= '\n\nLisätiedot jäsenille:\n\n' . $event->contentprivate;
+		}
+		$content = str_replace('<p>', '\n\n', $content);
+		$content = str_replace('<br />', '\n', $content);
+		$content = str_replace('<li>', '\n', $content);
+		$content = trim($content, '\n');
+		$content = str_replace('\n\n\n', '\n\n', $content);
+		$content = str_replace('\n\n\n', '\n\n', $content);
+		$content = str_replace("\n", "\n  ", $content);
+		$content = strip_tags($content);
         echo "BEGIN:VEVENT\n";
         echo "X-WR-TIMEZONE:Europe/Helsinki\n";
         echo "CREATED:" . date('Ymd\THis\Z', $event->metadata->created) . "\n";
@@ -22,7 +35,7 @@ if ($data['events'])
             echo "DTEND;TZID=Europe/Helsinki:" . date('Ymd\THis', strtotime($event->end)) . "\n";
         }
         echo "SUMMARY:" . $event->title . "\n";
-        echo "DESCRIPTION:" . strip_tags($event->content) . "\n";
+        echo "DESCRIPTION:" . $content . "\n";
         echo "URL:" . $_MIDCOM->permalinks->create_permalink($event->guid) . "\n";
         $location = '';
         if ($event->eventslocation != 0) {

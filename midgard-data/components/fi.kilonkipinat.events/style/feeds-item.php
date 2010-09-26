@@ -41,6 +41,11 @@ if ($data['config']->get('rss_use_content'))
     $item->description .= "\n" . $data['datamanager']->types['content']->convert_to_html();
 }
 
+if (   strstr($data['handler_id'], 'user')
+	&& strlen(strip_tags($data['event']->contentprivate)) > 0) {
+	$item->description .= "<h2>Lisätiedot jäsenille:</h2>" . $data['event']->contentprivate;
+}
+
 // Replace links
 $item->description = preg_replace(',<(a|link|img|script|form|input)([^>]+)(href|src|action)="/([^>"\s]+)",ie', '"<\1\2\3=\"' . $_MIDCOM->get_host_name() . '/\4\""', $item->description);
 
