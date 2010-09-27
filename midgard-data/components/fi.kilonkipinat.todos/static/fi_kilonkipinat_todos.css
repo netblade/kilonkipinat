@@ -1,0 +1,19 @@
+#fi_kilonkipinat_todos_list_all_filters_container label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.fi_kilonkipinat_todos_list_all_filters_filter {
+    float: left;
+    margin-right: 10px;
+}
+
+.fi_kilonkipinat_todos_list_all_filters_filter_select_multiple {
+    height: 100px;
+    width: 130px;
+}
+
+.fi_kilonkipinat_todos_list_all_filters_filter_select {
+    width: 130px;
+}

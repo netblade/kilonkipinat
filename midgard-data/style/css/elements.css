@@ -753,3 +753,65 @@ p.excerpt {
 .fi_kilonkipinat_website_toggler_content {
     padding: 5px 0;
 }
+
+select.list {
+    min-width: 300px;
+}
+
+#simplemodal-overlay {
+    background-color: #000;
+}
+#simplemodal-container {
+    background-color: #FFFFFF;
+    border: 8px solid #444;
+    -moz-border-radius: 15px;
+    padding: 12px;
+}
+
+#simplemodal-container a.modalCloseImg {
+    background: url('/style/img/additional/x.png') no-repeat; /* adjust url as required */
+    width: 25px;
+    height: 29px;
+    display: inline;
+    z-index: 3200;
+    position: absolute;
+    top: -15px;
+    right: -18px;
+    cursor: pointer;
+}
+
+.basic_list th {
+    text-align: left;
+    padding-right: 5px;
+}
+
+#fi_kilonkipinat_todos_info_container #fi_kilonkipinat_todos_todoitem_info_tools {
+    float: right;
+    background: threedface;
+    padding: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
+    border: 2px solid #30736f;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+#fi_kilonkipinat_todos_info_container #fi_kilonkipinat_todos_todoitem_info_tools ul,
+#fi_kilonkipinat_todos_info_container #fi_kilonkipinat_todos_todoitem_info_tools ul li {
+    margin: 0px;
+    padding: 0px;
+    background: 0px;
+}
+
+#fi_kilonkipinat_todos_todoitem_info_content {
+    height: 150px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+#fi_kilonkipinat_todos_todoitem_comments {
+    display: block;
+    clear: both;
+    height: 200px;
+    overflow-y: auto;
+}

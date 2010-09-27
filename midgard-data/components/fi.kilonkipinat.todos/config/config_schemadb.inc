@@ -3,31 +3,76 @@
     'description' => 'Default Configuration Schema', /* This is a topic */
     'fields'      => array
     ( 
-        'sort_order' => array
+        'root_group_to_show' => array
         (
-            'title' => 'sort_order',
+            'title' => 'Sivuston käyttäjien perusryhmä',
             'storage' => array
             (
                 'location' => 'configuration',
-                'domain' => 'net.nehmer.static',
-                'name' => 'sort_order',
+                'domain' => 'fi.kilonkipinat.todos',
+                'name' => 'root_group_to_show',
             ),
             'type' => 'select',
             'type_config' => array
             (
-                'options' => array
+                'require_corresponding_option' => false,
+                'options' => array(),
+                'allow_other' => false,
+                'allow_multiple' => false,
+            ),
+            'widget' => 'chooser',
+            'widget_config' => array
+            (
+                'class'       => 'midcom_db_group',
+                'component'   => 'fi.kilonkipinat.todos',
+                'titlefield'  => 'official',
+                'id_field'     => 'guid',
+                'searchfields' => array
                 (
-                    '' => 'default setting',
-                    'reverse score' => 'reverse score',
-                    'score' => 'score',
-                    'reverse title' => 'reverse title',
-                    'title' => 'title',
-                    'reverse created' => 'reverse created',
-                    'created' => 'created',
+                    'official',
+                    'name',
+                ),
+                'constraints' => array
+                (
+                    array
+                    (
+                        'field' => 'official',
+                        'op' => '<>',
+                        'value' => '',
+                    ),
+                    array
+                    (
+                        'field' => 'up',
+                        'op' => '<>',
+                        'value' => '0',
+                    ),
+                ),
+                'result_headers' => array
+                (
+                    array
+                    (
+                        'name' => 'official',
+                        'title' => $_MIDCOM->i18n->get_string('official', 'midcom'),
+                    ),
+                    array
+                    (
+                        'name' => 'name',
+                        'title' => $_MIDCOM->i18n->get_string('name', 'midcom'),
+                    ),
+                ),
+                'generate_path_for' => 'official',
+                'orders' => array
+                (
+                    array
+                    (
+                        'official' => 'ASC',
+                    ),
+                    array
+                    (
+                        'name' => 'ASC',
+                    ),
                 ),
             ),
-            'widget' => 'select',
         ),
-        
     )
 ),

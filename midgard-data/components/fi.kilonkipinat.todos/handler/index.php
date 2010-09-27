@@ -49,14 +49,7 @@ class fi_kilonkipinat_todos_handler_index extends midcom_baseclasses_components_
 
         $this->_update_breadcrumb_line($handler_id);
 
-        $qb_mytodos = fi_kilonkipinat_todos_todoitem_dba::new_query_builder();
-        $qb_mytodos->add_constraint('topic', '=', $this->_request_data['content_topic']->id);
-        $qb_mytodos->add_constraint('person', '=', $_MIDGARD['user']);
-        $mytodos = $qb_mytodos->execute();
-
-		$data['mytodos'] = 
-
-        $title = $this->_l10n_midcom->get('index');
+        $title = 'Nakit';
         $_MIDCOM->set_pagetitle(":: {$title}");
         return true;
     }

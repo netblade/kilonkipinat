@@ -19,6 +19,9 @@
         <property name="status" type="unsigned integer" index="yes">
             <description>Status of the todo</description>
         </property>
+        <property name="visibility" type="unsigned integer" index="yes">
+            <description>Boolean indicating if the todoitem is secure</description>
+        </property>
         <property name="weight" type="unsigned integer" index="yes">
             <description>Weight of the todoitem</description>
         </property>

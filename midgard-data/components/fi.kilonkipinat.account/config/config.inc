@@ -5,6 +5,7 @@
 'schemadb_jobhistory_job' => 'file:/fi/kilonkipinat/account/config/schemadb_jobhistory_job_default.inc',
 'schema' => 'default',
 
+'root_group_to_show' => null,
 
 'password_min_length' => 8,
 

@@ -305,6 +305,24 @@
                 ),
             ),
         ),
+        'category' => array
+        (
+            'title' => 'Kategoriat',
+            'storage' => 'category',
+            'type' => 'select',
+            'widget' => 'select',
+            'type_config' => array(
+                'require_corresponding_option' => false,
+                'options' => fi_kilonkipinat_todos_viewer::getCategories(),
+                'allow_other' => false,
+                'allow_multiple' => true,
+                'multiple_storagemode' => 'imploded_wrapped',
+            ),    
+            'widget_config' => Array 
+            ( 
+                'height' => count(explode(',', $this->_config->get('categories'))),
+            ),
+        ),
     ),
 ),
 

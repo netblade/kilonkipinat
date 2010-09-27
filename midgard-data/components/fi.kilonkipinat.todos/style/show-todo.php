@@ -62,4 +62,19 @@ if (   !isset($supervisor)
     }
 }
 ?>
+<?php
+$comments_node = fi_kilonkipinat_website::seek_comments($data);
+if ($comments_node)
+{
+    $comments_url = $comments_node[MIDCOM_NAV_RELATIVEURL] . "comment/{$todo->guid}";
+}
+?>
+<div id="fi_kilonkipinat_todos_todoitem_comments">
+<?php
+if (isset($comments_url))
+{
+    $_MIDCOM->dynamic_load($comments_url);
+}
+?>
+</div>
 </div>

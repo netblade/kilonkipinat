@@ -98,6 +98,7 @@ class fi_kilonkipinat_todos_handler_todo extends midcom_baseclasses_components_h
     {
         $this->_todo = new fi_kilonkipinat_todos_todoitem_dba();
         $this->_todo->topic = $this->_request_data['content_topic']->id;
+        $this->_todo->status = FI_KILONKIPINAT_TODOS_TODOITEM_STATUS_NEW;
         
         if (! $this->_todo->create())
         {

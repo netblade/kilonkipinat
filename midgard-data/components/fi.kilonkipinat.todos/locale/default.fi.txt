@@ -25,3 +25,43 @@ Raskas
 ---STRING weight_1500
 Lyijyklöntti
 ---STRINGEND
+
+---STRING status_1000
+Tuore nakki
+---STRINGEND
+
+---STRING status_1100
+Riippuva nakki
+---STRINGEND
+
+---STRING status_1200
+Syötävä nakki
+---STRINGEND
+
+---STRING status_1400
+Syöty nakki (tehty)
+---STRINGEND
+
+---STRING status_2000
+Kompostoitu nakki (suljettu)
+---STRINGEND
+
+---STRING short_status_1000
+Tuore
+---STRINGEND
+
+---STRING short_status_1100
+Riippuva
+---STRINGEND
+
+---STRING short_status_1200
+Syötävä
+---STRINGEND
+
+---STRING short_status_1400
+Syöty
+---STRINGEND
+
+---STRING short_status_2000
+Kompostoitu
+---STRINGEND

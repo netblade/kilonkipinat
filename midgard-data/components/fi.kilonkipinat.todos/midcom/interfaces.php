@@ -20,6 +20,10 @@ class fi_kilonkipinat_todos_interface extends midcom_baseclasses_components_inte
     {
         parent::__construct();
         $this->_component = 'fi.kilonkipinat.todos';
+        $this->_autoload_libraries = array
+        (
+            'org.openpsa.qbpager',
+        );
     }
 
     function _on_initialize()
@@ -36,6 +40,7 @@ class fi_kilonkipinat_todos_interface extends midcom_baseclasses_components_inte
         define('FI_KILONKIPINAT_TODOS_TODOITEM_STATUS_PENDING', 1100);
         define('FI_KILONKIPINAT_TODOS_TODOITEM_STATUS_ACKNOWLEDGED', 1200);
         define('FI_KILONKIPINAT_TODOS_TODOITEM_STATUS_RESOLVED', 1400);
+        define('FI_KILONKIPINAT_TODOS_TODOITEM_STATUS_CLOSED', 2000);
 
         define('FI_KILONKIPINAT_TODOS_TODOITEM_RELATED_LINKTYPE_PENDING', 1000);
         define('FI_KILONKIPINAT_TODOS_TODOITEM_RELATED_LINKTYPE_DUPLICATE', 1100);
@@ -45,6 +50,9 @@ class fi_kilonkipinat_todos_interface extends midcom_baseclasses_components_inte
         define('FI_KILONKIPINAT_TODOS_TODOITEM_WEIGHT_MEDIUM', 1200);
         define('FI_KILONKIPINAT_TODOS_TODOITEM_WEIGHT_HEAVY', 1300);
         define('FI_KILONKIPINAT_TODOS_TODOITEM_WEIGHT_SUPERHEAVY', 1400);
+        
+        define('FI_KILONKIPINAT_TODOS_TODOITEM_VISIBILITY_PUBLIC', 1000);
+        define('FI_KILONKIPINAT_TODOS_TODOITEM_VISIBILITY_SECURE', 1100);
     }
     
     /**

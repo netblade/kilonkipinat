@@ -9,6 +9,7 @@ $prefix = $data['prefix'];
 $qb_my = fi_kilonkipinat_todos_todoitem_dba::new_query_builder();
 $qb_my->add_constraint('person', '=', $_MIDGARD['user']);
 $qb_my->add_order('deadline', 'ASC');
+$qb_my->set_limit(5);
 $todos_my = $qb_my->execute();
 ?>
 <h2><a href="#" class="fi_kilonkipinat_website_toggler_trigger" onclick="return false;">Mulle nakitetut (<?php echo count($todos_my); ?>)</a></h2>
@@ -68,6 +69,7 @@ if (count($todos_my)>0) {
 <?php
 $my_groups = array();
 $mc_my_groups = midcom_db_member::new_collector('sitegroup', $_MIDGARD['sitegroup']);
+$mc_my_groups->add_constraint('uid', '=', $_MIDGARD['user']);
 $mc_my_groups->add_value_property('gid');
 $mc_my_groups->execute();
 $tmp_keys = $mc_my_groups->list_keys();
@@ -82,6 +84,7 @@ $qb_my_groups = fi_kilonkipinat_todos_todoitem_dba::new_query_builder();
 $qb_my_groups->add_constraint('grp', 'IN', $my_groups);
 $qb_my_groups->add_constraint('grp', '<>', 0);
 $qb_my_groups->add_order('deadline', 'ASC');
+$qb_my_groups->set_limit(5);
 $todos_my_groups = $qb_my_groups->execute();
 ?>
 <h2><a href="#" class="fi_kilonkipinat_website_toggler_trigger" onclick="return false;">Mun ryhmille nakitetut (<?php echo count($todos_my_groups); ?>)</a></h2>
@@ -142,6 +145,7 @@ if (count($todos_my_groups)>0) {
 $qb_my_supervised = fi_kilonkipinat_todos_todoitem_dba::new_query_builder();
 $qb_my_supervised->add_constraint('supervisor', '=', $_MIDGARD['user']);
 $qb_my_supervised->add_order('deadline', 'ASC');
+$qb_my_supervised->set_limit(5);
 $todos_my_supervised = $qb_my_supervised->execute();
 ?>
 <h2><a href="#" class="fi_kilonkipinat_website_toggler_trigger" onclick="return false;">Minä valvojana (<?php echo count($todos_my_supervised); ?>)</a></h2>
