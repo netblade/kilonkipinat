@@ -74,7 +74,7 @@ if ($data['events'])
                             }
                         }
                         if ($event->locationtext != '') {
-                            $location .= $event->locationtext . ', ' . $location;
+                            $location = $event->locationtext . ', ' . $location;
                         }
                     }
                 }
