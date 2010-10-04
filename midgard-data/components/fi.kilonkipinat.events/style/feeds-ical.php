@@ -47,14 +47,34 @@ if ($data['events'])
                 if (class_exists('org_routamc_positioning_object'))
                 {
                     $object_position = new org_routamc_positioning_object($location_object);
-                    $coordinates = $object_position->get_coordinates();
-                    if (   $coordinates['latitude']
-                        && $coordinates['longitude'])
-                    {
-                        $data['datamanager']->autoset_storage($event);
-                        $view_event = $data['datamanager']->get_content_html();
-                        if (trim(strip_tags($view_event['location'])) != '') {
-                            $location = trim(strip_tags($view_event['location']));
+                    $location_object = $object_position->seek_location_object();
+
+                    if (   $location_object) {
+                        if (   $location_object->street
+                            && strlen($location_object->street)>0)
+                        {
+                            $location .= $location_object->street;
+                        }
+                        if (   $location_object->postalcode
+                            && strlen($location_object->postalcode)>0)
+                        {
+                            if ($location != '') {
+                                $location .= ', ' . $location_object->postalcode;
+                            } else {
+                                $location .= $location_object->postalcode;
+                            }
+                        }
+                        if (   $location_object->region
+                            && strlen($location_object->region)>0)
+                        {
+                            if ($location != '') {
+                                $location .= ', ' . $location_object->region;
+                            } else {
+                                $location .= $location_object->region;
+                            }
+                        }
+                        if ($event->locationtext != '') {
+                            $location .= $event->locationtext . ', ' . $location;
                         }
                     }
                 }
