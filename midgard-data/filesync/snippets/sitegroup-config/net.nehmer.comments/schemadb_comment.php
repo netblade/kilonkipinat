@@ -61,5 +61,13 @@
             'widget' => 'select',
             'hidden' => true,
         ),
+        'subscribe' => array
+        (
+            'title'      => 'subscribe',
+            'storage'   => null,
+            'type'      => 'boolean',
+            'widget'   => 'checkbox',
+            'hidden' => !$_MIDCOM->auth->user,
+        ),
     ),
 ),
