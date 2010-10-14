@@ -1,6 +1,6 @@
 'retki' => array
 (
-    'description' => 'Retki',
+    'description' => 'Tapahtuma',
     'fields'      => array
     (
         'title' => Array
