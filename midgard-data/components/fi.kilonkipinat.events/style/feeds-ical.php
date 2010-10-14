@@ -1,5 +1,6 @@
 <?php
 $prefix = $data['prefix'];
+$url_prefix = $_MIDCOM->get_host_name() . $_MIDCOM->get_context_data(MIDCOM_CONTEXT_ANCHORPREFIX) . "view_event/";
 echo "BEGIN:VCALENDAR\n";
 echo "VERSION:2.0\n";
 echo "PRODID:-//hacksw/handcal//NONSGML v1.0//EN\n";
@@ -36,7 +37,8 @@ if ($data['events'])
         }
         echo "SUMMARY:" . $event->title . "\n";
         echo "DESCRIPTION:" . $content . "\n";
-        echo "URL:" . $_MIDCOM->permalinks->create_permalink($event->guid) . "\n";
+//        echo "URL:" . $_MIDCOM->permalinks->create_permalink($event->guid) . "\n";
+		echo "URL:" . $url_prefix . $event->guid . '/';
         $location = '';
         if ($event->eventslocation != 0) {
             $eventlocation = new fi_kilonkipinat_events_location_dba($event->eventslocation);

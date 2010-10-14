@@ -20,7 +20,7 @@ if (count($authors) > 1)
 
 $item->title = sprintf('%s: %s', strftime('%x', strtotime($data['event']->start)), $data['event']->title);
 $arg = $data['event']->guid;
-$item->link = $_MIDCOM->get_host_name() . $_MIDCOM->get_context_data(MIDCOM_CONTEXT_ANCHORPREFIX) . "{$arg}/";
+$item->link = $_MIDCOM->get_host_name() . $_MIDCOM->get_context_data(MIDCOM_CONTEXT_ANCHORPREFIX) . "view_event/{$arg}/";
 
 // Add xCal data to item
 $item->additionalElements['xcal:dtstart'] = $data['event']->start . 'Z';
