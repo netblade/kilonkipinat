@@ -182,7 +182,7 @@ class fi_kilonkipinat_events_handler_list extends midcom_baseclasses_components_
             $qb_events->add_constraint('type', '>=', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_GENERIC);
             $qb_events->add_constraint('type', '<=', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_ANNUAL);
         }
-        $qb_events->add_constraint('start', '>=', date('Y-m-d H:i:s', $start));
+        $qb_events->add_constraint('end', '>=', date('Y-m-d H:i:s', $start));
         if (!$_MIDGARD['user']) {
             $qb_events->add_constraint('visibility', '=', FI_KILONKIPINAT_EVENTS_EVENT_VISIBILITY_PUBLIC);
         }
