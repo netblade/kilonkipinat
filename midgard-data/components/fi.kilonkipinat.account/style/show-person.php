@@ -23,15 +23,23 @@ foreach ($data['schemadb_person']['default']->fields as $key => $data) {
         $content = $person->$data['storage'];
     }
     if ($data['type'] == 'date') {
+		$content_ts = strtotime($content);
+		if (date('d.m.Y', $content_ts) == '01.01.1970') {
+			continue;
+		}
         if (   isset($data['widget_config'])
             && isset($data['widget_config']['show_time'])
             && $data['widget_config']['show_time'] == false) {
-            $content = date('d.m.Y', strtotime($content));
+            $content = date('d.m.Y', $content_ts);
         } else {
-            $content = date('d.m.Y H:i', strtotime($content));
+            $content = date('d.m.Y H:i', $content_ts);
         }
         
     }
+
+	if ($content == '') {
+		continue;
+	}
 ?>
     <tr>
         <th>&(data['title']:h);</th>

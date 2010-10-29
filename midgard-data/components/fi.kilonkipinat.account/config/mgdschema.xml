@@ -65,6 +65,12 @@
             <description>Bank reference number</description>
         </property>
         <!-- Scouting related -->
+        <property name="memberNumber" type="string" index="yes">
+            <description>Membership number</description>
+        </property>
+        <property name="registrationNumber" type="string" index="yes">
+            <description>Registration number</description>
+        </property>
         <property name="scoutingStarted" type="datetime">
             <description>Scouting started</description>
         </property>
