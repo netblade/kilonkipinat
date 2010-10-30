@@ -82,6 +82,25 @@ if (   $can_edit
 	}
 }
 ?>
+<?php
+if ($todo->get_parameter('fi.kilonkipinat.todos:subscribe', $_MIDCOM->auth->user->guid) != '') {
+?>
+			<li class="enabled">
+				<a href="#" onclick="jQuery.application.subscribeToTodo('<?php echo $todo->guid; ?>', '0'); return false;">
+					<img alt="" src="/midcom-static/fi.kilonkipinat.website/fam/email_delete.png">&nbsp;<span class="toolbar_label">Poista seuranta</span>
+				</a>
+			</li>
+<?php	
+} else {
+?>
+			<li class="enabled">
+				<a href="#" onclick="jQuery.application.subscribeToTodo('<?php echo $todo->guid; ?>', '1'); return false;">
+					<img alt="" src="/midcom-static/fi.kilonkipinat.website/fam/email_add.png">&nbsp;<span class="toolbar_label">Seuraa nakkia</span>
+				</a>
+			</li>
+<?php	
+}
+?>
 		</ul>
 	</div>
 	<h2><?php echo $todo->title;?></h2>

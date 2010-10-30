@@ -25,5 +25,16 @@
     (
         'midcom.helper.datamanager2' => array(),
         'fi.kilonkipinat.account' => array(),
+        'org.openpsa.notifications' => array(),
     ),
+),
+'customdata' => array
+(
+    'org.openpsa.notifications' => array
+    (
+        'subscribe' => array
+        (
+            'default' => 'email',
+        ),
+    )
 ),

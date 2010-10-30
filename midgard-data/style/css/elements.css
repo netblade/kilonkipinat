@@ -815,3 +815,7 @@ select.list {
     height: 200px;
     overflow-y: auto;
 }
+
+#fi_kilonkipinat_todos_todoitem_comments #net_nehmer_comments_post_comment label#subscribe_label {
+    display: none;
+}

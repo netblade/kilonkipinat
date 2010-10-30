@@ -23,6 +23,7 @@ class fi_kilonkipinat_todos_interface extends midcom_baseclasses_components_inte
         $this->_autoload_libraries = array
         (
             'org.openpsa.qbpager',
+            'org.openpsa.notifications',
         );
     }
 

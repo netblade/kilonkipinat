@@ -34,7 +34,8 @@ var ApplicationBase = function()
     var _config = {
 		todoitem_show_url: '/midcom-exec-fi.kilonkipinat.todos/show_item.php',
 		todoitem_change_status_url: '/midcom-exec-fi.kilonkipinat.todos/change_status.php',
-		todoitem_comment_url: '/midcom-exec-fi.kilonkipinat.todos/comment_item.php'
+		todoitem_comment_url: '/midcom-exec-fi.kilonkipinat.todos/comment_item.php',
+		todoitem_subscribe_url: '/midcom-exec-fi.kilonkipinat.todos/subscribe.php'
 	};
 
     var _self;
@@ -136,7 +137,19 @@ var ApplicationBase = function()
             json['todoitem_guid'] = guid;
             json['new_status'] = new_status;
 
-            jQuery.postJSON(_config.todoitem_change_status_url, json, function(response) {
+            jQuery.postJSON(_config.todoitem_change_status_url, json, function(null_response) {
+                jQuery.postJSON(_config.todoitem_show_url, json, function(response) {
+                    _self._showTodoContent(guid, response);
+                });
+            });
+			return false;
+		},
+		subscribeToTodo: function(guid, action) {
+			var json = {};
+            json['todoitem_guid'] = guid;
+            json['action'] = action;
+
+            jQuery.postJSON(_config.todoitem_subscribe_url, json, function(null_response) {
                 jQuery.postJSON(_config.todoitem_show_url, json, function(response) {
                     _self._showTodoContent(guid, response);
                 });

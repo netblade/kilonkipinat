@@ -44,7 +44,20 @@ else
 $comment->status = 5;
 $comment->author = $_MIDCOM->auth->user->name;
 
-$comment->create();
+$status = $comment->create();
+
+echo $comment->guid;
+
+$todoitem = new fi_kilonkipinat_todos_todoitem_dba($_POST['todoitem_guid']);
+$GLOBALS['fi.kilonkipinat.todos_commented'] = true;
+$GLOBALS['fi.kilonkipinat.todos_update_message'] = '';
+if ($_POST['title'] != '') {
+    $GLOBALS['fi.kilonkipinat.todos_update_message'] = "\tOtsikko: " . $_POST['title'];
+}
+$GLOBALS['fi.kilonkipinat.todos_update_message'] .= "Kommentti:\n";
+$GLOBALS['fi.kilonkipinat.todos_update_message'] .= $_POST['content'] . "\n\n";
+
+$todoitem->_send_comment_notifications();
 
 $_MIDCOM->relocate($_POST['return_url']);
 ?>

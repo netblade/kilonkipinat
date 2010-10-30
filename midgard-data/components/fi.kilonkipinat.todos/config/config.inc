@@ -10,3 +10,5 @@
 'show_navigation_pseudo_leaves' => true,
 
 'index_entries' => 20,
+
+'enable_notify' => true,
