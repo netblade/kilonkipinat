@@ -19,7 +19,8 @@ if (count($todos)>0) {
     echo "\t</thead>";
     foreach ($todos as $todo) {
         echo "\t\t<tr>";
-        echo "\t\t\t<td><a href=\"".$prefix.'view_todo/'.$todo->guid."\">".$todo->title."</a></td>";
+//        echo "\t\t\t<td><a href=\"".$prefix.'view_todo/'.$todo->guid."\">".$todo->title."</a></td>\n";
+        echo "\t\t\t<td><a class=\"fi_kilonkipinat_todos_todoitem_modal_link\" href=\"#" . $todo->guid."\">".$todo->title."</a></td>\n";
         echo "\t\t\t<td>".fi_kilonkipinat_website::returnDate(strtotime($todo->deadline), 'short')."</td>";
         echo "\t\t\t<td>";
         if ($todo->person != 0) {
