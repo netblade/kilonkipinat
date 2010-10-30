@@ -26,7 +26,12 @@ if (count($todos)>0) {
         if ($todo->person != 0) {
             $person = new fi_kilonkipinat_account_person_dba($todo->person);
             if ($person->id == $todo->person) {
-                echo '<a href="/extranet/nettisivut/kayttajat/person/view/' . $person->guid . '/" title="' . $person->firstname .' ' . $person->lastname . '">' . $person->nickname . '</a>';
+				if ($person->nickname != '') {
+					$nickname = $person->nickname;
+				} else {
+					$nickname = $person->firstname . ' ' . $person->lastname;
+				}
+                echo '<a href="/extranet/nettisivut/kayttajat/person/view/' . $person->guid . '/" title="' . $person->firstname .' ' . $person->lastname . '">' . $nickname . '</a>'."";
             } else {
                 echo "&nbsp;";
             }

@@ -86,7 +86,12 @@ if (count($todos)>0) {
         if ($todo->supervisor != 0) {
             $supervisor = new fi_kilonkipinat_account_person_dba($todo->supervisor);
             if ($supervisor->id == $todo->supervisor) {
-                echo '<a href="/extranet/nettisivut/kayttajat/person/view/' . $supervisor->guid . '/" title="' . $supervisor->firstname .' ' . $supervisor->lastname . '">' . $supervisor->nickname . '</a>';
+				if ($supervisor->nickname != '') {
+					$nickname = $supervisor->nickname;
+				} else {
+					$nickname = $supervisor->firstname . ' ' . $supervisor->lastname;
+				}
+                echo '<a href="/extranet/nettisivut/kayttajat/person/view/' . $supervisor->guid . '/" title="' . $supervisor->firstname .' ' . $supervisor->lastname . '">' . $nickname . '</a>';
             } else {
                 echo "&nbsp;";
             }
