@@ -41,5 +41,6 @@ if ($_MIDCOM->get_context_data(MIDCOM_CONTEXT_ANCHORPREFIX) != '/')
     $_MIDCOM->uimessages->show();
 ?>
 <(google_analytics)>
+<div id="fi_kilonkipinat_todos_info_container" style="display: none;"></div>
 </body>
 </html>
