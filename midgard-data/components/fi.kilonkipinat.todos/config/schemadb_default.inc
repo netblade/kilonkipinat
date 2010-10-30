@@ -98,6 +98,12 @@
                         'op' => '<>',
                         'value' => '',
                     ),
+                    array
+                    (
+                        'field' => 'sitegroup',
+                        'op' => '<>',
+                        'value' => '0',
+                    ),
                 ),
                 'result_headers' => array
                 (
@@ -158,6 +164,12 @@
                         'op' => '<>',
                         'value' => '',
                     ),
+                    array
+                    (
+                        'field' => 'sitegroup',
+                        'op' => '<>',
+                        'value' => '0',
+                    ),
                 ),
                 'result_headers' => array
                 (
@@ -208,6 +220,12 @@
                         'field' => 'title',
                         'op' => '<>',
                         'value' => '',
+                    ),
+                    array
+                    (
+                        'field' => 'sitegroup',
+                        'op' => '<>',
+                        'value' => '0',
                     ),
                 ),
                 'result_headers' => array
@@ -276,6 +294,12 @@
                         'field' => 'firstname',
                         'op' => '<>',
                         'value' => '',
+                    ),
+                    array
+                    (
+                        'field' => 'sitegroup',
+                        'op' => '<>',
+                        'value' => '0',
                     ),
                 ),
                 'result_headers' => array
