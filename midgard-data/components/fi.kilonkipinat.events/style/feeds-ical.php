@@ -38,7 +38,7 @@ if ($data['events'])
         echo "SUMMARY:" . $event->title . "\n";
         echo "DESCRIPTION:" . $content . "\n";
 //        echo "URL:" . $_MIDCOM->permalinks->create_permalink($event->guid) . "\n";
-		echo "URL:" . $url_prefix . $event->guid . '/';
+		echo "URL:" . $url_prefix . $event->guid . '/' . "\n";
         $location = '';
         if ($event->eventslocation != 0) {
             $eventlocation = new fi_kilonkipinat_events_location_dba($event->eventslocation);
