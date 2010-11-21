@@ -15,7 +15,7 @@ $todo = new fi_kilonkipinat_todos_todoitem_dba($_POST['todoitem_guid']);
 	<div id="fi_kilonkipinat_todos_todoitem_info_tools">
 		<ul class="midcom_toolbar">
 			<li class="enabled">
-				<a href="/extranet/todot/edit_todo/<?php echo $todo->guid; ?>/">
+				<a href="/extranet/nakit/edit_todo/<?php echo $todo->guid; ?>/">
 					<img alt="" src="/midcom-static/stock-icons/16x16/edit.png">&nbsp;<span class="toolbar_label">Muokkaa</span>
 				</a>
 			</li>
