@@ -16,7 +16,7 @@ class fi_kilonkipinat_todos_todoitem_dba extends __fi_kilonkipinat_todos_todoite
         return $_MIDCOM->dbfactory->get_cached(__CLASS__, $src);
     }
 
-    function _construct_message()
+    function _construct_message($method = 'updated')
     {
         // Construct the message
         $message = array();
@@ -33,7 +33,9 @@ class fi_kilonkipinat_todos_todoitem_dba extends __fi_kilonkipinat_todos_todoite
         $user_string = "{$_MIDCOM->auth->user->name} ({$_MIDCOM->auth->user->username})";
         if (isset($GLOBALS['fi.kilonkipinat.todos_commented'])) {
             $message['title'] = 'Nakkia ' . $object->title . ' kommentoitiin käyttäjän ' . $user_string . ' toimesta';
-        } else {
+        } elseif ($method == 'created') {
+            $message['title'] = 'Nakkia ' . $object->title . ' luotiin käyttäjän ' . $user_string . ' toimesta';
+ 		} else {
             $message['title'] = 'Nakkia ' . $object->title . ' muokattiin käyttäjän ' . $user_string . ' toimesta';
         }
 
@@ -48,9 +50,9 @@ class fi_kilonkipinat_todos_todoitem_dba extends __fi_kilonkipinat_todos_todoite
         return $message;
     }
 
-    function _send_notifications()
+    function _send_notifications($method = 'updated')
     {
-        $message = $this->_construct_message();
+        $message = $this->_construct_message($method);
         $subscriptions = array();
         $tmp_subscriptions = $this->list_parameters('fi.kilonkipinat.todos:subscribe');
         if (!empty($subscriptions))
@@ -118,6 +120,14 @@ class fi_kilonkipinat_todos_todoitem_dba extends __fi_kilonkipinat_todos_todoite
     {
         if (!isset($GLOBALS['fi.kilonkipinat.todos_dont_send_messages'])) {
             $this->_send_notifications();
+        }
+        return true;
+    }
+
+    function _on_created()
+    {
+        if (!isset($GLOBALS['fi.kilonkipinat.todos_dont_send_messages'])) {
+            $this->_send_notifications('created');
         }
         return true;
     }
