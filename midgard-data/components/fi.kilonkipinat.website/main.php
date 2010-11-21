@@ -190,5 +190,14 @@ class fi_kilonkipinat_website
 
         return $comments_node;
     }
+
+	/**
+     * Try to find a comments node (cache results)
+     *
+     * @access public
+     */
+    public function return_chooser_date($value) {
+		return date('d.m.Y H:i', strtotime($value));
+	}
 }
 ?>

@@ -127,7 +127,8 @@
                 (
                     array
                     (
-                        'title' => 'ASC',
+                        'lastname' => 'ASC',
+                        'firstname' => 'ASC',
                     ),
                 ),
             ),
@@ -239,11 +240,13 @@
                     (
                         'name' => 'start',
                         'title' => $_MIDCOM->i18n->get_string('start', 'midcom'),
+                        'run_function' => 'fi_kilonkipinat_website::return_chooser_date',
                     ),
                     array
                     (
                         'name' => 'end',
                         'title' => $_MIDCOM->i18n->get_string('end', 'midcom'),
+                        'run_function' => 'fi_kilonkipinat_website::return_chooser_date',
                     ),
                 ),
                 'orders' => array
@@ -273,7 +276,7 @@
                 'class'       => 'fi_kilonkipinat_account_person_dba',
                 'component'   => 'fi.kilonkipinat.account',
                 'titlefield'  => 'nickname',
-                'id_field'     => 'id',
+                'id_field'    => 'id',
                 'idfield'     => 'id',
                 'searchfields' => array
                 (
@@ -324,7 +327,8 @@
                 (
                     array
                     (
-                        'title' => 'ASC',
+                        'lastname' => 'ASC',
+                        'firstname' => 'ASC',
                     ),
                 ),
             ),
