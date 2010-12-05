@@ -254,6 +254,7 @@ class fi_kilonkipinat_todos_handler_list extends midcom_baseclasses_components_h
         $data['qb']->add_constraint('person', '=', $_MIDGARD['user']);
         $data['qb']->add_constraint('supervisor', '=', $_MIDGARD['user']);
         $data['qb']->end_group();
+        $data['qb']->add_order('status');
         $data['qb']->add_order('deadline');
         if ($handler_id == 'list_all_count') {
             $data['qb']->results_per_page = $args[0];

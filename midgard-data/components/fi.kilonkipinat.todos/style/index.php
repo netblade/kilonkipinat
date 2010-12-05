@@ -9,10 +9,12 @@ $prefix = $data['prefix'];
 $qb_my = fi_kilonkipinat_todos_todoitem_dba::new_query_builder();
 $qb_my->add_constraint('person', '=', $_MIDGARD['user']);
 $qb_my->add_order('deadline', 'ASC');
+$qb_my->add_constraint('status', '<', FI_KILONKIPINAT_TODOS_TODOITEM_STATUS_RESOLVED);
+$my_count = $qb_my->count();
 $qb_my->set_limit(5);
 $todos_my = $qb_my->execute();
 ?>
-<h2><a href="#" class="fi_kilonkipinat_website_toggler_trigger" onclick="return false;">Mulle nakitetut (<?php echo count($todos_my); ?>)</a></h2>
+<h2><a href="#" class="fi_kilonkipinat_website_toggler_trigger" onclick="return false;">Mulle nakitetut (<?php echo $my_count; ?>)</a></h2>
 <div class="fi_kilonkipinat_website_toggler_content" style="display: none;">
 <?php
 if (count($todos_my)>0) {
@@ -21,6 +23,7 @@ if (count($todos_my)>0) {
     echo "\t\t<tr>";
     echo "\t\t\t<th class=\"header\">Otsikko</th>";
     echo "\t\t\t<th class=\"{sorter: 'fiDate'} header\">Parasta ennen</th>";
+    echo "\t\t\t<th class=\"header\">Status</th>";
     echo "\t\t\t<th class=\"header\">Nakittaja</th>";
     echo "\t\t\t<th class=\"header\">Paino</th>";
     echo "\t\t\t<th class=\"header\">Tapahtuma</th>";
@@ -31,6 +34,7 @@ if (count($todos_my)>0) {
 //        echo "\t\t\t<td><a href=\"".$prefix.'view_todo/'.$todo->guid."\">".$todo->title."</a></td>";
         echo "\t\t\t<td><a class=\"fi_kilonkipinat_todos_todoitem_modal_link\" href=\"#" . $todo->guid."\">".$todo->title."</a></td>\n";
         echo "\t\t\t<td>".fi_kilonkipinat_website::returnDate(strtotime($todo->deadline), 'short')."</td>";
+        echo "\t\t\t<td>" . $_MIDCOM->i18n->get_string('status_' . $todo->status, 'fi.kilonkipinat.todos') . "</td>\n";
         echo "\t\t\t<td>";
         if ($todo->supervisor != 0) {
             $supervisor = new fi_kilonkipinat_account_person_dba($todo->supervisor);
@@ -85,10 +89,12 @@ $qb_my_groups = fi_kilonkipinat_todos_todoitem_dba::new_query_builder();
 $qb_my_groups->add_constraint('grp', 'IN', $my_groups);
 $qb_my_groups->add_constraint('grp', '<>', 0);
 $qb_my_groups->add_order('deadline', 'ASC');
+$qb_my_groups->add_constraint('status', '<', FI_KILONKIPINAT_TODOS_TODOITEM_STATUS_RESOLVED);
+$my_groups_count = $qb_my_groups->count();
 $qb_my_groups->set_limit(5);
 $todos_my_groups = $qb_my_groups->execute();
 ?>
-<h2><a href="#" class="fi_kilonkipinat_website_toggler_trigger" onclick="return false;">Mun ryhmille nakitetut (<?php echo count($todos_my_groups); ?>)</a></h2>
+<h2><a href="#" class="fi_kilonkipinat_website_toggler_trigger" onclick="return false;">Mun ryhmille nakitetut (<?php echo $my_groups_count; ?>)</a></h2>
 <div class="fi_kilonkipinat_website_toggler_content" style="display: none;">
 <?php
 if (count($todos_my_groups)>0) {
@@ -97,6 +103,7 @@ if (count($todos_my_groups)>0) {
     echo "\t\t<tr>";
     echo "\t\t\t<th class=\"header\">Otsikko</th>";
     echo "\t\t\t<th class=\"{sorter: 'fiDate'} header\">Parasta ennen</th>";
+    echo "\t\t\t<th class=\"header\">Status</th>";
     echo "\t\t\t<th class=\"header\">Nakittaja</th>";
     echo "\t\t\t<th class=\"header\">Paino</th>";
     echo "\t\t\t<th class=\"header\">Tapahtuma</th>";
@@ -107,6 +114,7 @@ if (count($todos_my_groups)>0) {
 //        echo "\t\t\t<td><a href=\"".$prefix.'view_todo/'.$todo->guid."\">".$todo->title."</a></td>";
         echo "\t\t\t<td><a class=\"fi_kilonkipinat_todos_todoitem_modal_link\" href=\"#" . $todo->guid."\">".$todo->title."</a></td>\n";
         echo "\t\t\t<td>".fi_kilonkipinat_website::returnDate(strtotime($todo->deadline), 'short')."</td>";
+        echo "\t\t\t<td>" . $_MIDCOM->i18n->get_string('status_' . $todo->status, 'fi.kilonkipinat.todos') . "</td>\n";
         echo "\t\t\t<td>";
         if ($todo->supervisor != 0) {
             $supervisor = new fi_kilonkipinat_account_person_dba($todo->supervisor);
@@ -147,10 +155,12 @@ if (count($todos_my_groups)>0) {
 $qb_my_supervised = fi_kilonkipinat_todos_todoitem_dba::new_query_builder();
 $qb_my_supervised->add_constraint('supervisor', '=', $_MIDGARD['user']);
 $qb_my_supervised->add_order('deadline', 'ASC');
+$qb_my_supervised->add_constraint('status', '<', FI_KILONKIPINAT_TODOS_TODOITEM_STATUS_CLOSED);
+$my_supervised_count = $qb_my_supervised->count();
 $qb_my_supervised->set_limit(5);
 $todos_my_supervised = $qb_my_supervised->execute();
 ?>
-<h2><a href="#" class="fi_kilonkipinat_website_toggler_trigger" onclick="return false;">Minä valvojana (<?php echo count($todos_my_supervised); ?>)</a></h2>
+<h2><a href="#" class="fi_kilonkipinat_website_toggler_trigger" onclick="return false;">Minä valvojana (<?php echo $my_supervised_count; ?>)</a></h2>
 <div class="fi_kilonkipinat_website_toggler_content" style="display: none;">
 <?php
 if (count($todos_my_supervised)>0) {
@@ -159,6 +169,7 @@ if (count($todos_my_supervised)>0) {
     echo "\t\t<tr>";
     echo "\t\t\t<th class=\"header\">Otsikko</th>";
     echo "\t\t\t<th class=\"{sorter: 'fiDate'} header\">Parasta ennen</th>";
+    echo "\t\t\t<th class=\"header\">Status</th>";
     echo "\t\t\t<th class=\"header\">Nakitettu</th>";
     echo "\t\t\t<th class=\"header\">Paino</th>";
     echo "\t\t\t<th class=\"header\">Tapahtuma</th>";
@@ -169,6 +180,7 @@ if (count($todos_my_supervised)>0) {
 //        echo "\t\t\t<td><a href=\"".$prefix.'view_todo/'.$todo->guid."\">".$todo->title."</a></td>";
         echo "\t\t\t<td><a class=\"fi_kilonkipinat_todos_todoitem_modal_link\" href=\"#" . $todo->guid."\">".$todo->title."</a></td>\n";
         echo "\t\t\t<td>".fi_kilonkipinat_website::returnDate(strtotime($todo->deadline), 'short')."</td>";
+        echo "\t\t\t<td>" . $_MIDCOM->i18n->get_string('status_' . $todo->status, 'fi.kilonkipinat.todos') . "</td>\n";
         echo "\t\t\t<td>";
         if ($todo->person != 0) {
             $person = new fi_kilonkipinat_account_person_dba($todo->person);

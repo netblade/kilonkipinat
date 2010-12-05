@@ -360,6 +360,13 @@ class fi_kilonkipinat_todos_viewer extends midcom_baseclasses_components_request
         if (isset($filters['filter_status']))
         {
             $qb->add_constraint('status', 'IN', $filters['filter_status']);
+        } else {
+            $status_list = array(
+                FI_KILONKIPINAT_TODOS_TODOITEM_STATUS_NEW,
+                FI_KILONKIPINAT_TODOS_TODOITEM_STATUS_PENDING,
+                FI_KILONKIPINAT_TODOS_TODOITEM_STATUS_ACKNOWLEDGED
+            );
+            $qb->add_constraint('status', 'IN', $status_list);
         }
 
         if (isset($filters['other']))
