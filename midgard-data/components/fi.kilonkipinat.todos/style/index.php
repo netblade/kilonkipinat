@@ -63,7 +63,7 @@ if (count($todos_my)>0) {
         echo "\t\t</tr>";
     }
     echo "</table>";
-    echo '<a href="' . $prefix . 'my\">Näytä kaikki</a>';
+    echo '<a href="' . $prefix . 'list/my/">Näytä kaikki</a>';
 } else {
     echo "<p>Ei nakkeja</p>";
 }
@@ -145,7 +145,7 @@ if (count($todos_my_groups)>0) {
     }
     echo "</table>";
     echo "<br /><br />";
-    echo '<a href="' . $prefix . 'my_groups\">Näytä kaikki</a>';
+    echo '<a href="' . $prefix . 'list/my_groups/">Näytä kaikki</a>';
 } else {
     echo "<p>Ei nakkeja</p>";
 }
@@ -213,7 +213,7 @@ if (count($todos_my_supervised)>0) {
     }
     echo "</table>";
     echo "<br /><br />";
-    echo '<a href="' . $prefix . 'my_supervised\">Näytä kaikki</a>';
+    echo '<a href="' . $prefix . 'list/my_supervised/">Näytä kaikki</a>';
 } else {
     echo "<p>Ei nakkeja</p>";
 }
