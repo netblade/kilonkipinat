@@ -157,9 +157,9 @@ if (count($todos_my_groups)>0) {
 <?php
 $qb_my_supervised = fi_kilonkipinat_todos_todoitem_dba::new_query_builder();
 $qb_my_supervised->add_constraint('supervisor', '=', $_MIDGARD['user']);
-$qb_my_supervised->add_order('deadline', 'ASC');
 $qb_my_supervised->add_constraint('status', '<', FI_KILONKIPINAT_TODOS_TODOITEM_STATUS_CLOSED);
 $my_supervised_count = $qb_my_supervised->count();
+$qb_my_supervised->add_order('deadline', 'ASC');
 $qb_my_supervised->set_limit(5);
 $todos_my_supervised = $qb_my_supervised->execute();
 ?>

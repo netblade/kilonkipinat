@@ -158,6 +158,14 @@ class fi_kilonkipinat_todos_handler_list extends midcom_baseclasses_components_h
         $qb = new org_openpsa_qbpager('fi_kilonkipinat_todos_todoitem_dba', 'fi_kilonkipinat_todos_list_my');
         $qb->add_constraint('supervisor', '=', $_MIDGARD['user']);
         $qb->add_constraint('status', '<', FI_KILONKIPINAT_TODOS_TODOITEM_STATUS_RESOLVED);
+        $status_list = array(
+            FI_KILONKIPINAT_TODOS_TODOITEM_STATUS_NEW,
+            FI_KILONKIPINAT_TODOS_TODOITEM_STATUS_PENDING,
+            FI_KILONKIPINAT_TODOS_TODOITEM_STATUS_ACKNOWLEDGED,
+            FI_KILONKIPINAT_TODOS_TODOITEM_STATUS_RESOLVED
+        );
+        $qb->add_constraint('status', 'IN', $status_list);
+        $qb->add_order('status', 'ASC');
         $qb->add_order('deadline', 'ASC');
         if ($handler_id == 'list_mysupervised_count') {
             $qb->results_per_page = $args[0];
