@@ -65,11 +65,7 @@ class fi_kilonkipinat_events_handler_list extends midcom_baseclasses_components_
             return false;
         }
         
-        $kisa_config = 0;
-        if (isset($this->_config->get('kisa')) && $this->_config->get('kisa') != 0) {
-            
-            $kisa_config = $this->_config->get('kisa');
-        }
+        $kisa_config = $this->_config->get('kisa');
         
         $qb_trips = fi_kilonkipinat_events_event_dba::new_query_builder();
         $qb_trips->add_constraint('topic', '=', $this->_topic->id);

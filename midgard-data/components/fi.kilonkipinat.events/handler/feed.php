@@ -87,12 +87,9 @@ class fi_kilonkipinat_events_handler_feed extends midcom_baseclasses_components_
 
         // Show only events that haven't ended
         $qb->add_constraint('end', '>', date('Y-m-d H:i:s'));
-        
-        $kisa_config = 0;
-        if (isset($this->_config->get('kisa')) && $this->_config->get('kisa') != 0) {
-            
-            $kisa_config = $this->_config->get('kisa');
-        }
+
+        $kisa_config = $this->_config->get('kisa');
+
         if ($kisa_config == 0) {
             $qb->add_constraint('kisa', '<=', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
         }
@@ -225,11 +222,8 @@ class fi_kilonkipinat_events_handler_feed extends midcom_baseclasses_components_
             $qb->add_constraint('type', '<', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_GENERIC);
         }
         
-         $kisa_config = 0;
-        if (isset($this->_config->get('kisa')) && $this->_config->get('kisa') != 0) {
-            
-            $kisa_config = $this->_config->get('kisa');
-        }
+        $kisa_config = $this->_config->get('kisa');
+
         if ($kisa_config == 0) {
             $qb->add_constraint('kisa', '<=', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
         }

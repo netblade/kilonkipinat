@@ -47,11 +47,8 @@ class fi_kilonkipinat_events_handler_index extends midcom_baseclasses_components
         $this->_request_data['name']  = "fi.kilonkipinat.events";
 
         $this->_update_breadcrumb_line($handler_id);
-        $kisa_config = 0;
-        if (isset($this->_config->get('kisa')) && $this->_config->get('kisa') != 0) {
-            
-            $kisa_config = $this->_config->get('kisa');
-        }
+
+        $kisa_config = $this->_config->get('kisa');
         
         $_MIDCOM->set_pagetitle("{$this->_topic->extra}");
         

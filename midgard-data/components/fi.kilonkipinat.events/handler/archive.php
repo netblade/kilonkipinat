@@ -198,11 +198,8 @@ class fi_kilonkipinat_events_handler_archive extends midcom_baseclasses_componen
         // Get the pre-filtered QB
         $qb = fi_kilonkipinat_events_viewer::prepare_event_qb($this->_request_data, $this->_config);
 
-        $kisa_config = 0;
-        if (isset($this->_config->get('kisa')) && $this->_config->get('kisa') != 0) {
-            
-            $kisa_config = $this->_config->get('kisa');
-        }
+        $kisa_config = $this->_config->get('kisa');
+
         $qb->add_constraint('start', '<', date('Y-m-d H:i:s', $end));
         if ($kisa_config == 0) {
             $qb->add_constraint('kisa', '<=', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
