@@ -21,7 +21,7 @@ class fi_kilonkipinat_events_handler_event extends midcom_baseclasses_components
     public function _load_object($handler_id, $args, &$data)
     {
         $qb = fi_kilonkipinat_events_event_dba::new_query_builder();
-        $qb->add_constraint('topic', '=', $this->_request_data['content_topic']->id);
+        //$qb->add_constraint('topic', '=', $this->_request_data['content_topic']->id);
         $qb->add_constraint('guid', '=', $args[0]);
         $qb->set_limit(1);
         $objects = $qb->execute();

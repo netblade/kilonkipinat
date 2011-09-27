@@ -53,7 +53,7 @@ class fi_kilonkipinat_events_handler_index extends midcom_baseclasses_components
         $_MIDCOM->set_pagetitle("{$this->_topic->extra}");
         
         $qb_trips = fi_kilonkipinat_events_event_dba::new_query_builder();
-        $qb_trips->add_constraint('topic', '=', $this->_topic->id);
+        //$qb_trips->add_constraint('topic', '=', $this->_topic->id);
         $qb_trips->add_constraint('type', '>=', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_GENERIC);
         $qb_trips->add_constraint('type', '<', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_GENERIC);
         if ($kisa_config == 0) {
@@ -76,7 +76,7 @@ class fi_kilonkipinat_events_handler_index extends midcom_baseclasses_components
         $trips = $qb_trips->execute();
 
         $qb_meetings = fi_kilonkipinat_events_event_dba::new_query_builder();
-        $qb_meetings->add_constraint('topic', '=', $this->_topic->id);
+        //$qb_meetings->add_constraint('topic', '=', $this->_topic->id);
         $qb_meetings->add_constraint('type', '>=', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_GENERIC);
         $qb_meetings->add_constraint('type', '<=', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_ANNUAL);
         if ($kisa_config == 0) {
