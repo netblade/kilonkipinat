@@ -25,4 +25,6 @@
 
 'ical_count' => 20, // show that many items by default
 
+'kisa' => 1,
+
 'show_navigation_pseudo_leaves' => true,   // Set this to false if you want to hide archive navigation items

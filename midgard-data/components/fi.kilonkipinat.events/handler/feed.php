@@ -87,6 +87,24 @@ class fi_kilonkipinat_events_handler_feed extends midcom_baseclasses_components_
 
         // Show only events that haven't ended
         $qb->add_constraint('end', '>', date('Y-m-d H:i:s'));
+        
+        $kisa_config = 0;
+        if (isset($this->_config->get('kisa')) && $this->_config->get('kisa') != 0) {
+            
+            $kisa_config = $this->_config->get('kisa');
+        }
+        if ($kisa_config == 0) {
+            $qb->add_constraint('kisa', '<=', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
+        }
+        elseif ($kisa_config == 1) {
+            $qb->add_constraint('kisa', '<', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
+        }
+        elseif ($kisa_config == 2) {
+            $qb->add_constraint('kisa', '=>', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
+        }
+        elseif ($kisa_config == 3) {
+            $qb->add_constraint('kisa', '>', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
+        }
 
         $qb->set_limit($this->_config->get('rss_count'));
 
@@ -205,6 +223,24 @@ class fi_kilonkipinat_events_handler_feed extends midcom_baseclasses_components_
         } elseif (strstr($handler_id, 'trips')) {
             $qb->add_constraint('type', '>=', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_GENERIC);
             $qb->add_constraint('type', '<', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_GENERIC);
+        }
+        
+         $kisa_config = 0;
+        if (isset($this->_config->get('kisa')) && $this->_config->get('kisa') != 0) {
+            
+            $kisa_config = $this->_config->get('kisa');
+        }
+        if ($kisa_config == 0) {
+            $qb->add_constraint('kisa', '<=', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
+        }
+        elseif ($kisa_config == 1) {
+            $qb->add_constraint('kisa', '<', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
+        }
+        elseif ($kisa_config == 2) {
+            $qb->add_constraint('kisa', '=>', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
+        }
+        elseif ($kisa_config == 3) {
+            $qb->add_constraint('kisa', '>', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
         }
 
         // Show only events that haven't ended

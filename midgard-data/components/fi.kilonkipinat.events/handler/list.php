@@ -65,12 +65,32 @@ class fi_kilonkipinat_events_handler_list extends midcom_baseclasses_components_
             return false;
         }
         
+        $kisa_config = 0;
+        if (isset($this->_config->get('kisa')) && $this->_config->get('kisa') != 0) {
+            
+            $kisa_config = $this->_config->get('kisa');
+        }
+        
         $qb_trips = fi_kilonkipinat_events_event_dba::new_query_builder();
         $qb_trips->add_constraint('topic', '=', $this->_topic->id);
         $qb_trips->add_constraint('type', '>=', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_GENERIC);
         $qb_trips->add_constraint('type', '<', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_GENERIC);
         $qb_trips->add_constraint('start', '>=', date('Y-m-d H:i:s', $start));
         $qb_trips->add_constraint('start', '<', date('Y-m-d H:i:s', $end));
+
+        
+        if ($kisa_config == 0) {
+            $qb_trips->add_constraint('kisa', '<=', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
+        }
+        elseif ($kisa_config == 1) {
+            $qb_trips->add_constraint('kisa', '<', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
+        }
+        elseif ($kisa_config == 2) {
+            $qb_trips->add_constraint('kisa', '=>', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
+        }
+        elseif ($kisa_config == 3) {
+            $qb_trips->add_constraint('kisa', '>', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
+        }
         if (!$_MIDGARD['user']) {
             $qb_trips->add_constraint('visibility', '=', FI_KILONKIPINAT_EVENTS_EVENT_VISIBILITY_PUBLIC);
         }
@@ -83,6 +103,20 @@ class fi_kilonkipinat_events_handler_list extends midcom_baseclasses_components_
         $qb_meetings->add_constraint('type', '<=', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_ANNUAL);
         $qb_meetings->add_constraint('start', '>=', date('Y-m-d H:i:s', $start));
         $qb_meetings->add_constraint('start', '<', date('Y-m-d H:i:s', $end));
+        
+        if ($kisa_config == 0) {
+            $qb_meetings->add_constraint('kisa', '<=', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
+        }
+        elseif ($kisa_config == 1) {
+            $qb_meetings->add_constraint('kisa', '<', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
+        }
+        elseif ($kisa_config == 2) {
+            $qb_meetings->add_constraint('kisa', '=>', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
+        }
+        elseif ($kisa_config == 3) {
+            $qb_meetings->add_constraint('kisa', '>', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
+        }
+        
         if (!$_MIDGARD['user']) {
             $qb_meetings->add_constraint('visibility', '=', FI_KILONKIPINAT_EVENTS_EVENT_VISIBILITY_PUBLIC);
         }
@@ -175,6 +209,25 @@ class fi_kilonkipinat_events_handler_list extends midcom_baseclasses_components_
         
         $qb_events = fi_kilonkipinat_events_event_dba::new_query_builder();
         $qb_events->add_constraint('topic', '=', $this->_topic->id);
+
+        $kisa_config = 0;
+        if (isset($this->_config->get('kisa')) && $this->_config->get('kisa') != 0) {
+            
+            $kisa_config = $this->_config->get('kisa');
+        }
+        if ($kisa_config == 0) {
+            $qb_events->add_constraint('kisa', '<=', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
+        }
+        elseif ($kisa_config == 1) {
+            $qb_events->add_constraint('kisa', '<', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
+        }
+        elseif ($kisa_config == 2) {
+            $qb_events->add_constraint('kisa', '=>', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
+        }
+        elseif ($kisa_config == 3) {
+            $qb_events->add_constraint('kisa', '>', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
+        }
+
         if ($handler_id == 'upcoming_trips') {
             $qb_events->add_constraint('type', '>=', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_GENERIC);
             $qb_events->add_constraint('type', '<', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_GENERIC);

@@ -40,6 +40,9 @@
         <property name="visibility" type="unsigned integer" index="yes">
             <description>Is event public or not</description>
         </property>
+        <property name="kisa" type="unsigned integer" index="yes">
+            <description>Is the event a KiSa event (1000 = no, 1100 = yes, 1200 = show only on kisa )</description>
+        </property>
         <property name="eventslocation" link="fi_kilonkipinat_events_location:id" type="unsigned integer">
             <description>Events location for event</description>
         </property>

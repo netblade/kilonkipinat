@@ -75,6 +75,10 @@ class fi_kilonkipinat_events_interface extends midcom_baseclasses_components_int
         define('FI_KILONKIPINAT_EVENTS_EVENT_LOCATION_VISIBILITY_PUBLIC', 1000);
         define('FI_KILONKIPINAT_EVENTS_EVENT_LOCATION_VISIBILITY_TEXT_PUBLIC', 1100);
         define('FI_KILONKIPINAT_EVENTS_EVENT_LOCATION_VISIBILITY_SECURE', 1200);
+        
+        define('FI_KILONKIPINAT_EVENTS_EVENT_KISA_FALSE', 1000);
+        define('FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH', 1100);
+        define('FI_KILONKIPINAT_EVENTS_EVENT_KISA_TRUE', 1200);
     }
     /**
      * Simple lookup method which tries to map the guid to an article of out topic.

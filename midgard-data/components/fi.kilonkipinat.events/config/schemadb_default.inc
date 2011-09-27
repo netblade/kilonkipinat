@@ -56,6 +56,25 @@
                 ),
             ),
         ),
+        'kisa' => Array
+        (
+            'title' => 'KiSa',
+            'storage' => 'kisa',
+            'required' => true,
+            'type' => 'select',
+            'widget' => 'select',
+            'type_config' => array
+            (
+                'allow_multiple' => false,
+                'allow_other' => false,
+                'options' => array
+                (
+                    FI_KILONKIPINAT_EVENTS_EVENT_KISA_FALSE => 'Ei',
+                    FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH => 'Sekä että',
+                    FI_KILONKIPINAT_EVENTS_EVENT_KISA_TRUE => 'Vain KiSa',
+                ),
+            ),
+        ),
         'start' => array
         (
             'title' => 'Alkaa',
@@ -321,6 +340,25 @@
                 (
                     FI_KILONKIPINAT_EVENTS_EVENT_VISIBILITY_PUBLIC => 'Näkyy kaikille',
                     FI_KILONKIPINAT_EVENTS_EVENT_VISIBILITY_SECURE => 'Näkyy vain käyttäjille',
+                ),
+            ),
+        ),
+        'kisa' => Array
+        (
+            'title' => 'KiSa',
+            'storage' => 'kisa',
+            'required' => true,
+            'type' => 'select',
+            'widget' => 'select',
+            'type_config' => array
+            (
+                'allow_multiple' => false,
+                'allow_other' => false,
+                'options' => array
+                (
+                    FI_KILONKIPINAT_EVENTS_EVENT_KISA_FALSE => 'Ei',
+                    FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH => 'Sekä että',
+                    FI_KILONKIPINAT_EVENTS_EVENT_KISA_TRUE => 'Vain KiSa',
                 ),
             ),
         ),

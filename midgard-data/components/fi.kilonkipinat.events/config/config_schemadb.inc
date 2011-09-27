@@ -19,6 +19,30 @@
                 'title' => 'display settings',
             ),
         ),
+        'kisa' => array
+        (
+            'title' =>  'kisa',
+            'storage' => array
+            (
+                'location' => 'configuration',
+                'domain' => 'fi.kilonkipinat.events',
+                'name' => 'kisa',
+            ),
+            'type' => 'select',
+            'widget' => 'select',
+            'type_config' => array
+            (
+                'allow_multiple' => false,
+                'allow_other' => false,
+                'options' => array
+                (
+                    0 => 'Ei (näytä sekä että)',
+                    1 => 'Ei (älä näytä KiSa:n tapahtumia)',
+                    2 => 'Kyllä (näytä sekä että)',
+                    3 => 'KiSa (älä näytä KKp:n tapahtumia',
+                ),
+            ),
+        ),
         'categories' => array
         (
             'title' =>  'categories',
