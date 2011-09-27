@@ -82,7 +82,7 @@ class fi_kilonkipinat_events_handler_list extends midcom_baseclasses_components_
             $qb_trips->add_constraint('kisa', '<', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
         }
         elseif ($kisa_config == 2) {
-            $qb_trips->add_constraint('kisa', '=>', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
+            $qb_trips->add_constraint('kisa', '>=', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
         }
         elseif ($kisa_config == 3) {
             $qb_trips->add_constraint('kisa', '>', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
@@ -107,7 +107,7 @@ class fi_kilonkipinat_events_handler_list extends midcom_baseclasses_components_
             $qb_meetings->add_constraint('kisa', '<', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
         }
         elseif ($kisa_config == 2) {
-            $qb_meetings->add_constraint('kisa', '=>', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
+            $qb_meetings->add_constraint('kisa', '>=', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
         }
         elseif ($kisa_config == 3) {
             $qb_meetings->add_constraint('kisa', '>', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
@@ -216,7 +216,7 @@ class fi_kilonkipinat_events_handler_list extends midcom_baseclasses_components_
             $qb_events->add_constraint('kisa', '<', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
         }
         elseif ($kisa_config == 2) {
-            $qb_events->add_constraint('kisa', '=>', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
+            $qb_events->add_constraint('kisa', '>=', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
         }
         elseif ($kisa_config == 3) {
             $qb_events->add_constraint('kisa', '>', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);

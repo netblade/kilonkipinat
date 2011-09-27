@@ -208,7 +208,7 @@ class fi_kilonkipinat_events_handler_archive extends midcom_baseclasses_componen
             $qb->add_constraint('kisa', '<', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
         }
         elseif ($kisa_config == 2) {
-            $qb->add_constraint('kisa', '=>', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
+            $qb->add_constraint('kisa', '>=', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
         }
         elseif ($kisa_config == 3) {
             $qb->add_constraint('kisa', '>', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
