@@ -79,17 +79,17 @@ class fi_kilonkipinat_events_handler_index extends midcom_baseclasses_components
         $qb_meetings->add_constraint('topic', '=', $this->_topic->id);
         $qb_meetings->add_constraint('type', '>=', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_GENERIC);
         $qb_meetings->add_constraint('type', '<=', FI_KILONKIPINAT_EVENTS_EVENT_TYPE_MEETING_ANNUAL);
-        if ($qb_meetings == 0) {
-            $qb_trips->add_constraint('kisa', '<=', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
+        if ($kisa_config == 0) {
+            $qb_meetings->add_constraint('kisa', '<=', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
         }
-        elseif ($qb_meetings == 1) {
-            $qb_trips->add_constraint('kisa', '<', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
+        elseif ($kisa_config == 1) {
+            $qb_meetings->add_constraint('kisa', '<', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
         }
-        elseif ($qb_meetings == 2) {
-            $qb_trips->add_constraint('kisa', '=>', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
+        elseif ($kisa_config == 2) {
+            $qb_meetings->add_constraint('kisa', '=>', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
         }
-        elseif ($qb_meetings == 3) {
-            $qb_trips->add_constraint('kisa', '>', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
+        elseif ($kisa_config == 3) {
+            $qb_meetings->add_constraint('kisa', '>', FI_KILONKIPINAT_EVENTS_EVENT_KISA_BOTH);
         }
         $qb_meetings->add_constraint('end', '>', date('Y-m-d H:i:s', time()));
         $qb_meetings->add_order('start');
