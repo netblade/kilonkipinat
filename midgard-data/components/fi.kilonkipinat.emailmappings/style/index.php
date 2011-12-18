@@ -139,11 +139,11 @@ if (count($results) != 0) {
         echo "\t\t<td>";
         echo "&nbsp;&nbsp;&nbsp;";
         if ($result->can_do('midgard:update')) {
-            echo "<a title=\"Muokkaa\" href=\"" . $prefix . 'emailmapping/edit/' . $result->name . "/\"><img src=\"/midcom-static/fi.kilonkipinat.emailmappings/email_edit.png\" /></a>";
+            echo "<a title=\"Muokkaa\" href=\"" . $prefix . 'emailmapping/edit/' . $result->guid . "/\"><img src=\"/midcom-static/fi.kilonkipinat.emailmappings/email_edit.png\" /></a>";
         }
         echo "&nbsp;&nbsp;&nbsp;";
         if ($result->can_do('midgard:delete')) {
-            echo "<a title=\"Poista\" href=\"" . $prefix . 'emailmapping/delete/' . $result->name . "/\"><img src=\"/midcom-static/fi.kilonkipinat.emailmappings/email_delete.png\" /></a>";
+            echo "<a title=\"Poista\" href=\"" . $prefix . 'emailmapping/delete/' . $result->guid . "/\"><img src=\"/midcom-static/fi.kilonkipinat.emailmappings/email_delete.png\" /></a>";
         }
         echo "&nbsp;&nbsp;&nbsp;";
         echo "</td>\n";
